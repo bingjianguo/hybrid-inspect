@@ -1,6 +1,6 @@
 {
   "name": "hybrid-inspect",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "vorlon implement by bingjian",
   "main": "Server/server.js",
   "dependencies": {
@@ -76,7 +76,8 @@
     "build-all": "gulp --gulpfile=./gulpfile.js",
     "build-bin": "babel src --out-dir dist",
     "build": "npm run build-all && npm run build-bin",
-    "__prepublish": "npm run build",
+    "buildddd": "echo 'ddd'",
+    "prepare": "npm run build",
     "start": "node ./dist/local-server.js"
   },
   "bin": {

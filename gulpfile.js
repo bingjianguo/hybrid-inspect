@@ -370,16 +370,9 @@ gulp.task('typescript-to-js-server', function() {
     .pipe(gulp.dest('.'));
 });
 
-gulp.task('build-server', ['typescript-to-js-server'], function() {
-  //copy server files to desktop app
-  return gulp.src([
-    './server/**/*.*'
-  ])
-  // 关闭copy文件的过程, 减少文件操作和查找
-  // .pipe(gulp.dest('./desktop/app/vorlon'));
-});
 
-gulp.task('default-server', ['build-server'], function() {
+
+gulp.task('default-server', ['typescript-to-js-server'], function() {
 });
 
 /**

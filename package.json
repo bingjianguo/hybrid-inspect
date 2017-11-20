@@ -73,14 +73,11 @@
     "build-all": "gulp --gulpfile=./gulpfile.js",
     "build-bin": "babel src --out-dir dist",
     "build": "npm run build-all && npm run build-bin",
-    "prepublish": "npm run build",
+    "__prepublish": "npm run build",
     "start": "node ./Server/server.js"
   },
   "bin": {
     "vorlon": "./bin/vorlon",
     "ant-vorlon": "./bin/ant-vorlon"
-  },
-  "publishConfig": {
-    "registry": "http://registry.npm.alibaba-inc.com"
   }
 }

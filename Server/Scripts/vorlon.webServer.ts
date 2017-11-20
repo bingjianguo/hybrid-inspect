@@ -3,11 +3,13 @@ import path = require("path");
 import stylus = require("stylus");
 import fs = require("fs");
 import http = require("http");
+
 //Vorlon
 import iwsc = require("./vorlon.IWebServerComponent");
 import vauth = require("./vorlon.authentication");
-import vorloncontext = require("../config/vorlon.servercontext"); 
+import vorloncontext = require("../config/vorlon.servercontext");
 
+var  color = require('colorful');
 export module VORLON {
     export class WebServer {
         private _bodyParser = require("body-parser");
@@ -138,7 +140,7 @@ export module VORLON {
             if (this.httpConfig.useSSL) {
                 let tempHost = app.get('host');
                 // tempHost = '30.17.226.6';
-                console.log(`temp host = ${tempHost}`);
+                console.log(`${color.green('temp host')} = ${tempHost}`);
                 this._httpServer = this.httpConfig.httpModule.createServer(this.httpConfig.options, app).listen(
                     app.get('port'), tempHost, undefined, () => {
                         this._log.info('Vorlon.js SERVER with SSL listening at ' + tempHost + ':' + app.get('port'));

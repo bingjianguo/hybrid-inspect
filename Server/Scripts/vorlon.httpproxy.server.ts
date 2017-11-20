@@ -6,9 +6,12 @@ import fs = require("fs");
 import util = require("util");
 import url = require("url");
 import zlib = require("zlib");
+const color = require('colorful');
 var cookieParser = require('cookie-parser')
 var colors = require("colors");
+
 var httpProxy = require("http-proxy");
+
 
 import iwsc = require("./vorlon.IWebServerComponent");
 import vorloncontext = require("../config/vorlon.servercontext"); 

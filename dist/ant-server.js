@@ -63,28 +63,4 @@ randomPort({
   });
 
   require('../Server/server.js');
-
-  //const vorlonProcess = fork(`${__dirname}/../Server/server.js`, [], {
-  //  silent: true,
-  //  env: {
-  //    PORT: port,
-  //    HOST: host,
-  //    PROXY_HOST: host,
-  //  },
-  //});
-  //const flagProcess = vorlonProcess;
-  //vorlonProcess.stdout.on('data', function(data) {
-  //  console.log(`[vorlon] ${data.toString()}`);
-  //});
-  //
-  //vorlonProcess.stderr.on('data', function(data) {
-  //  console.log(`[vorlon error] ${data.toString().split(' ').join('\n')}`);
-  //});
-  //
-  //process.on('SIGHUP', function() {
-  //  console.log('vorlon received SIGHUP');
-  //  if (flagProcess) {
-  //    flagProcess.kill('SIGHUP');
-  //  }
-  //});
 });

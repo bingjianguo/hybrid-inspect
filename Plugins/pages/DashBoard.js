@@ -137,10 +137,48 @@ class DashBoard extends React.Component {
       const totalHeight = $(window).height();
       if ($('#pcon').length > 0) {
         const topBottomMargin =
-          parseFloat($('#pcon').css('margin-top')) +  parseFloat($('#pcon').css('margin-bottom'));
-        $('#pcon').height(totalHeight - topBottomMargin);
+          parseFloat($('#pcon').css('margin-top')) +  
+          parseFloat($('#pcon').css('margin-bottom'));
+        const contentHeight = totalHeight - topBottomMargin;
+        $('#pcon').height(contentHeight);
+  
+        $('.dashboard-plugins').css({ 
+          height: contentHeight - 20,
+          overflow: 'hidden'
+        });
+
+        // 动态设置domExplorer的高度
+        // if (!$('dashboard-plugins').data('splitter')) {
+        //   const domPluginsPaneBottom = $('#pluginsPaneBottom');
+        //   const spliter = 10;
+        //   let bottomHeight = 0;
+        //   if ( domPluginsPaneBottom.length > 0 ) {
+        //     bottomHeight = ( contentHeight - spliter ) * .3 - 
+        //       parseFloat(domPluginsPaneBottom.css('padding-top')) - 
+        //       parseFloat(domPluginsPaneBottom.css('padding-bottom'));
+        //   }
+        //   domPluginsPaneBottom.css({ 
+        //     height: bottomHeight,
+        //     overflow: 'hidden'
+        //   });
+        //   const domPluginsPaneTop = $('#pluginsPaneTop');
+        //   let topHeight = 0;
+        //   if (domPluginsPaneTop.length >0) {
+        //     topHeight = ( contentHeight - spliter ) * .7 - 
+        //       parseFloat(domPluginsPaneTop.css('padding-top')) - 
+        //       parseFloat(domPluginsPaneTop.css('padding-bottom'));
+        //   }
+        //   domPluginsPaneTop.css({
+        //     height: topHeight,
+        //     overflow: 'hidden'
+        //   });
+        //   $(window).trigger('FirstResize');
+        // }
+        
+        
       }
     });
+
 
   }
 
@@ -181,7 +219,7 @@ class DashBoard extends React.Component {
           </div>
         </Sider>
 
-        <Layout className={Style.contentLayout} style={{}}>
+        <Layout id="pluginSplitePane" className={Style.contentLayout} style={{}}>
           <Content
             id="pcon"
             className={Style.pluignContainer}

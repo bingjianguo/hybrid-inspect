@@ -198,8 +198,11 @@ class DOMExplorerClient extends ClientPlugin {
 
   public getInnerHTML(internalId: string) {
     var element = this._getElementByInternalId(internalId, document.documentElement);
-    if (element)
-      this.sendCommandToDashboard("innerHTML", { internalId: internalId, innerHTML: element.innerHTML });
+    if (element) {
+      
+      this.sendCommandToDashboard("innerHTML", { internalId: internalId, innerHTML: element.innerHTML, outerHTML: element.outerHTML });
+    }
+      
   }
 
   public getComputedStyleById(internalId: string) {
@@ -216,7 +219,6 @@ class DOMExplorerClient extends ClientPlugin {
             l.push({ name: style, value: styles[style] });
           }
         }
-
         this.sendCommandToDashboard("setComputedStyle", l);
       }
     }

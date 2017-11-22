@@ -28,6 +28,7 @@
     "passport-twitter": "~1.0.3",
     "qrcode": "^1.0.0",
     "qrcode-npm": "^0.0.3",
+    "react-split-pane": "^0.1.71",
     "socket.io": "^1.5.0",
     "stylus": "~0.50.0",
     "winston": "~1.0.1",
@@ -76,7 +77,6 @@
     "build-all": "gulp --gulpfile=./gulpfile.js",
     "build-bin": "babel src --out-dir dist",
     "build": "npm run build-all && npm run build-bin",
-    "buildddd": "echo 'ddd'",
     "prepare": "npm run build",
     "start": "node ./dist/local-server.js"
   },

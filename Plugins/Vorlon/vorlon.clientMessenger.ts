@@ -80,7 +80,6 @@ export class ClientMessenger {
 
             this._socket.on('message', message => {
                 var received = <VorlonMessage>JSON.parse(message);
-
                 if (this.onRealtimeMessageReceived) {
                     this.onRealtimeMessageReceived(received);
                 }

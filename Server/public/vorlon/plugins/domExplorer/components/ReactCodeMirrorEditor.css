@@ -1,0 +1,8 @@
+.codeMirrorWrap {
+  border: dashed 2px #ccc;
+  padding: 3px;
+  background-color: #f7f7f7;
+}
+.codeMirrorWrap :global(.CodeMirror) {
+  min-height: 450px;
+}

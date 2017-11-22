@@ -1,10 +1,47 @@
 import React from 'react';
-import { Input, Button } from 'antd';
+import ReactDOM from 'react-dom';
+
+import { Input, Button, Modal } from 'antd';
+import CodeMirrorEditor from './ReactCodeMirrorEditor';
 
 const { TextArea } = Input;
 const { Group: ButtonGroup } = Button;
 
+function stripscript(s) {  
+  // return s.replace(/<script.*?>.*?<\/script>/ig, '');  
+  return s.replace(/<script(([\s\S])*?)<\/script>/ig, '');  
+} 
+
+function striplink(s) {  
+  return s.replace(/<link.*?>/ig, '');  
+} 
+
+function stripstyle(s) {  
+  return s.replace(/<style(([\s\S])*?)<\/style>/ig, '');  
+} 
+
+
 class InnerHTMLView extends React.Component {
+
+  constructor () {
+    super();
+    this.state = {
+      modalVisible: false
+    }
+    this.onFullScreen = this.onFullScreen.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { maxHeight } = nextProps;
+    if (this.editor) {
+      const dom = ReactDOM.findDOMNode(this.editor);
+      $('.CodeMirror',dom).css({ height: maxHeight - 50 });
+    }
+  }
+
+  onFullScreen () {
+    
+  }
 
 
   render () {
@@ -12,22 +49,22 @@ class InnerHTMLView extends React.Component {
     let value = '';
     if ( innerHTML ) {
       value = innerHTML.outerHTML.trim();
+      
+      value = stripscript(value);
+      value = striplink(value);
+      value = stripstyle(value);
+      debugger;
     }
 
     return (
-      <div id="htmlsection" className="accordion-section">
-        {/* <x-controlbar>
-            <x-action event="gethtml" tabindex="0"><i class="fa fa-refresh"></i></x-action>
-            <x-action event="savehtml" tabindex="0"><i class="fa fa-save"></i></x-action>
-        </x-controlbar> */}
+      <div>
         <ButtonGroup style={{marginBottom: '10px'}}>
-          <Button>获取HTML</Button>
-          <Button>保存HTML</Button>
+          <Button size={'small'}>预览</Button>
+          <Button size={'small'} onClick={this.onFullScreen}>查看</Button>
         </ButtonGroup>
-        <TextArea 
-          id="innerHTMLView" 
-          rows={5}
-          value={value}
+        <CodeMirrorEditor 
+          code={value}
+          ref={(ele) => {this.editor = ele} }
         />
       </div>
     )

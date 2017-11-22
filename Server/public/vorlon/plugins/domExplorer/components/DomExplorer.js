@@ -21,7 +21,7 @@ class DomExplorer extends React.Component {
       internalId: null,
     }
     this.extProps = { };
-
+    this.onRefresh = this.onRefresh.bind(this);
     this.onStyleAccordionChanged = this.onStyleAccordionChanged.bind(this);
   }
 
@@ -142,15 +142,6 @@ class DomExplorer extends React.Component {
     }, true);
   }
 
-  /**
-   * 
-   */
-  bindRefresh () {
-    const { root, dashboard } = this;
-    root.addEventListener('refresh', () => {
-      dashboard.sendCommandToClient('refresh');
-    });
-  }
 
   /**
    * 
@@ -206,6 +197,14 @@ class DomExplorer extends React.Component {
     });
   }
 
+  /**
+   * 
+   */
+  onRefresh () {
+    const { root, dashboard } = this;
+    dashboard.sendCommandToClient('refresh');
+  }
+
 
   render () {
     const { active, activeKey, computedStyle, layoutStyle, innerHTML, maxHeight } = this.state;
@@ -221,7 +220,7 @@ class DomExplorer extends React.Component {
       <div id="rootDomExplorer" ref={ele => { this.root = ele}} >
         <div className={ `tree-view-wrapper panel-left ${activeClass}`}>
           <Card 
-            title={ <Button type="primary" size={'small'} ref={ele => { this.refreshButton = ReactDOM.findDOMNode(ele); }}>刷新</Button>}
+            title={ <Button onClick={this.onRefresh} type="primary" size={'small'} ref={ele => { this.refreshButton = ReactDOM.findDOMNode(ele); }}>刷新</Button>}
             extra={ <Input size="small" />} 
             bordered={false}
           >
@@ -273,10 +272,10 @@ class DomExplorer extends React.Component {
                 />
               </YScrollView>
             </Panel>
-            <Panel header="主文档结构" key="4">
-              <YScrollView maxHeight={paneMaxHeight}>
-                <HTMLView innerHTML= { innerHTML }/>
-              </YScrollView>
+            <Panel header="主文档结构" key="4" >
+              <div style={{padding: '10px'}}>
+                <HTMLView innerHTML= { innerHTML } maxHeight={paneMaxHeight}/>
+              </div>
             </Panel>
             <Panel header="设置" key="5">
               <YScrollView maxHeight={paneMaxHeight}>

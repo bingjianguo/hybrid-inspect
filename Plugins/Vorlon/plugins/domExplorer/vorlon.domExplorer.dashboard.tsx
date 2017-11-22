@@ -44,7 +44,7 @@ export class DOMExplorerDashboard extends DashboardPlugin {
   private root: any;
 
   constructor() {
-    super("domExplorer", "control.html", "control.css");
+    super("domExplorer", "control.html", ['control.css','vorlon.domExplorer.dashboard.css']);
     this._id = "DOM";
     this._ready = false;
   }

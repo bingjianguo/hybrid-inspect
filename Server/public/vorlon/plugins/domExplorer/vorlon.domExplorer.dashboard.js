@@ -40,14 +40,37 @@
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
+/******/ ((function(modules) {
+	// Check all modules for deduplicated modules
+	for(var i in modules) {
+		if(Object.prototype.hasOwnProperty.call(modules, i)) {
+			switch(typeof modules[i]) {
+			case "function": break;
+			case "object":
+				// Module can be created from a template
+				modules[i] = (function(_m) {
+					var args = _m.slice(1), fn = modules[_m[0]];
+					return function (a,b,c) {
+						fn.apply(this, [a,b,c].concat(args));
+					};
+				}(modules[i]));
+				break;
+			default:
+				// Module is a copy of another module
+				modules[i] = modules[modules[i]];
+				break;
+			}
+		}
+	}
+	return modules;
+}([
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';Object.defineProperty(exports, "__esModule", { value: true });exports.DOMExplorerDashboard = undefined;var _classCallCheck2 = __webpack_require__(3);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _possibleConstructorReturn2 = __webpack_require__(8);var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);var _inherits2 = __webpack_require__(7);var _inherits3 = _interopRequireDefault(_inherits2);var _DomExplorer = __webpack_require__(242);var _DomExplorer2 = _interopRequireDefault(_DomExplorer);
-	var _DomExplorerNode = __webpack_require__(234);var _DomExplorerNode2 = _interopRequireDefault(_DomExplorerNode);
-	var _DomExplorerPropertyEditor = __webpack_require__(236);var _DomExplorerPropertyEditor2 = _interopRequireDefault(_DomExplorerPropertyEditor);
-	var _DashboardCommands = __webpack_require__(233);var _DashboardCommands2 = _interopRequireDefault(_DashboardCommands);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _VORLON =
+	'use strict';Object.defineProperty(exports, "__esModule", { value: true });exports.DOMExplorerDashboard = undefined;var _classCallCheck2 = __webpack_require__(3);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _possibleConstructorReturn2 = __webpack_require__(8);var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);var _inherits2 = __webpack_require__(7);var _inherits3 = _interopRequireDefault(_inherits2);var _DomExplorer = __webpack_require__(243);var _DomExplorer2 = _interopRequireDefault(_DomExplorer);
+	var _DomExplorerNode = __webpack_require__(235);var _DomExplorerNode2 = _interopRequireDefault(_DomExplorerNode);
+	var _DomExplorerPropertyEditor = __webpack_require__(237);var _DomExplorerPropertyEditor2 = _interopRequireDefault(_DomExplorerPropertyEditor);
+	var _DashboardCommands = __webpack_require__(234);var _DashboardCommands2 = _interopRequireDefault(_DashboardCommands);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _VORLON =
 	VORLON,DashboardPlugin = _VORLON.DashboardPlugin,Core = _VORLON.Core,Tools = _VORLON.Tools,FluentDOM = _VORLON.FluentDOM;var
 	DOMExplorerDashboard = exports.DOMExplorerDashboard = function (_DashboardPlugin) {(0, _inherits3.default)(DOMExplorerDashboard, _DashboardPlugin);
 	    function DOMExplorerDashboard() {(0, _classCallCheck3.default)(this, DOMExplorerDashboard);var _this = (0, _possibleConstructorReturn3.default)(this,
@@ -880,7 +903,7 @@
 	  var gt = '>';
 	  var iframeDocument;
 	  iframe.style.display = 'none';
-	  __webpack_require__(53).appendChild(iframe);
+	  __webpack_require__(54).appendChild(iframe);
 	  iframe.src = 'javascript:'; // eslint-disable-line no-script-url
 	  // createDict = iframe.contentWindow.Object;
 	  // html.removeChild(iframe);
@@ -1073,7 +1096,7 @@
 	var Iterators = __webpack_require__(24);
 	var $iterCreate = __webpack_require__(71);
 	var setToStringTag = __webpack_require__(32);
-	var getPrototypeOf = __webpack_require__(55);
+	var getPrototypeOf = __webpack_require__(56);
 	var ITERATOR = __webpack_require__(6)('iterator');
 	var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
 	var FF_ITERATOR = '@@iterator';
@@ -1261,6 +1284,12 @@
 
 /***/ }),
 /* 53 */
+/***/ (function(module, exports) {
+
+	module.exports = ReactDOM;
+
+/***/ }),
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var document = __webpack_require__(2).document;
@@ -1268,7 +1297,7 @@
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
@@ -1293,7 +1322,7 @@
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
@@ -1312,17 +1341,11 @@
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"ant-divider":"ant-divider___3z5Oo","clearfix":"clearfix___5IkHO","anticon":"anticon___2HZTV","anticon-step-forward":"anticon-step-forward___78C_a","anticon-step-backward":"anticon-step-backward___33kIx","anticon-forward":"anticon-forward___1NNRP","anticon-backward":"anticon-backward___2hXBN","anticon-caret-right":"anticon-caret-right___1ODM_","anticon-caret-left":"anticon-caret-left___2DCO-","anticon-caret-down":"anticon-caret-down___1UTE-","anticon-caret-up":"anticon-caret-up___3si-m","anticon-right-circle":"anticon-right-circle___3PWHx","anticon-circle-right":"anticon-circle-right___2fvhM","anticon-caret-circle-right":"anticon-caret-circle-right___3WWYq","anticon-left-circle":"anticon-left-circle___3_dep","anticon-circle-left":"anticon-circle-left___2Q2mU","anticon-caret-circle-left":"anticon-caret-circle-left___3mcil","anticon-up-circle":"anticon-up-circle___20Gpk","anticon-circle-up":"anticon-circle-up___9BBXD","anticon-caret-circle-up":"anticon-caret-circle-up___2RaeF","anticon-down-circle":"anticon-down-circle___1KKXc","anticon-circle-down":"anticon-circle-down___12GT9","anticon-caret-circle-down":"anticon-caret-circle-down___3OFkx","anticon-right-circle-o":"anticon-right-circle-o___3GqRL","anticon-circle-o-right":"anticon-circle-o-right___Wq2re","anticon-caret-circle-o-right":"anticon-caret-circle-o-right___gkmEt","anticon-left-circle-o":"anticon-left-circle-o___14ztg","anticon-circle-o-left":"anticon-circle-o-left___3vwx0","anticon-caret-circle-o-left":"anticon-caret-circle-o-left___2GGUe","anticon-up-circle-o":"anticon-up-circle-o___3cAr2","anticon-circle-o-up":"anticon-circle-o-up___lB_pM","anticon-caret-circle-o-up":"anticon-caret-circle-o-up___3eGao","anticon-down-circle-o":"anticon-down-circle-o___3PjpT","anticon-circle-o-down":"anticon-circle-o-down___aNUzg","anticon-caret-circle-o-down":"anticon-caret-circle-o-down___3dl17","anticon-verticle-left":"anticon-verticle-left___1oaWK","anticon-verticle-right":"anticon-verticle-right___BPCQn","anticon-rollback":"anticon-rollback___3Cnzs","anticon-retweet":"anticon-retweet___121HN","anticon-shrink":"anticon-shrink___3Gop3","anticon-arrows-alt":"anticon-arrows-alt___234N1","anticon-arrow-salt":"anticon-arrow-salt___9-yLH","anticon-reload":"anticon-reload___2mCZ3","anticon-double-right":"anticon-double-right___2u7Nl","anticon-double-left":"anticon-double-left___UpIuw","anticon-arrow-down":"anticon-arrow-down___2Kj_B","anticon-arrow-up":"anticon-arrow-up___1L-JF","anticon-arrow-right":"anticon-arrow-right___2RtIy","anticon-arrow-left":"anticon-arrow-left___G5SQS","anticon-down":"anticon-down___1TLJq","anticon-up":"anticon-up___anzEa","anticon-right":"anticon-right___1O1Xe","anticon-left":"anticon-left___1OJRG","anticon-minus-square-o":"anticon-minus-square-o___3A4yH","anticon-minus-circle":"anticon-minus-circle___F3JHm","anticon-minus-circle-o":"anticon-minus-circle-o___38UnZ","anticon-minus":"anticon-minus___1se2x","anticon-plus-circle-o":"anticon-plus-circle-o___ERNlw","anticon-plus-circle":"anticon-plus-circle___3gD2W","anticon-plus":"anticon-plus___32_Ej","anticon-info-circle":"anticon-info-circle___3MgG7","anticon-info-circle-o":"anticon-info-circle-o___D3oUz","anticon-info":"anticon-info___15WLe","anticon-exclamation":"anticon-exclamation___1YwNI","anticon-exclamation-circle":"anticon-exclamation-circle___3Sw2F","anticon-exclamation-circle-o":"anticon-exclamation-circle-o___2eGIs","anticon-close-circle":"anticon-close-circle___26zYi","anticon-cross-circle":"anticon-cross-circle___3PRVx","anticon-close-circle-o":"anticon-close-circle-o___1dnBa","anticon-cross-circle-o":"anticon-cross-circle-o___2Hq7B","anticon-check-circle":"anticon-check-circle___W3mh6","anticon-check-circle-o":"anticon-check-circle-o___F_nNd","anticon-check":"anticon-check___Roq4g","anticon-close":"anticon-close___2WV3X","anticon-cross":"anticon-cross___clkUs","anticon-customer-service":"anticon-customer-service___Fw17R","anticon-customerservice":"anticon-customerservice___1Ob9K","anticon-credit-card":"anticon-credit-card___2T3UK","anticon-code-o":"anticon-code-o___1R7iW","anticon-book":"anticon-book___Z304C","anticon-bar-chart":"anticon-bar-chart___cpv9t","anticon-bars":"anticon-bars___2krO4","anticon-question":"anticon-question___1iaeE","anticon-question-circle":"anticon-question-circle___1mGIP","anticon-question-circle-o":"anticon-question-circle-o___1-O-S","anticon-pause":"anticon-pause___2rdac","anticon-pause-circle":"anticon-pause-circle___V9PwB","anticon-pause-circle-o":"anticon-pause-circle-o___2Gxs2","anticon-clock-circle":"anticon-clock-circle___3fm-b","anticon-clock-circle-o":"anticon-clock-circle-o___1E4ip","anticon-swap":"anticon-swap___2c6ft","anticon-swap-left":"anticon-swap-left___WfUzr","anticon-swap-right":"anticon-swap-right___28pIW","anticon-plus-square-o":"anticon-plus-square-o___G3ZSC","anticon-frown":"anticon-frown___2fYip","anticon-frown-circle":"anticon-frown-circle___NtsHc","anticon-ellipsis":"anticon-ellipsis___D3t3i","anticon-copy":"anticon-copy___2IId6","anticon-menu-fold":"anticon-menu-fold___2BuU-","anticon-mail":"anticon-mail___34rv8","anticon-logout":"anticon-logout___wTosb","anticon-link":"anticon-link___Vjs6h","anticon-area-chart":"anticon-area-chart___3Lh8P","anticon-line-chart":"anticon-line-chart___1vGNz","anticon-home":"anticon-home___a5zpY","anticon-laptop":"anticon-laptop___1L8g9","anticon-star":"anticon-star___3sgxm","anticon-star-o":"anticon-star-o___2QbVq","anticon-folder":"anticon-folder___1gKcD","anticon-filter":"anticon-filter___1bJe8","anticon-file":"anticon-file___nYkaE","anticon-exception":"anticon-exception___1gsHn","anticon-meh":"anticon-meh___283bu","anticon-meh-circle":"anticon-meh-circle___ynt8f","anticon-meh-o":"anticon-meh-o___VpTUa","anticon-shopping-cart":"anticon-shopping-cart___2JsFG","anticon-save":"anticon-save___27Rnm","anticon-user":"anticon-user___dmiM9","anticon-video-camera":"anticon-video-camera___2ztqV","anticon-to-top":"anticon-to-top___3ZEs1","anticon-team":"anticon-team___1pTDe","anticon-tablet":"anticon-tablet___3scau","anticon-solution":"anticon-solution___8t5W6","anticon-search":"anticon-search___2qZPT","anticon-share-alt":"anticon-share-alt___ndIp3","anticon-setting":"anticon-setting___1csH_","anticon-poweroff":"anticon-poweroff___3xGjP","anticon-picture":"anticon-picture___xfdEM","anticon-phone":"anticon-phone___2UdLL","anticon-paper-clip":"anticon-paper-clip___ksVHw","anticon-notification":"anticon-notification___1Kh2_","anticon-mobile":"anticon-mobile___33umo","anticon-menu-unfold":"anticon-menu-unfold___yJfso","anticon-inbox":"anticon-inbox___3coMr","anticon-lock":"anticon-lock___1kZk1","anticon-qrcode":"anticon-qrcode___1wehJ","anticon-play-circle":"anticon-play-circle___2Algu","anticon-play-circle-o":"anticon-play-circle-o___2e6WV","anticon-tag":"anticon-tag___1o-eE","anticon-tag-o":"anticon-tag-o___gdIo5","anticon-tags":"anticon-tags___26xMC","anticon-tags-o":"anticon-tags-o___14TON","anticon-cloud-o":"anticon-cloud-o___2_LAm","anticon-cloud":"anticon-cloud___3ZtAW","anticon-cloud-upload":"anticon-cloud-upload___1g9BF","anticon-cloud-download":"anticon-cloud-download___1p5BA","anticon-cloud-download-o":"anticon-cloud-download-o___34riE","anticon-cloud-upload-o":"anticon-cloud-upload-o___LOaM4","anticon-environment":"anticon-environment___vdX90","anticon-environment-o":"anticon-environment-o___247_E","anticon-eye":"anticon-eye___2h3mT","anticon-eye-o":"anticon-eye-o___3weMO","anticon-camera":"anticon-camera___3sszR","anticon-camera-o":"anticon-camera-o___2icf8","anticon-windows":"anticon-windows___3_Nka","anticon-apple":"anticon-apple___2Ubhg","anticon-apple-o":"anticon-apple-o___3iPgj","anticon-android":"anticon-android___S2e-6","anticon-android-o":"anticon-android-o___1AY1e","anticon-aliwangwang":"anticon-aliwangwang___38myY","anticon-aliwangwang-o":"anticon-aliwangwang-o___3pAJe","anticon-export":"anticon-export___3TmTG","anticon-edit":"anticon-edit___2MZp9","anticon-circle-down-o":"anticon-circle-down-o___2014u","anticon-circle-down-":"anticon-circle-down-___2-KA2","anticon-appstore-o":"anticon-appstore-o___7tPuJ","anticon-appstore":"anticon-appstore___nQDb-","anticon-scan":"anticon-scan___h3s9q","anticon-file-text":"anticon-file-text___2kfKp","anticon-folder-open":"anticon-folder-open___1Zrrv","anticon-hdd":"anticon-hdd___XEZBt","anticon-ie":"anticon-ie___w2kxd","anticon-file-jpg":"anticon-file-jpg___2aw8s","anticon-like":"anticon-like___3fttt","anticon-like-o":"anticon-like-o___3Rhu-","anticon-dislike":"anticon-dislike___2tTEI","anticon-dislike-o":"anticon-dislike-o___bJGcr","anticon-delete":"anticon-delete___29qIu","anticon-enter":"anticon-enter___2lsPT","anticon-pushpin-o":"anticon-pushpin-o___3Opzw","anticon-pushpin":"anticon-pushpin___PnFe8","anticon-heart":"anticon-heart___1jA8P","anticon-heart-o":"anticon-heart-o___1jGrQ","anticon-pay-circle":"anticon-pay-circle___NJPaO","anticon-pay-circle-o":"anticon-pay-circle-o___EaHNZ","anticon-smile":"anticon-smile___3yoKC","anticon-smile-circle":"anticon-smile-circle___2lzyh","anticon-smile-o":"anticon-smile-o___2i-bp","anticon-frown-o":"anticon-frown-o___1ehgN","anticon-calculator":"anticon-calculator___2cBgZ","anticon-message":"anticon-message___do2VO","anticon-chrome":"anticon-chrome___3FmsP","anticon-github":"anticon-github___3zzbG","anticon-file-unknown":"anticon-file-unknown___3fgPH","anticon-file-excel":"anticon-file-excel___1LYl4","anticon-file-ppt":"anticon-file-ppt___1gM4K","anticon-file-word":"anticon-file-word___1Av52","anticon-file-pdf":"anticon-file-pdf___25wyf","anticon-desktop":"anticon-desktop___3oiDP","anticon-upload":"anticon-upload___1Toc2","anticon-download":"anticon-download___1hDg8","anticon-pie-chart":"anticon-pie-chart___cM_L-","anticon-unlock":"anticon-unlock___3wUJt","anticon-calendar":"anticon-calendar___3onCj","anticon-windows-o":"anticon-windows-o___1UBPF","anticon-dot-chart":"anticon-dot-chart___357eN","anticon-code":"anticon-code___11_zq","anticon-api":"anticon-api___NQYTa","anticon-plus-square":"anticon-plus-square___pcM5P","anticon-minus-square":"anticon-minus-square___SzjwO","anticon-close-square":"anticon-close-square___34ImE","anticon-close-square-o":"anticon-close-square-o___AgPDJ","anticon-check-square":"anticon-check-square___h6VIH","anticon-check-square-o":"anticon-check-square-o___3iMHd","anticon-fast-backward":"anticon-fast-backward___1LEuh","anticon-fast-forward":"anticon-fast-forward___piXaX","anticon-up-square":"anticon-up-square___16dnr","anticon-down-square":"anticon-down-square___11N87","anticon-left-square":"anticon-left-square___33uY1","anticon-right-square":"anticon-right-square___2wque","anticon-right-square-o":"anticon-right-square-o___RP2Qa","anticon-left-square-o":"anticon-left-square-o___2UYaL","anticon-down-square-o":"anticon-down-square-o___2FJgY","anticon-up-square-o":"anticon-up-square-o___18Ag2","anticon-loading":"anticon-loading___1jzQS","anticon-loading-3-quarters":"anticon-loading-3-quarters___2Ndqw","anticon-bulb":"anticon-bulb___3mWqb","anticon-select":"anticon-select___-2K-K","anticon-addfile":"anticon-addfile___1NVd-","anticon-file-add":"anticon-file-add___t0TqG","anticon-addfolder":"anticon-addfolder___2apEh","anticon-folder-add":"anticon-folder-add___C4JLS","anticon-switcher":"anticon-switcher___26sdu","anticon-rocket":"anticon-rocket___OwIjq","anticon-dingding":"anticon-dingding___2FmYL","anticon-dingding-o":"anticon-dingding-o___2tOgR","anticon-bell":"anticon-bell___1sEf9","anticon-disconnect":"anticon-disconnect___1IjdW","anticon-database":"anticon-database___2vJM-","anticon-compass":"anticon-compass___j4bMn","anticon-barcode":"anticon-barcode___11HXs","anticon-hourglass":"anticon-hourglass___2Y4QJ","anticon-key":"anticon-key___2kpYN","anticon-flag":"anticon-flag___1JIti","anticon-layout":"anticon-layout___PSfut","anticon-login":"anticon-login___2ZRIV","anticon-printer":"anticon-printer___1HNWT","anticon-sound":"anticon-sound___3JKL6","anticon-usb":"anticon-usb___31Caz","anticon-skin":"anticon-skin___Ajumo","anticon-tool":"anticon-tool___xS7F_","anticon-sync":"anticon-sync___3KAqN","anticon-wifi":"anticon-wifi___1hZis","anticon-car":"anticon-car___5fzuu","anticon-copyright":"anticon-copyright___23cEk","anticon-schedule":"anticon-schedule___WCDNc","anticon-user-add":"anticon-user-add___3vsZO","anticon-user-delete":"anticon-user-delete___2jPRP","anticon-usergroup-add":"anticon-usergroup-add___1dNH9","anticon-usergroup-delete":"anticon-usergroup-delete___1uTnI","anticon-man":"anticon-man___myzYM","anticon-woman":"anticon-woman___1OSdg","anticon-shop":"anticon-shop___3XMuW","anticon-gift":"anticon-gift___3QBqo","anticon-idcard":"anticon-idcard___1975_","anticon-medicine-box":"anticon-medicine-box___2VfBc","anticon-red-envelope":"anticon-red-envelope___2uwwQ","anticon-coffee":"anticon-coffee___3zfGX","anticon-trademark":"anticon-trademark___zoKzo","anticon-safety":"anticon-safety___3Kq-r","anticon-wallet":"anticon-wallet___2ZDoA","anticon-bank":"anticon-bank___3xm99","anticon-trophy":"anticon-trophy___2GKOj","anticon-contacts":"anticon-contacts___2d2pL","anticon-global":"anticon-global___Pw6mk","anticon-shake":"anticon-shake___3claP","anticon-fork":"anticon-fork___3BfiH","anticon-spin":"anticon-spin___3ROzH","loadingCircle":"loadingCircle___2v-2S","fade-enter":"fade-enter___2l23g","fade-appear":"fade-appear___2fdG6","fade-leave":"fade-leave___1P-2E","fade-enter-active":"fade-enter-active___2WVy1","fade-appear-active":"fade-appear-active___PmQtW","antFadeIn":"antFadeIn___oiVBD","fade-leave-active":"fade-leave-active___1sJMc","antFadeOut":"antFadeOut___1czrr","move-up-enter":"move-up-enter___N-WeA","move-up-appear":"move-up-appear___s3kQx","move-up-leave":"move-up-leave___3W5CF","move-up-enter-active":"move-up-enter-active___24hrB","move-up-appear-active":"move-up-appear-active___117CE","antMoveUpIn":"antMoveUpIn___1Rj73","move-up-leave-active":"move-up-leave-active___3ICRS","antMoveUpOut":"antMoveUpOut___1261t","move-down-enter":"move-down-enter___2vSpg","move-down-appear":"move-down-appear___v8HC4","move-down-leave":"move-down-leave___1x_Ab","move-down-enter-active":"move-down-enter-active___2lF5v","move-down-appear-active":"move-down-appear-active___DGpXo","antMoveDownIn":"antMoveDownIn___1sFZp","move-down-leave-active":"move-down-leave-active___1EzXp","antMoveDownOut":"antMoveDownOut___3nxI6","move-left-enter":"move-left-enter___pJpsI","move-left-appear":"move-left-appear___1a9OE","move-left-leave":"move-left-leave___29gIj","move-left-enter-active":"move-left-enter-active___1q6pl","move-left-appear-active":"move-left-appear-active___21vGy","antMoveLeftIn":"antMoveLeftIn___1v_zu","move-left-leave-active":"move-left-leave-active___bVJKf","antMoveLeftOut":"antMoveLeftOut___3iW06","move-right-enter":"move-right-enter___2ZNVN","move-right-appear":"move-right-appear___3PfWb","move-right-leave":"move-right-leave___1waQq","move-right-enter-active":"move-right-enter-active___3APEQ","move-right-appear-active":"move-right-appear-active___3CjF3","antMoveRightIn":"antMoveRightIn___23dpw","move-right-leave-active":"move-right-leave-active___2kJ4F","antMoveRightOut":"antMoveRightOut___2PSXX","slide-up-enter":"slide-up-enter___akcqe","slide-up-appear":"slide-up-appear___3_Aol","slide-up-leave":"slide-up-leave___22ME4","slide-up-enter-active":"slide-up-enter-active___3NHoa","slide-up-appear-active":"slide-up-appear-active___2h9TO","antSlideUpIn":"antSlideUpIn___3tj6E","slide-up-leave-active":"slide-up-leave-active___1n31d","antSlideUpOut":"antSlideUpOut___32xwi","slide-down-enter":"slide-down-enter___1VNJ8","slide-down-appear":"slide-down-appear___176Jr","slide-down-leave":"slide-down-leave___38ICf","slide-down-enter-active":"slide-down-enter-active___1tMko","slide-down-appear-active":"slide-down-appear-active___3S5or","antSlideDownIn":"antSlideDownIn___3za_2","slide-down-leave-active":"slide-down-leave-active___1K4GK","antSlideDownOut":"antSlideDownOut___3LC9f","slide-left-enter":"slide-left-enter___1OpQG","slide-left-appear":"slide-left-appear____xgns","slide-left-leave":"slide-left-leave___2D0gT","slide-left-enter-active":"slide-left-enter-active___2SPhU","slide-left-appear-active":"slide-left-appear-active___4q1AH","antSlideLeftIn":"antSlideLeftIn___rCrKa","slide-left-leave-active":"slide-left-leave-active___mlm6B","antSlideLeftOut":"antSlideLeftOut___3Byi9","slide-right-enter":"slide-right-enter___9MYDB","slide-right-appear":"slide-right-appear___2N5da","slide-right-leave":"slide-right-leave___3OvRs","slide-right-enter-active":"slide-right-enter-active___13DMu","slide-right-appear-active":"slide-right-appear-active___13x8f","antSlideRightIn":"antSlideRightIn___1tJrN","slide-right-leave-active":"slide-right-leave-active___1ryot","antSlideRightOut":"antSlideRightOut___r-gTy","swing-enter":"swing-enter___2ddvJ","swing-appear":"swing-appear___3XyUg","swing-enter-active":"swing-enter-active___2_4hy","swing-appear-active":"swing-appear-active___VjbNr","antSwingIn":"antSwingIn___sdkpc","zoom-enter":"zoom-enter___3WmCM","zoom-appear":"zoom-appear___3p-tP","zoom-leave":"zoom-leave___3nmRg","zoom-enter-active":"zoom-enter-active___2v-Xc","zoom-appear-active":"zoom-appear-active___2RIZa","antZoomIn":"antZoomIn___1w7NH","zoom-leave-active":"zoom-leave-active___2kp9C","antZoomOut":"antZoomOut___-bfA1","zoom-big-enter":"zoom-big-enter___1j61l","zoom-big-appear":"zoom-big-appear___2ijme","zoom-big-leave":"zoom-big-leave___1tyJO","zoom-big-enter-active":"zoom-big-enter-active____apgb","zoom-big-appear-active":"zoom-big-appear-active___1SiA-","antZoomBigIn":"antZoomBigIn___1xtX7","zoom-big-leave-active":"zoom-big-leave-active___RrhSn","antZoomBigOut":"antZoomBigOut___2gleQ","zoom-big-fast-enter":"zoom-big-fast-enter___1UiHV","zoom-big-fast-appear":"zoom-big-fast-appear___1-ayL","zoom-big-fast-leave":"zoom-big-fast-leave___36faH","zoom-big-fast-enter-active":"zoom-big-fast-enter-active___29fz4","zoom-big-fast-appear-active":"zoom-big-fast-appear-active___pHyxm","zoom-big-fast-leave-active":"zoom-big-fast-leave-active___1328A","zoom-up-enter":"zoom-up-enter___2QgFn","zoom-up-appear":"zoom-up-appear___1IhIO","zoom-up-leave":"zoom-up-leave___Es0VM","zoom-up-enter-active":"zoom-up-enter-active___S7JGl","zoom-up-appear-active":"zoom-up-appear-active___3MOY5","antZoomUpIn":"antZoomUpIn___27pz2","zoom-up-leave-active":"zoom-up-leave-active___2zWMw","antZoomUpOut":"antZoomUpOut___2O_6F","zoom-down-enter":"zoom-down-enter___24UDC","zoom-down-appear":"zoom-down-appear___2tF6-","zoom-down-leave":"zoom-down-leave___vtCnh","zoom-down-enter-active":"zoom-down-enter-active___3qr7R","zoom-down-appear-active":"zoom-down-appear-active___3L_7U","antZoomDownIn":"antZoomDownIn___1PwLZ","zoom-down-leave-active":"zoom-down-leave-active___utOZ-","antZoomDownOut":"antZoomDownOut___3mmto","zoom-left-enter":"zoom-left-enter___cIpyh","zoom-left-appear":"zoom-left-appear___1wzSz","zoom-left-leave":"zoom-left-leave___3_ux7","zoom-left-enter-active":"zoom-left-enter-active___1dvw5","zoom-left-appear-active":"zoom-left-appear-active___3cni7","antZoomLeftIn":"antZoomLeftIn___2aIQD","zoom-left-leave-active":"zoom-left-leave-active___1xfjG","antZoomLeftOut":"antZoomLeftOut___12Xdo","zoom-right-enter":"zoom-right-enter___5Hnk-","zoom-right-appear":"zoom-right-appear___1hoiS","zoom-right-leave":"zoom-right-leave___2tck3","zoom-right-enter-active":"zoom-right-enter-active___1np3k","zoom-right-appear-active":"zoom-right-appear-active___6LSE6","antZoomRightIn":"antZoomRightIn___1L-kx","zoom-right-leave-active":"zoom-right-leave-active___2FNV8","antZoomRightOut":"antZoomRightOut___1hotV","ant-motion-collapse":"ant-motion-collapse___3hH8G","ant-motion-collapse-active":"ant-motion-collapse-active___iP92s"};
-
-/***/ }),
-/* 57 */
-/***/ (function(module, exports) {
-
-	module.exports = ReactDOM;
 
 /***/ }),
 /* 58 */
@@ -1728,7 +1751,7 @@
 	var toPrimitive = __webpack_require__(36);
 	var createDesc = __webpack_require__(21);
 	var _create = __webpack_require__(31);
-	var gOPNExt = __webpack_require__(54);
+	var gOPNExt = __webpack_require__(55);
 	var $GOPD = __webpack_require__(45);
 	var $DP = __webpack_require__(9);
 	var $keys = __webpack_require__(25);
@@ -2085,36 +2108,7 @@
 	};
 
 /***/ }),
-/* 92 */,
-/* 93 */,
-/* 94 */,
-/* 95 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	exports.__esModule = true;
-
-	var _from = __webpack_require__(137);
-
-	var _from2 = _interopRequireDefault(_from);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = function (arr) {
-	  if (Array.isArray(arr)) {
-	    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
-	      arr2[i] = arr[i];
-	    }
-
-	    return arr2;
-	  } else {
-	    return (0, _from2.default)(arr);
-	  }
-	};
-
-/***/ }),
-/* 96 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -11779,6 +11773,35 @@
 
 
 /***/ }),
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	exports.__esModule = true;
+
+	var _from = __webpack_require__(137);
+
+	var _from2 = _interopRequireDefault(_from);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = function (arr) {
+	  if (Array.isArray(arr)) {
+	    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) {
+	      arr2[i] = arr[i];
+	    }
+
+	    return arr2;
+	  } else {
+	    return (0, _from2.default)(arr);
+	  }
+	};
+
+/***/ }),
 /* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12528,7 +12551,7 @@
 
 	var _addDomEventListener2 = _interopRequireDefault(_addDomEventListener);
 
-	var _reactDom = __webpack_require__(57);
+	var _reactDom = __webpack_require__(53);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -13353,15 +13376,7 @@
 
 /***/ }),
 /* 120 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	__webpack_require__(56);
-
-	__webpack_require__(157);
-
-/***/ }),
+[396, 157],
 /* 121 */,
 /* 122 */,
 /* 123 */,
@@ -13927,7 +13942,7 @@
 	    value: true
 	});
 
-	var _toConsumableArray2 = __webpack_require__(95);
+	var _toConsumableArray2 = __webpack_require__(96);
 
 	var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
@@ -14117,15 +14132,7 @@
 
 /***/ }),
 /* 132 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	__webpack_require__(56);
-
-	__webpack_require__(156);
-
-/***/ }),
+[396, 156],
 /* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16383,101 +16390,7 @@
 
 /***/ }),
 /* 166 */
-/***/ (function(module, exports) {
-
-	/*
-	object-assign
-	(c) Sindre Sorhus
-	@license MIT
-	*/
-
-	'use strict';
-	/* eslint-disable no-unused-vars */
-	var getOwnPropertySymbols = Object.getOwnPropertySymbols;
-	var hasOwnProperty = Object.prototype.hasOwnProperty;
-	var propIsEnumerable = Object.prototype.propertyIsEnumerable;
-
-	function toObject(val) {
-		if (val === null || val === undefined) {
-			throw new TypeError('Object.assign cannot be called with null or undefined');
-		}
-
-		return Object(val);
-	}
-
-	function shouldUseNative() {
-		try {
-			if (!Object.assign) {
-				return false;
-			}
-
-			// Detect buggy property enumeration order in older V8 versions.
-
-			// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-			var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
-			test1[5] = 'de';
-			if (Object.getOwnPropertyNames(test1)[0] === '5') {
-				return false;
-			}
-
-			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-			var test2 = {};
-			for (var i = 0; i < 10; i++) {
-				test2['_' + String.fromCharCode(i)] = i;
-			}
-			var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
-				return test2[n];
-			});
-			if (order2.join('') !== '0123456789') {
-				return false;
-			}
-
-			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-			var test3 = {};
-			'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
-				test3[letter] = letter;
-			});
-			if (Object.keys(Object.assign({}, test3)).join('') !==
-					'abcdefghijklmnopqrst') {
-				return false;
-			}
-
-			return true;
-		} catch (err) {
-			// We don't expect any of the above to throw, but better to be safe.
-			return false;
-		}
-	}
-
-	module.exports = shouldUseNative() ? Object.assign : function (target, source) {
-		var from;
-		var to = toObject(target);
-		var symbols;
-
-		for (var s = 1; s < arguments.length; s++) {
-			from = Object(arguments[s]);
-
-			for (var key in from) {
-				if (hasOwnProperty.call(from, key)) {
-					to[key] = from[key];
-				}
-			}
-
-			if (getOwnPropertySymbols) {
-				symbols = getOwnPropertySymbols(from);
-				for (var i = 0; i < symbols.length; i++) {
-					if (propIsEnumerable.call(from, symbols[i])) {
-						to[symbols[i]] = from[symbols[i]];
-					}
-				}
-			}
-		}
-
-		return to;
-	};
-
-
-/***/ }),
+127,
 /* 167 */,
 /* 168 */,
 /* 169 */
@@ -16513,7 +16426,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(57);
+	var _reactDom = __webpack_require__(53);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -17102,11 +17015,11 @@
 	  value: true
 	});
 
-	var _button = __webpack_require__(212);
+	var _button = __webpack_require__(213);
 
 	var _button2 = _interopRequireDefault(_button);
 
-	var _buttonGroup = __webpack_require__(211);
+	var _buttonGroup = __webpack_require__(212);
 
 	var _buttonGroup2 = _interopRequireDefault(_buttonGroup);
 
@@ -17118,15 +17031,7 @@
 
 /***/ }),
 /* 177 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	__webpack_require__(56);
-
-	__webpack_require__(294);
-
-/***/ }),
+[396, 296],
 /* 178 */,
 /* 179 */,
 /* 180 */,
@@ -17140,7 +17045,7 @@
 
 	(function(mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(96));
+	    mod(__webpack_require__(92));
 	  else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror"], mod);
 	  else // Plain browser env
@@ -17978,7 +17883,165 @@
 
 	(function(mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(96));
+	    mod(__webpack_require__(92), __webpack_require__(264), __webpack_require__(185), __webpack_require__(183));
+	  else if (typeof define == "function" && define.amd) // AMD
+	    define(["../../lib/codemirror", "../xml/xml", "../javascript/javascript", "../css/css"], mod);
+	  else // Plain browser env
+	    mod(CodeMirror);
+	})(function(CodeMirror) {
+	  "use strict";
+
+	  var defaultTags = {
+	    script: [
+	      ["lang", /(javascript|babel)/i, "javascript"],
+	      ["type", /^(?:text|application)\/(?:x-)?(?:java|ecma)script$|^module$|^$/i, "javascript"],
+	      ["type", /./, "text/plain"],
+	      [null, null, "javascript"]
+	    ],
+	    style:  [
+	      ["lang", /^css$/i, "css"],
+	      ["type", /^(text\/)?(x-)?(stylesheet|css)$/i, "css"],
+	      ["type", /./, "text/plain"],
+	      [null, null, "css"]
+	    ]
+	  };
+
+	  function maybeBackup(stream, pat, style) {
+	    var cur = stream.current(), close = cur.search(pat);
+	    if (close > -1) {
+	      stream.backUp(cur.length - close);
+	    } else if (cur.match(/<\/?$/)) {
+	      stream.backUp(cur.length);
+	      if (!stream.match(pat, false)) stream.match(cur);
+	    }
+	    return style;
+	  }
+
+	  var attrRegexpCache = {};
+	  function getAttrRegexp(attr) {
+	    var regexp = attrRegexpCache[attr];
+	    if (regexp) return regexp;
+	    return attrRegexpCache[attr] = new RegExp("\\s+" + attr + "\\s*=\\s*('|\")?([^'\"]+)('|\")?\\s*");
+	  }
+
+	  function getAttrValue(text, attr) {
+	    var match = text.match(getAttrRegexp(attr))
+	    return match ? /^\s*(.*?)\s*$/.exec(match[2])[1] : ""
+	  }
+
+	  function getTagRegexp(tagName, anchored) {
+	    return new RegExp((anchored ? "^" : "") + "<\/\s*" + tagName + "\s*>", "i");
+	  }
+
+	  function addTags(from, to) {
+	    for (var tag in from) {
+	      var dest = to[tag] || (to[tag] = []);
+	      var source = from[tag];
+	      for (var i = source.length - 1; i >= 0; i--)
+	        dest.unshift(source[i])
+	    }
+	  }
+
+	  function findMatchingMode(tagInfo, tagText) {
+	    for (var i = 0; i < tagInfo.length; i++) {
+	      var spec = tagInfo[i];
+	      if (!spec[0] || spec[1].test(getAttrValue(tagText, spec[0]))) return spec[2];
+	    }
+	  }
+
+	  CodeMirror.defineMode("htmlmixed", function (config, parserConfig) {
+	    var htmlMode = CodeMirror.getMode(config, {
+	      name: "xml",
+	      htmlMode: true,
+	      multilineTagIndentFactor: parserConfig.multilineTagIndentFactor,
+	      multilineTagIndentPastTag: parserConfig.multilineTagIndentPastTag
+	    });
+
+	    var tags = {};
+	    var configTags = parserConfig && parserConfig.tags, configScript = parserConfig && parserConfig.scriptTypes;
+	    addTags(defaultTags, tags);
+	    if (configTags) addTags(configTags, tags);
+	    if (configScript) for (var i = configScript.length - 1; i >= 0; i--)
+	      tags.script.unshift(["type", configScript[i].matches, configScript[i].mode])
+
+	    function html(stream, state) {
+	      var style = htmlMode.token(stream, state.htmlState), tag = /\btag\b/.test(style), tagName
+	      if (tag && !/[<>\s\/]/.test(stream.current()) &&
+	          (tagName = state.htmlState.tagName && state.htmlState.tagName.toLowerCase()) &&
+	          tags.hasOwnProperty(tagName)) {
+	        state.inTag = tagName + " "
+	      } else if (state.inTag && tag && />$/.test(stream.current())) {
+	        var inTag = /^([\S]+) (.*)/.exec(state.inTag)
+	        state.inTag = null
+	        var modeSpec = stream.current() == ">" && findMatchingMode(tags[inTag[1]], inTag[2])
+	        var mode = CodeMirror.getMode(config, modeSpec)
+	        var endTagA = getTagRegexp(inTag[1], true), endTag = getTagRegexp(inTag[1], false);
+	        state.token = function (stream, state) {
+	          if (stream.match(endTagA, false)) {
+	            state.token = html;
+	            state.localState = state.localMode = null;
+	            return null;
+	          }
+	          return maybeBackup(stream, endTag, state.localMode.token(stream, state.localState));
+	        };
+	        state.localMode = mode;
+	        state.localState = CodeMirror.startState(mode, htmlMode.indent(state.htmlState, ""));
+	      } else if (state.inTag) {
+	        state.inTag += stream.current()
+	        if (stream.eol()) state.inTag += " "
+	      }
+	      return style;
+	    };
+
+	    return {
+	      startState: function () {
+	        var state = CodeMirror.startState(htmlMode);
+	        return {token: html, inTag: null, localMode: null, localState: null, htmlState: state};
+	      },
+
+	      copyState: function (state) {
+	        var local;
+	        if (state.localState) {
+	          local = CodeMirror.copyState(state.localMode, state.localState);
+	        }
+	        return {token: state.token, inTag: state.inTag,
+	                localMode: state.localMode, localState: local,
+	                htmlState: CodeMirror.copyState(htmlMode, state.htmlState)};
+	      },
+
+	      token: function (stream, state) {
+	        return state.token(stream, state);
+	      },
+
+	      indent: function (state, textAfter, line) {
+	        if (!state.localMode || /^\s*<\//.test(textAfter))
+	          return htmlMode.indent(state.htmlState, textAfter);
+	        else if (state.localMode.indent)
+	          return state.localMode.indent(state.localState, textAfter, line);
+	        else
+	          return CodeMirror.Pass;
+	      },
+
+	      innerMode: function (state) {
+	        return {state: state.localState || state.htmlState, mode: state.localMode || htmlMode};
+	      }
+	    };
+	  }, "xml", "javascript", "css");
+
+	  CodeMirror.defineMIME("text/html", "htmlmixed");
+	});
+
+
+/***/ }),
+/* 185 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// CodeMirror, copyright (c) by Marijn Haverbeke and others
+	// Distributed under an MIT license: http://codemirror.net/LICENSE
+
+	(function(mod) {
+	  if (true) // CommonJS
+	    mod(__webpack_require__(92));
 	  else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror"], mod);
 	  else // Plain browser env
@@ -18831,7 +18894,6 @@
 
 
 /***/ }),
-/* 185 */,
 /* 186 */,
 /* 187 */,
 /* 188 */,
@@ -18851,7 +18913,8 @@
 /* 202 */,
 /* 203 */,
 /* 204 */,
-/* 205 */
+/* 205 */,
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18860,7 +18923,7 @@
 	    value: true
 	});
 
-	var _toConsumableArray2 = __webpack_require__(95);
+	var _toConsumableArray2 = __webpack_require__(96);
 
 	var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
@@ -18921,12 +18984,12 @@
 	}
 
 /***/ }),
-/* 206 */,
 /* 207 */,
 /* 208 */,
 /* 209 */,
 /* 210 */,
-/* 211 */
+/* 211 */,
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18989,7 +19052,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 212 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19207,7 +19270,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 213 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19252,7 +19315,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 214 */
+/* 215 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19301,11 +19364,11 @@
 
 	var _addEventListener2 = _interopRequireDefault(_addEventListener);
 
-	var _Grid = __webpack_require__(213);
+	var _Grid = __webpack_require__(214);
 
 	var _Grid2 = _interopRequireDefault(_Grid);
 
-	var _throttleByAnimationFrame = __webpack_require__(205);
+	var _throttleByAnimationFrame = __webpack_require__(206);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -19479,17 +19542,9 @@
 	module.exports = exports["default"];
 
 /***/ }),
-/* 215 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	__webpack_require__(56);
-
-	__webpack_require__(295);
-
-/***/ }),
 /* 216 */
+[396, 297],
+/* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19527,7 +19582,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _rcCollapse = __webpack_require__(359);
+	var _rcCollapse = __webpack_require__(361);
 
 	var _rcCollapse2 = _interopRequireDefault(_rcCollapse);
 
@@ -19588,7 +19643,7 @@
 	};
 
 /***/ }),
-/* 217 */
+/* 218 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19597,7 +19652,7 @@
 	  value: true
 	});
 
-	var _Collapse = __webpack_require__(216);
+	var _Collapse = __webpack_require__(217);
 
 	var _Collapse2 = _interopRequireDefault(_Collapse);
 
@@ -19607,17 +19662,8 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 218 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	__webpack_require__(56);
-
-	__webpack_require__(296);
-
-/***/ }),
-/* 219 */,
+/* 219 */
+[396, 298],
 /* 220 */,
 /* 221 */,
 /* 222 */,
@@ -19631,7 +19677,8 @@
 /* 230 */,
 /* 231 */,
 /* 232 */,
-/* 233 */
+/* 233 */,
+/* 234 */
 /***/ (function(module, exports) {
 
 	"use strict";Object.defineProperty(exports, "__esModule", { value: true });exports.default = {
@@ -19672,10 +19719,10 @@
 	    } };module.exports = exports["default"];
 
 /***/ }),
-/* 234 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';Object.defineProperty(exports, "__esModule", { value: true });exports.default = undefined;var _classCallCheck2 = __webpack_require__(3);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _DomExplorerNodeAttribute = __webpack_require__(235);var _DomExplorerNodeAttribute2 = _interopRequireDefault(_DomExplorerNodeAttribute);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _VORLON =
+	'use strict';Object.defineProperty(exports, "__esModule", { value: true });exports.default = undefined;var _classCallCheck2 = __webpack_require__(3);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _DomExplorerNodeAttribute = __webpack_require__(236);var _DomExplorerNodeAttribute2 = _interopRequireDefault(_DomExplorerNodeAttribute);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _VORLON =
 	VORLON,FluentDOM = _VORLON.FluentDOM,Tools = _VORLON.Tools;var
 	DomExplorerNode = function () {
 	    function DomExplorerNode(plugin, parent, parentElt, node, oldNode) {(0, _classCallCheck3.default)(this, DomExplorerNode);
@@ -19944,7 +19991,7 @@
 	DomExplorerNode._spaceCheck = /[^\t\n\r ]/;module.exports = exports['default'];
 
 /***/ }),
-/* 235 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";Object.defineProperty(exports, "__esModule", { value: true });exports.default = undefined;var _classCallCheck2 = __webpack_require__(3);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _VORLON = VORLON,FluentDOM = _VORLON.FluentDOM;var
@@ -20076,10 +20123,10 @@
 	    };return DomExplorerNodeAttribute;}();exports.default = DomExplorerNodeAttribute;module.exports = exports["default"];
 
 /***/ }),
-/* 236 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';Object.defineProperty(exports, "__esModule", { value: true });exports.default = undefined;var _classCallCheck2 = __webpack_require__(3);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _DomExplorerPropertyEditorItem = __webpack_require__(237);var _DomExplorerPropertyEditorItem2 = _interopRequireDefault(_DomExplorerPropertyEditorItem);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var
+	'use strict';Object.defineProperty(exports, "__esModule", { value: true });exports.default = undefined;var _classCallCheck2 = __webpack_require__(3);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _DomExplorerPropertyEditorItem = __webpack_require__(238);var _DomExplorerPropertyEditorItem2 = _interopRequireDefault(_DomExplorerPropertyEditorItem);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var
 	DomExplorerPropertyEditor = function () {
 	    function DomExplorerPropertyEditor(plugin) {(0, _classCallCheck3.default)(this, DomExplorerPropertyEditor);
 	        //private parent: HTMLElement = null;
@@ -20121,7 +20168,7 @@
 	    };return DomExplorerPropertyEditor;}();exports.default = DomExplorerPropertyEditor;module.exports = exports['default'];
 
 /***/ }),
-/* 237 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";Object.defineProperty(exports, "__esModule", { value: true });exports.default = undefined;var _classCallCheck2 = __webpack_require__(3);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var DomExplorerPropertyEditorItem = function () {
@@ -20214,10 +20261,10 @@
 	    };return DomExplorerPropertyEditorItem;}();exports.default = DomExplorerPropertyEditorItem;module.exports = exports["default"];
 
 /***/ }),
-/* 238 */,
 /* 239 */,
 /* 240 */,
-/* 241 */
+/* 241 */,
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";Object.defineProperty(exports, "__esModule", { value: true });var _classCallCheck2 = __webpack_require__(3);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _possibleConstructorReturn2 = __webpack_require__(8);var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);var _inherits2 = __webpack_require__(7);var _inherits3 = _interopRequireDefault(_inherits2);var _react = __webpack_require__(1);var _react2 = _interopRequireDefault(_react);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var
@@ -20253,17 +20300,17 @@
 	ComputedStyleView;module.exports = exports["default"];
 
 /***/ }),
-/* 242 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';Object.defineProperty(exports, "__esModule", { value: true });var _card = __webpack_require__(214);var _card2 = _interopRequireDefault(_card);var _input = __webpack_require__(119);var _input2 = _interopRequireDefault(_input);var _button = __webpack_require__(176);var _button2 = _interopRequireDefault(_button);var _keys = __webpack_require__(139);var _keys2 = _interopRequireDefault(_keys);var _extends2 = __webpack_require__(16);var _extends3 = _interopRequireDefault(_extends2);var _classCallCheck2 = __webpack_require__(3);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _possibleConstructorReturn2 = __webpack_require__(8);var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);var _inherits2 = __webpack_require__(7);var _inherits3 = _interopRequireDefault(_inherits2);var _collapse = __webpack_require__(217);var _collapse2 = _interopRequireDefault(_collapse);__webpack_require__(215);__webpack_require__(120);__webpack_require__(177);__webpack_require__(218);var _react = __webpack_require__(1);var _react2 = _interopRequireDefault(_react);
-	var _reactDom = __webpack_require__(57);var _reactDom2 = _interopRequireDefault(_reactDom);
+	'use strict';Object.defineProperty(exports, "__esModule", { value: true });var _card = __webpack_require__(215);var _card2 = _interopRequireDefault(_card);var _input = __webpack_require__(119);var _input2 = _interopRequireDefault(_input);var _button = __webpack_require__(176);var _button2 = _interopRequireDefault(_button);var _keys = __webpack_require__(139);var _keys2 = _interopRequireDefault(_keys);var _extends2 = __webpack_require__(16);var _extends3 = _interopRequireDefault(_extends2);var _classCallCheck2 = __webpack_require__(3);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _possibleConstructorReturn2 = __webpack_require__(8);var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);var _inherits2 = __webpack_require__(7);var _inherits3 = _interopRequireDefault(_inherits2);var _collapse = __webpack_require__(218);var _collapse2 = _interopRequireDefault(_collapse);__webpack_require__(216);__webpack_require__(120);__webpack_require__(177);__webpack_require__(219);var _react = __webpack_require__(1);var _react2 = _interopRequireDefault(_react);
+	var _reactDom = __webpack_require__(53);var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _LayoutView = __webpack_require__(244);var _LayoutView2 = _interopRequireDefault(_LayoutView);
-	var _HTMLView = __webpack_require__(243);var _HTMLView2 = _interopRequireDefault(_HTMLView);
-	var _ComputedStyleView = __webpack_require__(241);var _ComputedStyleView2 = _interopRequireDefault(_ComputedStyleView);
-	var _SettingView = __webpack_require__(246);var _SettingView2 = _interopRequireDefault(_SettingView);
-	var _YScrollView = __webpack_require__(247);var _YScrollView2 = _interopRequireDefault(_YScrollView);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+	var _LayoutView = __webpack_require__(245);var _LayoutView2 = _interopRequireDefault(_LayoutView);
+	var _HTMLView = __webpack_require__(244);var _HTMLView2 = _interopRequireDefault(_HTMLView);
+	var _ComputedStyleView = __webpack_require__(242);var _ComputedStyleView2 = _interopRequireDefault(_ComputedStyleView);
+	var _SettingView = __webpack_require__(247);var _SettingView2 = _interopRequireDefault(_SettingView);
+	var _YScrollView = __webpack_require__(248);var _YScrollView2 = _interopRequireDefault(_YScrollView);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 	var Panel = _collapse2.default.Panel;var
 
@@ -20550,14 +20597,14 @@
 	DomExplorer;module.exports = exports['default'];
 
 /***/ }),
-/* 243 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';Object.defineProperty(exports, "__esModule", { value: true });var _classCallCheck2 = __webpack_require__(3);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _possibleConstructorReturn2 = __webpack_require__(8);var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);var _inherits2 = __webpack_require__(7);var _inherits3 = _interopRequireDefault(_inherits2);var _button = __webpack_require__(176);var _button2 = _interopRequireDefault(_button);var _input = __webpack_require__(119);var _input2 = _interopRequireDefault(_input);__webpack_require__(177);__webpack_require__(120);var _react = __webpack_require__(1);var _react2 = _interopRequireDefault(_react);
-	var _reactDom = __webpack_require__(57);var _reactDom2 = _interopRequireDefault(_reactDom);
+	var _reactDom = __webpack_require__(53);var _reactDom2 = _interopRequireDefault(_reactDom);
 
 
-	var _ReactCodeMirrorEditor = __webpack_require__(245);var _ReactCodeMirrorEditor2 = _interopRequireDefault(_ReactCodeMirrorEditor);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var
+	var _ReactCodeMirrorEditor = __webpack_require__(246);var _ReactCodeMirrorEditor2 = _interopRequireDefault(_ReactCodeMirrorEditor);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var
 
 	TextArea = _input2.default.TextArea;var
 	ButtonGroup = _button2.default.Group;
@@ -20629,7 +20676,7 @@
 	InnerHTMLView;module.exports = exports['default'];
 
 /***/ }),
-/* 244 */
+/* 245 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';Object.defineProperty(exports, "__esModule", { value: true });var _classCallCheck2 = __webpack_require__(3);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _possibleConstructorReturn2 = __webpack_require__(8);var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);var _inherits2 = __webpack_require__(7);var _inherits3 = _interopRequireDefault(_inherits2);var _react = __webpack_require__(1);var _react2 = _interopRequireDefault(_react);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var
@@ -20689,18 +20736,18 @@
 	LayoutView;module.exports = exports['default'];
 
 /***/ }),
-/* 245 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';Object.defineProperty(exports, "__esModule", { value: true });var _classCallCheck2 = __webpack_require__(3);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _possibleConstructorReturn2 = __webpack_require__(8);var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);var _inherits2 = __webpack_require__(7);var _inherits3 = _interopRequireDefault(_inherits2);var _react = __webpack_require__(1);var _react2 = _interopRequireDefault(_react);
-	var _codemirror = __webpack_require__(96);var _codemirror2 = _interopRequireDefault(_codemirror);
-	__webpack_require__(260);
-	__webpack_require__(261);
+	var _codemirror = __webpack_require__(92);var _codemirror2 = _interopRequireDefault(_codemirror);
+	__webpack_require__(262);
 	__webpack_require__(184);
-	__webpack_require__(394);
+	__webpack_require__(185);
+	__webpack_require__(263);
 	__webpack_require__(183);
-	__webpack_require__(286);
-	__webpack_require__(287);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+	__webpack_require__(288);
+	__webpack_require__(289);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 	(function () {
 	  _codemirror2.default.extendMode("css", {
@@ -20968,7 +21015,7 @@
 	ReactCodeMirrorEditor;module.exports = exports['default'];
 
 /***/ }),
-/* 246 */
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';Object.defineProperty(exports, "__esModule", { value: true });var _checkbox = __webpack_require__(131);var _checkbox2 = _interopRequireDefault(_checkbox);var _classCallCheck2 = __webpack_require__(3);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _possibleConstructorReturn2 = __webpack_require__(8);var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);var _inherits2 = __webpack_require__(7);var _inherits3 = _interopRequireDefault(_inherits2);__webpack_require__(132);var _react = __webpack_require__(1);var _react2 = _interopRequireDefault(_react);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var
@@ -20989,7 +21036,7 @@
 	SettingView;module.exports = exports['default'];
 
 /***/ }),
-/* 247 */
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';Object.defineProperty(exports, "__esModule", { value: true });var _classCallCheck2 = __webpack_require__(3);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _possibleConstructorReturn2 = __webpack_require__(8);var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);var _inherits2 = __webpack_require__(7);var _inherits3 = _interopRequireDefault(_inherits2);var _react = __webpack_require__(1);var _react2 = _interopRequireDefault(_react);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var
@@ -21016,7 +21063,6 @@
 	YScrollView;module.exports = exports['default'];
 
 /***/ }),
-/* 248 */,
 /* 249 */,
 /* 250 */,
 /* 251 */,
@@ -21028,7 +21074,8 @@
 /* 257 */,
 /* 258 */,
 /* 259 */,
-/* 260 */
+/* 260 */,
+/* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -21036,7 +21083,136 @@
 
 	(function(mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(96));
+	    mod(__webpack_require__(92));
+	  else if (typeof define == "function" && define.amd) // AMD
+	    define(["../../lib/codemirror"], mod);
+	  else // Plain browser env
+	    mod(CodeMirror);
+	})(function(CodeMirror) {
+	"use strict";
+
+	CodeMirror.multiplexingMode = function(outer /*, others */) {
+	  // Others should be {open, close, mode [, delimStyle] [, innerStyle]} objects
+	  var others = Array.prototype.slice.call(arguments, 1);
+
+	  function indexOf(string, pattern, from, returnEnd) {
+	    if (typeof pattern == "string") {
+	      var found = string.indexOf(pattern, from);
+	      return returnEnd && found > -1 ? found + pattern.length : found;
+	    }
+	    var m = pattern.exec(from ? string.slice(from) : string);
+	    return m ? m.index + from + (returnEnd ? m[0].length : 0) : -1;
+	  }
+
+	  return {
+	    startState: function() {
+	      return {
+	        outer: CodeMirror.startState(outer),
+	        innerActive: null,
+	        inner: null
+	      };
+	    },
+
+	    copyState: function(state) {
+	      return {
+	        outer: CodeMirror.copyState(outer, state.outer),
+	        innerActive: state.innerActive,
+	        inner: state.innerActive && CodeMirror.copyState(state.innerActive.mode, state.inner)
+	      };
+	    },
+
+	    token: function(stream, state) {
+	      if (!state.innerActive) {
+	        var cutOff = Infinity, oldContent = stream.string;
+	        for (var i = 0; i < others.length; ++i) {
+	          var other = others[i];
+	          var found = indexOf(oldContent, other.open, stream.pos);
+	          if (found == stream.pos) {
+	            if (!other.parseDelimiters) stream.match(other.open);
+	            state.innerActive = other;
+	            state.inner = CodeMirror.startState(other.mode, outer.indent ? outer.indent(state.outer, "") : 0);
+	            return other.delimStyle && (other.delimStyle + " " + other.delimStyle + "-open");
+	          } else if (found != -1 && found < cutOff) {
+	            cutOff = found;
+	          }
+	        }
+	        if (cutOff != Infinity) stream.string = oldContent.slice(0, cutOff);
+	        var outerToken = outer.token(stream, state.outer);
+	        if (cutOff != Infinity) stream.string = oldContent;
+	        return outerToken;
+	      } else {
+	        var curInner = state.innerActive, oldContent = stream.string;
+	        if (!curInner.close && stream.sol()) {
+	          state.innerActive = state.inner = null;
+	          return this.token(stream, state);
+	        }
+	        var found = curInner.close ? indexOf(oldContent, curInner.close, stream.pos, curInner.parseDelimiters) : -1;
+	        if (found == stream.pos && !curInner.parseDelimiters) {
+	          stream.match(curInner.close);
+	          state.innerActive = state.inner = null;
+	          return curInner.delimStyle && (curInner.delimStyle + " " + curInner.delimStyle + "-close");
+	        }
+	        if (found > -1) stream.string = oldContent.slice(0, found);
+	        var innerToken = curInner.mode.token(stream, state.inner);
+	        if (found > -1) stream.string = oldContent;
+
+	        if (found == stream.pos && curInner.parseDelimiters)
+	          state.innerActive = state.inner = null;
+
+	        if (curInner.innerStyle) {
+	          if (innerToken) innerToken = innerToken + " " + curInner.innerStyle;
+	          else innerToken = curInner.innerStyle;
+	        }
+
+	        return innerToken;
+	      }
+	    },
+
+	    indent: function(state, textAfter) {
+	      var mode = state.innerActive ? state.innerActive.mode : outer;
+	      if (!mode.indent) return CodeMirror.Pass;
+	      return mode.indent(state.innerActive ? state.inner : state.outer, textAfter);
+	    },
+
+	    blankLine: function(state) {
+	      var mode = state.innerActive ? state.innerActive.mode : outer;
+	      if (mode.blankLine) {
+	        mode.blankLine(state.innerActive ? state.inner : state.outer);
+	      }
+	      if (!state.innerActive) {
+	        for (var i = 0; i < others.length; ++i) {
+	          var other = others[i];
+	          if (other.open === "\n") {
+	            state.innerActive = other;
+	            state.inner = CodeMirror.startState(other.mode, mode.indent ? mode.indent(state.outer, "") : 0);
+	          }
+	        }
+	      } else if (state.innerActive.close === "\n") {
+	        state.innerActive = state.inner = null;
+	      }
+	    },
+
+	    electricChars: outer.electricChars,
+
+	    innerMode: function(state) {
+	      return state.inner ? {state: state.inner, mode: state.innerActive.mode} : {state: state.outer, mode: outer};
+	    }
+	  };
+	};
+
+	});
+
+
+/***/ }),
+/* 262 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	// CodeMirror, copyright (c) by Marijn Haverbeke and others
+	// Distributed under an MIT license: http://codemirror.net/LICENSE
+
+	(function(mod) {
+	  if (true) // CommonJS
+	    mod(__webpack_require__(92));
 	  else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror"], mod);
 	  else // Plain browser env
@@ -21106,7 +21282,7 @@
 
 
 /***/ }),
-/* 261 */
+/* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -21114,157 +21290,33 @@
 
 	(function(mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(96), __webpack_require__(262), __webpack_require__(184), __webpack_require__(183));
+	    mod(__webpack_require__(92), __webpack_require__(184),
+	        __webpack_require__(261));
 	  else if (typeof define == "function" && define.amd) // AMD
-	    define(["../../lib/codemirror", "../xml/xml", "../javascript/javascript", "../css/css"], mod);
+	    define(["../../lib/codemirror", "../htmlmixed/htmlmixed",
+	            "../../addon/mode/multiplex"], mod);
 	  else // Plain browser env
 	    mod(CodeMirror);
 	})(function(CodeMirror) {
 	  "use strict";
 
-	  var defaultTags = {
-	    script: [
-	      ["lang", /(javascript|babel)/i, "javascript"],
-	      ["type", /^(?:text|application)\/(?:x-)?(?:java|ecma)script$|^module$|^$/i, "javascript"],
-	      ["type", /./, "text/plain"],
-	      [null, null, "javascript"]
-	    ],
-	    style:  [
-	      ["lang", /^css$/i, "css"],
-	      ["type", /^(text\/)?(x-)?(stylesheet|css)$/i, "css"],
-	      ["type", /./, "text/plain"],
-	      [null, null, "css"]
-	    ]
-	  };
-
-	  function maybeBackup(stream, pat, style) {
-	    var cur = stream.current(), close = cur.search(pat);
-	    if (close > -1) {
-	      stream.backUp(cur.length - close);
-	    } else if (cur.match(/<\/?$/)) {
-	      stream.backUp(cur.length);
-	      if (!stream.match(pat, false)) stream.match(cur);
-	    }
-	    return style;
-	  }
-
-	  var attrRegexpCache = {};
-	  function getAttrRegexp(attr) {
-	    var regexp = attrRegexpCache[attr];
-	    if (regexp) return regexp;
-	    return attrRegexpCache[attr] = new RegExp("\\s+" + attr + "\\s*=\\s*('|\")?([^'\"]+)('|\")?\\s*");
-	  }
-
-	  function getAttrValue(text, attr) {
-	    var match = text.match(getAttrRegexp(attr))
-	    return match ? /^\s*(.*?)\s*$/.exec(match[2])[1] : ""
-	  }
-
-	  function getTagRegexp(tagName, anchored) {
-	    return new RegExp((anchored ? "^" : "") + "<\/\s*" + tagName + "\s*>", "i");
-	  }
-
-	  function addTags(from, to) {
-	    for (var tag in from) {
-	      var dest = to[tag] || (to[tag] = []);
-	      var source = from[tag];
-	      for (var i = source.length - 1; i >= 0; i--)
-	        dest.unshift(source[i])
-	    }
-	  }
-
-	  function findMatchingMode(tagInfo, tagText) {
-	    for (var i = 0; i < tagInfo.length; i++) {
-	      var spec = tagInfo[i];
-	      if (!spec[0] || spec[1].test(getAttrValue(tagText, spec[0]))) return spec[2];
-	    }
-	  }
-
-	  CodeMirror.defineMode("htmlmixed", function (config, parserConfig) {
-	    var htmlMode = CodeMirror.getMode(config, {
-	      name: "xml",
-	      htmlMode: true,
-	      multilineTagIndentFactor: parserConfig.multilineTagIndentFactor,
-	      multilineTagIndentPastTag: parserConfig.multilineTagIndentPastTag
+	  CodeMirror.defineMode("htmlembedded", function(config, parserConfig) {
+	    return CodeMirror.multiplexingMode(CodeMirror.getMode(config, "htmlmixed"), {
+	      open: parserConfig.open || parserConfig.scriptStartRegex || "<%",
+	      close: parserConfig.close || parserConfig.scriptEndRegex || "%>",
+	      mode: CodeMirror.getMode(config, parserConfig.scriptingModeSpec)
 	    });
+	  }, "htmlmixed");
 
-	    var tags = {};
-	    var configTags = parserConfig && parserConfig.tags, configScript = parserConfig && parserConfig.scriptTypes;
-	    addTags(defaultTags, tags);
-	    if (configTags) addTags(configTags, tags);
-	    if (configScript) for (var i = configScript.length - 1; i >= 0; i--)
-	      tags.script.unshift(["type", configScript[i].matches, configScript[i].mode])
-
-	    function html(stream, state) {
-	      var style = htmlMode.token(stream, state.htmlState), tag = /\btag\b/.test(style), tagName
-	      if (tag && !/[<>\s\/]/.test(stream.current()) &&
-	          (tagName = state.htmlState.tagName && state.htmlState.tagName.toLowerCase()) &&
-	          tags.hasOwnProperty(tagName)) {
-	        state.inTag = tagName + " "
-	      } else if (state.inTag && tag && />$/.test(stream.current())) {
-	        var inTag = /^([\S]+) (.*)/.exec(state.inTag)
-	        state.inTag = null
-	        var modeSpec = stream.current() == ">" && findMatchingMode(tags[inTag[1]], inTag[2])
-	        var mode = CodeMirror.getMode(config, modeSpec)
-	        var endTagA = getTagRegexp(inTag[1], true), endTag = getTagRegexp(inTag[1], false);
-	        state.token = function (stream, state) {
-	          if (stream.match(endTagA, false)) {
-	            state.token = html;
-	            state.localState = state.localMode = null;
-	            return null;
-	          }
-	          return maybeBackup(stream, endTag, state.localMode.token(stream, state.localState));
-	        };
-	        state.localMode = mode;
-	        state.localState = CodeMirror.startState(mode, htmlMode.indent(state.htmlState, ""));
-	      } else if (state.inTag) {
-	        state.inTag += stream.current()
-	        if (stream.eol()) state.inTag += " "
-	      }
-	      return style;
-	    };
-
-	    return {
-	      startState: function () {
-	        var state = CodeMirror.startState(htmlMode);
-	        return {token: html, inTag: null, localMode: null, localState: null, htmlState: state};
-	      },
-
-	      copyState: function (state) {
-	        var local;
-	        if (state.localState) {
-	          local = CodeMirror.copyState(state.localMode, state.localState);
-	        }
-	        return {token: state.token, inTag: state.inTag,
-	                localMode: state.localMode, localState: local,
-	                htmlState: CodeMirror.copyState(htmlMode, state.htmlState)};
-	      },
-
-	      token: function (stream, state) {
-	        return state.token(stream, state);
-	      },
-
-	      indent: function (state, textAfter, line) {
-	        if (!state.localMode || /^\s*<\//.test(textAfter))
-	          return htmlMode.indent(state.htmlState, textAfter);
-	        else if (state.localMode.indent)
-	          return state.localMode.indent(state.localState, textAfter, line);
-	        else
-	          return CodeMirror.Pass;
-	      },
-
-	      innerMode: function (state) {
-	        return {state: state.localState || state.htmlState, mode: state.localMode || htmlMode};
-	      }
-	    };
-	  }, "xml", "javascript", "css");
-
-	  CodeMirror.defineMIME("text/html", "htmlmixed");
+	  CodeMirror.defineMIME("application/x-ejs", {name: "htmlembedded", scriptingModeSpec:"javascript"});
+	  CodeMirror.defineMIME("application/x-aspx", {name: "htmlembedded", scriptingModeSpec:"text/x-csharp"});
+	  CodeMirror.defineMIME("application/x-jsp", {name: "htmlembedded", scriptingModeSpec:"text/x-java"});
+	  CodeMirror.defineMIME("application/x-erb", {name: "htmlembedded", scriptingModeSpec:"ruby"});
 	});
 
 
 /***/ }),
-/* 262 */
+/* 264 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -21272,7 +21324,7 @@
 
 	(function(mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(96));
+	    mod(__webpack_require__(92));
 	  else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror"], mod);
 	  else // Plain browser env
@@ -21664,8 +21716,6 @@
 
 
 /***/ }),
-/* 263 */,
-/* 264 */,
 /* 265 */,
 /* 266 */,
 /* 267 */,
@@ -21687,47 +21737,43 @@
 /* 283 */,
 /* 284 */,
 /* 285 */,
-/* 286 */
+/* 286 */,
+/* 287 */,
+/* 288 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 287 */
-/***/ (function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 288 */,
-/* 289 */,
+/* 289 */
+288,
 /* 290 */,
 /* 291 */,
 /* 292 */,
 /* 293 */,
-/* 294 */
+/* 294 */,
+/* 295 */,
+/* 296 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"ant-btn":"ant-btn___llYlK","anticon":"anticon___u6FnB","disabled":"disabled___3teWh","ant-btn-lg":"ant-btn-lg___3DVQS","ant-btn-sm":"ant-btn-sm___CuSJg","active":"active___1MLee","ant-btn-primary":"ant-btn-primary___3ExhH","ant-btn-group":"ant-btn-group___kXink","ant-btn-ghost":"ant-btn-ghost___3lbp7","ant-btn-dashed":"ant-btn-dashed___9_99c","ant-btn-danger":"ant-btn-danger___3-iVJ","ant-btn-circle":"ant-btn-circle___2HkqT","ant-btn-circle-outline":"ant-btn-circle-outline___3y9tk","ant-btn-loading":"ant-btn-loading___2YR5g","ant-btn-icon-only":"ant-btn-icon-only___24o7n","ant-btn-group-lg":"ant-btn-group-lg___BY9JI","ant-btn-group-sm":"ant-btn-group-sm___2n1z-","ant-btn-clicked":"ant-btn-clicked___1XHtr","buttonEffect":"buttonEffect___3JuDg","ant-btn-background-ghost":"ant-btn-background-ghost___Vas9S"};
 
 /***/ }),
-/* 295 */
+/* 297 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"ant-card":"ant-card___sRtRq","ant-card-no-hovering":"ant-card-no-hovering___1YftV","ant-card-bordered":"ant-card-bordered___3O-SO","ant-card-head":"ant-card-head___3po8B","ant-card-head-title":"ant-card-head-title___2h7hG","ant-card-extra":"ant-card-extra___FAtkB","ant-card-body":"ant-card-body___1P4zz","ant-card-contain-grid":"ant-card-contain-grid___2dzwm","ant-card-grid":"ant-card-grid___ui6WJ","ant-card-wider-padding":"ant-card-wider-padding___71ogO","ant-card-padding-transition":"ant-card-padding-transition___2BMEn","ant-card-loading":"ant-card-loading___1FFyy","ant-card-loading-content":"ant-card-loading-content___1C-MK","ant-card-loading-block":"ant-card-loading-block___2UtDa","card-loading":"card-loading___vWDfd"};
 
 /***/ }),
-/* 296 */
+/* 298 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"ant-collapse":"ant-collapse___2Y9wT","ant-collapse-item":"ant-collapse-item___mkroi","ant-collapse-header":"ant-collapse-header___3XZqh","arrow":"arrow___3Dp6s","ant-collapse-anim-active":"ant-collapse-anim-active___2c-8J","ant-collapse-content":"ant-collapse-content___2hd6P","ant-collapse-content-box":"ant-collapse-content-box___3zWkP","ant-collapse-content-inactive":"ant-collapse-content-inactive___2wVGV","ant-collapse-borderless":"ant-collapse-borderless___1owT7","ant-collapse-item-active":"ant-collapse-item-active___DmwC0","ant-collapse-item-disabled":"ant-collapse-item-disabled___23x5M"};
 
 /***/ }),
-/* 297 */,
-/* 298 */,
 /* 299 */,
 /* 300 */,
 /* 301 */,
@@ -21785,7 +21831,9 @@
 /* 353 */,
 /* 354 */,
 /* 355 */,
-/* 356 */
+/* 356 */,
+/* 357 */,
+/* 358 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21804,11 +21852,11 @@
 
 	var _propTypes2 = _interopRequireDefault(_propTypes);
 
-	var _Panel = __webpack_require__(357);
+	var _Panel = __webpack_require__(359);
 
 	var _Panel2 = _interopRequireDefault(_Panel);
 
-	var _openAnimationFactory = __webpack_require__(360);
+	var _openAnimationFactory = __webpack_require__(362);
 
 	var _openAnimationFactory2 = _interopRequireDefault(_openAnimationFactory);
 
@@ -21998,7 +22046,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 357 */
+/* 359 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22021,7 +22069,7 @@
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _PanelContent = __webpack_require__(358);
+	var _PanelContent = __webpack_require__(360);
 
 	var _PanelContent2 = _interopRequireDefault(_PanelContent);
 
@@ -22143,7 +22191,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 358 */
+/* 360 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22236,7 +22284,7 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 359 */
+/* 361 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22246,7 +22294,7 @@
 	});
 	exports.Panel = undefined;
 
-	var _Collapse = __webpack_require__(356);
+	var _Collapse = __webpack_require__(358);
 
 	var _Collapse2 = _interopRequireDefault(_Collapse);
 
@@ -22256,7 +22304,7 @@
 	var Panel = exports.Panel = _Collapse2['default'].Panel;
 
 /***/ }),
-/* 360 */
+/* 362 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22307,8 +22355,6 @@
 	module.exports = exports['default'];
 
 /***/ }),
-/* 361 */,
-/* 362 */,
 /* 363 */,
 /* 364 */,
 /* 365 */,
@@ -22339,167 +22385,17 @@
 /* 390 */,
 /* 391 */,
 /* 392 */,
-/* 393 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 393 */,
+/* 394 */,
+/* 395 */,
+/* 396 */
+/***/ (function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
 
-	// CodeMirror, copyright (c) by Marijn Haverbeke and others
-	// Distributed under an MIT license: http://codemirror.net/LICENSE
+	'use strict';
 
-	(function(mod) {
-	  if (true) // CommonJS
-	    mod(__webpack_require__(96));
-	  else if (typeof define == "function" && define.amd) // AMD
-	    define(["../../lib/codemirror"], mod);
-	  else // Plain browser env
-	    mod(CodeMirror);
-	})(function(CodeMirror) {
-	"use strict";
+	__webpack_require__(57);
 
-	CodeMirror.multiplexingMode = function(outer /*, others */) {
-	  // Others should be {open, close, mode [, delimStyle] [, innerStyle]} objects
-	  var others = Array.prototype.slice.call(arguments, 1);
-
-	  function indexOf(string, pattern, from, returnEnd) {
-	    if (typeof pattern == "string") {
-	      var found = string.indexOf(pattern, from);
-	      return returnEnd && found > -1 ? found + pattern.length : found;
-	    }
-	    var m = pattern.exec(from ? string.slice(from) : string);
-	    return m ? m.index + from + (returnEnd ? m[0].length : 0) : -1;
-	  }
-
-	  return {
-	    startState: function() {
-	      return {
-	        outer: CodeMirror.startState(outer),
-	        innerActive: null,
-	        inner: null
-	      };
-	    },
-
-	    copyState: function(state) {
-	      return {
-	        outer: CodeMirror.copyState(outer, state.outer),
-	        innerActive: state.innerActive,
-	        inner: state.innerActive && CodeMirror.copyState(state.innerActive.mode, state.inner)
-	      };
-	    },
-
-	    token: function(stream, state) {
-	      if (!state.innerActive) {
-	        var cutOff = Infinity, oldContent = stream.string;
-	        for (var i = 0; i < others.length; ++i) {
-	          var other = others[i];
-	          var found = indexOf(oldContent, other.open, stream.pos);
-	          if (found == stream.pos) {
-	            if (!other.parseDelimiters) stream.match(other.open);
-	            state.innerActive = other;
-	            state.inner = CodeMirror.startState(other.mode, outer.indent ? outer.indent(state.outer, "") : 0);
-	            return other.delimStyle && (other.delimStyle + " " + other.delimStyle + "-open");
-	          } else if (found != -1 && found < cutOff) {
-	            cutOff = found;
-	          }
-	        }
-	        if (cutOff != Infinity) stream.string = oldContent.slice(0, cutOff);
-	        var outerToken = outer.token(stream, state.outer);
-	        if (cutOff != Infinity) stream.string = oldContent;
-	        return outerToken;
-	      } else {
-	        var curInner = state.innerActive, oldContent = stream.string;
-	        if (!curInner.close && stream.sol()) {
-	          state.innerActive = state.inner = null;
-	          return this.token(stream, state);
-	        }
-	        var found = curInner.close ? indexOf(oldContent, curInner.close, stream.pos, curInner.parseDelimiters) : -1;
-	        if (found == stream.pos && !curInner.parseDelimiters) {
-	          stream.match(curInner.close);
-	          state.innerActive = state.inner = null;
-	          return curInner.delimStyle && (curInner.delimStyle + " " + curInner.delimStyle + "-close");
-	        }
-	        if (found > -1) stream.string = oldContent.slice(0, found);
-	        var innerToken = curInner.mode.token(stream, state.inner);
-	        if (found > -1) stream.string = oldContent;
-
-	        if (found == stream.pos && curInner.parseDelimiters)
-	          state.innerActive = state.inner = null;
-
-	        if (curInner.innerStyle) {
-	          if (innerToken) innerToken = innerToken + " " + curInner.innerStyle;
-	          else innerToken = curInner.innerStyle;
-	        }
-
-	        return innerToken;
-	      }
-	    },
-
-	    indent: function(state, textAfter) {
-	      var mode = state.innerActive ? state.innerActive.mode : outer;
-	      if (!mode.indent) return CodeMirror.Pass;
-	      return mode.indent(state.innerActive ? state.inner : state.outer, textAfter);
-	    },
-
-	    blankLine: function(state) {
-	      var mode = state.innerActive ? state.innerActive.mode : outer;
-	      if (mode.blankLine) {
-	        mode.blankLine(state.innerActive ? state.inner : state.outer);
-	      }
-	      if (!state.innerActive) {
-	        for (var i = 0; i < others.length; ++i) {
-	          var other = others[i];
-	          if (other.open === "\n") {
-	            state.innerActive = other;
-	            state.inner = CodeMirror.startState(other.mode, mode.indent ? mode.indent(state.outer, "") : 0);
-	          }
-	        }
-	      } else if (state.innerActive.close === "\n") {
-	        state.innerActive = state.inner = null;
-	      }
-	    },
-
-	    electricChars: outer.electricChars,
-
-	    innerMode: function(state) {
-	      return state.inner ? {state: state.inner, mode: state.innerActive.mode} : {state: state.outer, mode: outer};
-	    }
-	  };
-	};
-
-	});
-
-
-/***/ }),
-/* 394 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	// CodeMirror, copyright (c) by Marijn Haverbeke and others
-	// Distributed under an MIT license: http://codemirror.net/LICENSE
-
-	(function(mod) {
-	  if (true) // CommonJS
-	    mod(__webpack_require__(96), __webpack_require__(261),
-	        __webpack_require__(393));
-	  else if (typeof define == "function" && define.amd) // AMD
-	    define(["../../lib/codemirror", "../htmlmixed/htmlmixed",
-	            "../../addon/mode/multiplex"], mod);
-	  else // Plain browser env
-	    mod(CodeMirror);
-	})(function(CodeMirror) {
-	  "use strict";
-
-	  CodeMirror.defineMode("htmlembedded", function(config, parserConfig) {
-	    return CodeMirror.multiplexingMode(CodeMirror.getMode(config, "htmlmixed"), {
-	      open: parserConfig.open || parserConfig.scriptStartRegex || "<%",
-	      close: parserConfig.close || parserConfig.scriptEndRegex || "%>",
-	      mode: CodeMirror.getMode(config, parserConfig.scriptingModeSpec)
-	    });
-	  }, "htmlmixed");
-
-	  CodeMirror.defineMIME("application/x-ejs", {name: "htmlembedded", scriptingModeSpec:"javascript"});
-	  CodeMirror.defineMIME("application/x-aspx", {name: "htmlembedded", scriptingModeSpec:"text/x-csharp"});
-	  CodeMirror.defineMIME("application/x-jsp", {name: "htmlembedded", scriptingModeSpec:"text/x-java"});
-	  CodeMirror.defineMIME("application/x-erb", {name: "htmlembedded", scriptingModeSpec:"ruby"});
-	});
-
+	__webpack_require__(__webpack_module_template_argument_0__);
 
 /***/ })
-/******/ ]);
+/******/ ])));

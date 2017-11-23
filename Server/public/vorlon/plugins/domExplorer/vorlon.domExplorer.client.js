@@ -44,7 +44,7 @@
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	"use strict";var _classCallCheck2 = __webpack_require__(3);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _possibleConstructorReturn2 = __webpack_require__(8);var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);var _inherits2 = __webpack_require__(7);var _inherits3 = _interopRequireDefault(_inherits2);var _ClientCommands = __webpack_require__(232);var _ClientCommands2 = _interopRequireDefault(_ClientCommands);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _VORLON =
+	"use strict";var _classCallCheck2 = __webpack_require__(3);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _possibleConstructorReturn2 = __webpack_require__(8);var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);var _inherits2 = __webpack_require__(7);var _inherits3 = _interopRequireDefault(_inherits2);var _ClientCommands = __webpack_require__(233);var _ClientCommands2 = _interopRequireDefault(_ClientCommands);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _VORLON =
 	VORLON,Core = _VORLON.Core,ClientPlugin = _VORLON.ClientPlugin,PackagedNode = _VORLON.PackagedNode;var
 	DOMExplorerClient = function (_ClientPlugin) {(0, _inherits3.default)(DOMExplorerClient, _ClientPlugin);
 	    function DOMExplorerClient() {(0, _classCallCheck3.default)(this, DOMExplorerClient);var _this = (0, _possibleConstructorReturn3.default)(this,
@@ -871,7 +871,7 @@
 	  var gt = '>';
 	  var iframeDocument;
 	  iframe.style.display = 'none';
-	  __webpack_require__(53).appendChild(iframe);
+	  __webpack_require__(54).appendChild(iframe);
 	  iframe.src = 'javascript:'; // eslint-disable-line no-script-url
 	  // createDict = iframe.contentWindow.Object;
 	  // html.removeChild(iframe);
@@ -1064,7 +1064,7 @@
 	var Iterators = __webpack_require__(24);
 	var $iterCreate = __webpack_require__(71);
 	var setToStringTag = __webpack_require__(32);
-	var getPrototypeOf = __webpack_require__(55);
+	var getPrototypeOf = __webpack_require__(56);
 	var ITERATOR = __webpack_require__(6)('iterator');
 	var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
 	var FF_ITERATOR = '@@iterator';
@@ -1251,7 +1251,8 @@
 
 
 /***/ }),
-/* 53 */
+/* 53 */,
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var document = __webpack_require__(2).document;
@@ -1259,7 +1260,7 @@
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
@@ -1284,7 +1285,7 @@
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
@@ -1303,7 +1304,6 @@
 
 
 /***/ }),
-/* 56 */,
 /* 57 */,
 /* 58 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -1708,7 +1708,7 @@
 	var toPrimitive = __webpack_require__(36);
 	var createDesc = __webpack_require__(21);
 	var _create = __webpack_require__(31);
-	var gOPNExt = __webpack_require__(54);
+	var gOPNExt = __webpack_require__(55);
 	var $GOPD = __webpack_require__(45);
 	var $DP = __webpack_require__(9);
 	var $keys = __webpack_require__(25);
@@ -2108,7 +2108,8 @@
 /* 229 */,
 /* 230 */,
 /* 231 */,
-/* 232 */
+/* 232 */,
+/* 233 */
 /***/ (function(module, exports) {
 
 	"use strict";Object.defineProperty(exports, "__esModule", { value: true });exports.default = {

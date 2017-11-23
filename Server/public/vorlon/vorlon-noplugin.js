@@ -44,16 +44,16 @@
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';__webpack_require__(251);
+	'use strict';__webpack_require__(252);
 	var _vorlon = __webpack_require__(182);
-	var _vorlon2 = __webpack_require__(94);
+	var _vorlon2 = __webpack_require__(95);
 	var _vorlon3 = __webpack_require__(181);
 	var _vorlon4 = __webpack_require__(136);
-	var _vorlon5 = __webpack_require__(238);
-	var _vorlon6 = __webpack_require__(239);
+	var _vorlon5 = __webpack_require__(239);
+	var _vorlon6 = __webpack_require__(240);
 	var _vorlon7 = __webpack_require__(180);
 	var _vorlon8 = __webpack_require__(109);
-	__webpack_require__(240);
+	__webpack_require__(241);
 	window.VORLON = {
 	    Tools: _vorlon.Tools,
 	    FluentDOM: _vorlon.FluentDOM,
@@ -510,7 +510,7 @@
 	  var gt = '>';
 	  var iframeDocument;
 	  iframe.style.display = 'none';
-	  __webpack_require__(53).appendChild(iframe);
+	  __webpack_require__(54).appendChild(iframe);
 	  iframe.src = 'javascript:'; // eslint-disable-line no-script-url
 	  // createDict = iframe.contentWindow.Object;
 	  // html.removeChild(iframe);
@@ -703,7 +703,7 @@
 	var Iterators = __webpack_require__(24);
 	var $iterCreate = __webpack_require__(71);
 	var setToStringTag = __webpack_require__(32);
-	var getPrototypeOf = __webpack_require__(55);
+	var getPrototypeOf = __webpack_require__(56);
 	var ITERATOR = __webpack_require__(6)('iterator');
 	var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
 	var FF_ITERATOR = '@@iterator';
@@ -890,7 +890,8 @@
 
 
 /***/ }),
-/* 53 */
+/* 53 */,
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var document = __webpack_require__(2).document;
@@ -898,7 +899,7 @@
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
@@ -923,7 +924,7 @@
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
@@ -942,7 +943,6 @@
 
 
 /***/ }),
-/* 56 */,
 /* 57 */,
 /* 58 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -1347,7 +1347,7 @@
 	var toPrimitive = __webpack_require__(36);
 	var createDesc = __webpack_require__(21);
 	var _create = __webpack_require__(31);
-	var gOPNExt = __webpack_require__(54);
+	var gOPNExt = __webpack_require__(55);
 	var $GOPD = __webpack_require__(45);
 	var $DP = __webpack_require__(9);
 	var $keys = __webpack_require__(25);
@@ -1614,7 +1614,8 @@
 /* 91 */,
 /* 92 */,
 /* 93 */,
-/* 94 */
+/* 94 */,
+/* 95 */
 /***/ (function(module, exports) {
 
 	"use strict";Object.defineProperty(exports, "__esModule", { value: true });var RuntimeSide = exports.RuntimeSide = undefined;
@@ -1631,7 +1632,6 @@
 	})(PluginType || (exports.PluginType = PluginType = {}));
 
 /***/ }),
-/* 95 */,
 /* 96 */,
 /* 97 */,
 /* 98 */,
@@ -1649,7 +1649,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';Object.defineProperty(exports, "__esModule", { value: true });exports.Core = exports._Core = undefined;var _stringify = __webpack_require__(121);var _stringify2 = _interopRequireDefault(_stringify);var _classCallCheck2 = __webpack_require__(3);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _createClass2 = __webpack_require__(20);var _createClass3 = _interopRequireDefault(_createClass2);var _vorlon = __webpack_require__(180);
-	var _vorlon2 = __webpack_require__(94);
+	var _vorlon2 = __webpack_require__(95);
 	var _vorlon3 = __webpack_require__(182);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var
 	_Core = exports._Core = function () {
 	    function _Core() {(0, _classCallCheck3.default)(this, _Core);
@@ -2103,7 +2103,7 @@
 	    };(0, _createClass3.default)(_Core, [{ key: 'Messenger', get: function get() {return Core._messenger;} }, { key: 'ClientPlugins', get: function get() {return Core._clientPlugins;} }, { key: 'IsHttpsEnabled', get: function get() {return Core._isHttpsEnabled;} }, { key: 'DashboardPlugins', get: function get() {return Core._dashboardPlugins;} }]);return _Core;}();
 
 	var Core = exports.Core = new _Core();
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(334)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(336)))
 
 /***/ }),
 /* 110 */,
@@ -2158,7 +2158,7 @@
 /* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';Object.defineProperty(exports, "__esModule", { value: true });exports.BasePlugin = undefined;var _classCallCheck2 = __webpack_require__(3);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _createClass2 = __webpack_require__(20);var _createClass3 = _interopRequireDefault(_createClass2);var _vorlon = __webpack_require__(94);
+	'use strict';Object.defineProperty(exports, "__esModule", { value: true });exports.BasePlugin = undefined;var _classCallCheck2 = __webpack_require__(3);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _createClass2 = __webpack_require__(20);var _createClass3 = _interopRequireDefault(_createClass2);var _vorlon = __webpack_require__(95);
 	var _vorlon2 = __webpack_require__(109);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var
 	BasePlugin = exports.BasePlugin = function () {
 	    function BasePlugin(name) {(0, _classCallCheck3.default)(this, BasePlugin);
@@ -2253,7 +2253,7 @@
 /* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';Object.defineProperty(exports, "__esModule", { value: true });exports.ClientMessenger = undefined;var _stringify = __webpack_require__(121);var _stringify2 = _interopRequireDefault(_stringify);var _classCallCheck2 = __webpack_require__(3);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _createClass2 = __webpack_require__(20);var _createClass3 = _interopRequireDefault(_createClass2);var _vorlon = __webpack_require__(94);
+	'use strict';Object.defineProperty(exports, "__esModule", { value: true });exports.ClientMessenger = undefined;var _stringify = __webpack_require__(121);var _stringify2 = _interopRequireDefault(_stringify);var _classCallCheck2 = __webpack_require__(3);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _createClass2 = __webpack_require__(20);var _createClass3 = _interopRequireDefault(_createClass2);var _vorlon = __webpack_require__(95);
 	var _vorlon2 = __webpack_require__(109);
 	var _vorlon3 = __webpack_require__(181);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var
 	ClientMessenger = exports.ClientMessenger = function () {
@@ -2457,7 +2457,7 @@
 /* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(global) {"use strict";Object.defineProperty(exports, "__esModule", { value: true });exports.FluentDOM = exports.Tools = undefined;var _defineProperty = __webpack_require__(90);var _defineProperty2 = _interopRequireDefault(_defineProperty);var _setImmediate2 = __webpack_require__(255);var _setImmediate3 = _interopRequireDefault(_setImmediate2);var _classCallCheck2 = __webpack_require__(3);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _createClass2 = __webpack_require__(20);var _createClass3 = _interopRequireDefault(_createClass2);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var Tools = exports.Tools = function () {function Tools() {(0, _classCallCheck3.default)(this, Tools);}Tools.
+	/* WEBPACK VAR INJECTION */(function(global) {"use strict";Object.defineProperty(exports, "__esModule", { value: true });exports.FluentDOM = exports.Tools = undefined;var _defineProperty = __webpack_require__(90);var _defineProperty2 = _interopRequireDefault(_defineProperty);var _setImmediate2 = __webpack_require__(256);var _setImmediate3 = _interopRequireDefault(_setImmediate2);var _classCallCheck2 = __webpack_require__(3);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _createClass2 = __webpack_require__(20);var _createClass3 = _interopRequireDefault(_createClass2);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var Tools = exports.Tools = function () {function Tools() {(0, _classCallCheck3.default)(this, Tools);}Tools.
 
 
 
@@ -2865,12 +2865,13 @@
 /* 235 */,
 /* 236 */,
 /* 237 */,
-/* 238 */
+/* 238 */,
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';Object.defineProperty(exports, "__esModule", { value: true });exports.ClientPlugin = undefined;var _classCallCheck2 = __webpack_require__(3);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _possibleConstructorReturn2 = __webpack_require__(8);var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);var _inherits2 = __webpack_require__(7);var _inherits3 = _interopRequireDefault(_inherits2);var _vorlon = __webpack_require__(136);
 	var _vorlon2 = __webpack_require__(109);
-	var _vorlon3 = __webpack_require__(94);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var
+	var _vorlon3 = __webpack_require__(95);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var
 	ClientPlugin = exports.ClientPlugin = function (_BasePlugin) {(0, _inherits3.default)(ClientPlugin, _BasePlugin);
 	    function ClientPlugin(name) {(0, _classCallCheck3.default)(this, ClientPlugin);return (0, _possibleConstructorReturn3.default)(this,
 	        _BasePlugin.call(this, name));
@@ -2932,12 +2933,12 @@
 	    };return ClientPlugin;}(_vorlon.BasePlugin);
 
 /***/ }),
-/* 239 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';Object.defineProperty(exports, "__esModule", { value: true });exports.DashboardPlugin = undefined;var _classCallCheck2 = __webpack_require__(3);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _possibleConstructorReturn2 = __webpack_require__(8);var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);var _inherits2 = __webpack_require__(7);var _inherits3 = _interopRequireDefault(_inherits2);var _vorlon = __webpack_require__(136);
 	var _vorlon2 = __webpack_require__(109);
-	var _vorlon3 = __webpack_require__(94);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var
+	var _vorlon3 = __webpack_require__(95);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var
 	DashboardPlugin = exports.DashboardPlugin = function (_BasePlugin) {(0, _inherits3.default)(DashboardPlugin, _BasePlugin);
 	    function DashboardPlugin(name, htmlFragmentUrl, cssStyleSheetUrl, JavascriptSheetUrl) {(0, _classCallCheck3.default)(this, DashboardPlugin);var _this = (0, _possibleConstructorReturn3.default)(this,
 	        _BasePlugin.call(this, name));
@@ -3036,10 +3037,10 @@
 	    };return DashboardPlugin;}(_vorlon.BasePlugin);
 
 /***/ }),
-/* 240 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';var _hooks = __webpack_require__(303);var _hooks2 = _interopRequireDefault(_hooks);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+	'use strict';var _hooks = __webpack_require__(305);var _hooks2 = _interopRequireDefault(_hooks);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 	// Add hooks' methods: `hook`, `pre`, and `post`
 	var doc = document;
 	var head = doc.head || doc.getElementsByTagName('head')[0] || doc.documentElement;
@@ -3067,7 +3068,6 @@
 	});
 
 /***/ }),
-/* 241 */,
 /* 242 */,
 /* 243 */,
 /* 244 */,
@@ -3077,7 +3077,8 @@
 /* 248 */,
 /* 249 */,
 /* 250 */,
-/* 251 */
+/* 251 */,
+/* 252 */
 /***/ (function(module, exports) {
 
 	'use strict'; /* jshint unused:false */
@@ -3754,16 +3755,15 @@
 	})(window);
 
 /***/ }),
-/* 252 */,
 /* 253 */,
 /* 254 */,
-/* 255 */
+/* 255 */,
+/* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(265), __esModule: true };
+	module.exports = { "default": __webpack_require__(267), __esModule: true };
 
 /***/ }),
-/* 256 */,
 /* 257 */,
 /* 258 */,
 /* 259 */,
@@ -3772,15 +3772,17 @@
 /* 262 */,
 /* 263 */,
 /* 264 */,
-/* 265 */
+/* 265 */,
+/* 266 */,
+/* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	__webpack_require__(270);
+	__webpack_require__(272);
 	module.exports = __webpack_require__(4).setImmediate;
 
 
 /***/ }),
-/* 266 */
+/* 268 */
 /***/ (function(module, exports) {
 
 	// fast apply, http://jsperf.lnkit.com/fast-apply/5
@@ -3802,12 +3804,12 @@
 
 
 /***/ }),
-/* 267 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var ctx = __webpack_require__(40);
-	var invoke = __webpack_require__(266);
-	var html = __webpack_require__(53);
+	var invoke = __webpack_require__(268);
+	var html = __webpack_require__(54);
 	var cel = __webpack_require__(42);
 	var global = __webpack_require__(2);
 	var process = global.process;
@@ -3892,13 +3894,13 @@
 
 
 /***/ }),
-/* 268 */,
-/* 269 */,
-/* 270 */
+/* 270 */,
+/* 271 */,
+/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var $export = __webpack_require__(13);
-	var $task = __webpack_require__(267);
+	var $task = __webpack_require__(269);
 	$export($export.G + $export.B, {
 	  setImmediate: $task.set,
 	  clearImmediate: $task.clear
@@ -3906,8 +3908,6 @@
 
 
 /***/ }),
-/* 271 */,
-/* 272 */,
 /* 273 */,
 /* 274 */,
 /* 275 */,
@@ -3938,7 +3938,9 @@
 /* 300 */,
 /* 301 */,
 /* 302 */,
-/* 303 */
+/* 303 */,
+/* 304 */,
+/* 305 */
 /***/ (function(module, exports) {
 
 	// TODO Add in pre and post skipping options
@@ -4118,8 +4120,6 @@
 
 
 /***/ }),
-/* 304 */,
-/* 305 */,
 /* 306 */,
 /* 307 */,
 /* 308 */,
@@ -4148,7 +4148,9 @@
 /* 331 */,
 /* 332 */,
 /* 333 */,
-/* 334 */
+/* 334 */,
+/* 335 */,
+/* 336 */
 /***/ (function(module, exports) {
 
 	// shim for using process in browser

@@ -563,7 +563,7 @@
 	  var gt = '>';
 	  var iframeDocument;
 	  iframe.style.display = 'none';
-	  __webpack_require__(53).appendChild(iframe);
+	  __webpack_require__(54).appendChild(iframe);
 	  iframe.src = 'javascript:'; // eslint-disable-line no-script-url
 	  // createDict = iframe.contentWindow.Object;
 	  // html.removeChild(iframe);
@@ -756,7 +756,7 @@
 	var Iterators = __webpack_require__(24);
 	var $iterCreate = __webpack_require__(71);
 	var setToStringTag = __webpack_require__(32);
-	var getPrototypeOf = __webpack_require__(55);
+	var getPrototypeOf = __webpack_require__(56);
 	var ITERATOR = __webpack_require__(6)('iterator');
 	var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
 	var FF_ITERATOR = '@@iterator';
@@ -943,7 +943,8 @@
 
 
 /***/ }),
-/* 53 */
+/* 53 */,
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var document = __webpack_require__(2).document;
@@ -951,7 +952,7 @@
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
@@ -976,7 +977,7 @@
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
@@ -995,7 +996,6 @@
 
 
 /***/ }),
-/* 56 */,
 /* 57 */,
 /* 58 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -1400,7 +1400,7 @@
 	var toPrimitive = __webpack_require__(36);
 	var createDesc = __webpack_require__(21);
 	var _create = __webpack_require__(31);
-	var gOPNExt = __webpack_require__(54);
+	var gOPNExt = __webpack_require__(55);
 	var $GOPD = __webpack_require__(45);
 	var $DP = __webpack_require__(9);
 	var $keys = __webpack_require__(25);

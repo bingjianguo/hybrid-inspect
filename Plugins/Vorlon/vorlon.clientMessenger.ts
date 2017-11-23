@@ -193,50 +193,6 @@ export class ClientMessenger {
             if (Core._listenClientId !== "" || messageType !== "message") {
                 const strmessage = JSON.stringify(message);
                 this._socket.emit(messageType, strmessage);
-
-
-                // var chunk = 5000, maxSize = 10000;
-
-
-                // if ( false && strmessage.length > maxSize) {
-                //     // 拆成多个message发送
-                //     // 大的包不发, 临时方案
-                //     if ( message.metadata ) {
-                //         var sendByRecursive = ((message, strmessage) => {
-                //             var total = Math.ceil(strmessage.length / chunk);
-                //             var messageName = +new Date();
-                //             var iIndex = 0;
-                //             var r = () => {
-                //                 if (iIndex>=total)
-                //                     return;
-                //
-                //                 var newMessage = {
-                //                     metadata: message.metadata,
-                //                     data: {
-                //                         content: strmessage.substr(iIndex* chunk, chunk),
-                //                         index: iIndex,
-                //                         total: total,
-                //                         name: messageName
-                //                     },
-                //                     chunked: true
-                //                 };
-                //                 var strNewMessage = JSON.stringify(newMessage);
-                //                 this._socket.emit(messageType, strNewMessage);
-                //                 setTimeout(()=>{
-                //                     iIndex++;
-                //                     r();
-                //                 },10);
-                //             };
-                //
-                //             return r;
-                //         })(message, strmessage);
-                //         sendByRecursive();
-                //     }
-                // } else {
-                //
-                // }
-
-
             }
         }
     }

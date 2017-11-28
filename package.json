@@ -1,6 +1,6 @@
 {
   "name": "hybrid-inspect",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "vorlon implement by bingjian",
   "main": "Server/server.js",
   "dependencies": {

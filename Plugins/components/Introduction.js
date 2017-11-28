@@ -40,16 +40,26 @@ class Introduction extends React.Component {
         title: '设置代理服务器',
         content: (
           <div>
-            <div>
+            <p>
               代理服务器地址为：{location.hostname}, 端口: 8001
-            </div>
+            </p>
+            <p>
+              请在wifi设置中配置
+            </p>
             <div>
-              请在wifi设置中配置,<a href="http://anyproxy.io/cn.html#配置ios/android系统代理">点击查看</a>
+              <div className={Style.proxyConfigWrap}>
+                <div>ios</div>
+                <img className={Style.proxyConfigImage} src="https://zos.alipayobjects.com/rmsportal/tLGqIozhffTccUgPakuw.png" />
+              </div>
+              <div className={Style.proxyConfigWrap}>
+                <div>android</div>
+                <img className={Style.proxyConfigImage}  src="https://zos.alipayobjects.com/rmsportal/YQtbQYVNuOszZGdAOauU.png"/>
+              </div>
             </div>
             <Alert
               message={
                 <div>
-                  在设置代理服务器之前，需要信任https证书，请参考如下<a href="http://anyproxy.io/cn.html#ios系统信任ca证书">文档</a>
+                  在设置代理服务器之前，需要信任https证书，请参考如下链接文档"信任CA证书"部分  http://anyproxy.io/cn.html
                 </div>
               }
               type="warning"

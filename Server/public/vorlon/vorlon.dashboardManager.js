@@ -40,30 +40,7 @@
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ((function(modules) {
-	// Check all modules for deduplicated modules
-	for(var i in modules) {
-		if(Object.prototype.hasOwnProperty.call(modules, i)) {
-			switch(typeof modules[i]) {
-			case "function": break;
-			case "object":
-				// Module can be created from a template
-				modules[i] = (function(_m) {
-					var args = _m.slice(1), fn = modules[_m[0]];
-					return function (a,b,c) {
-						fn.apply(this, [a,b,c].concat(args));
-					};
-				}(modules[i]));
-				break;
-			default:
-				// Module is a copy of another module
-				modules[i] = modules[modules[i]];
-				break;
-			}
-		}
-	}
-	return modules;
-}([
+/******/ ([
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5207,7 +5184,15 @@
 
 /***/ }),
 /* 120 */
-[395, 157],
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	__webpack_require__(57);
+
+	__webpack_require__(157);
+
+/***/ }),
 /* 121 */,
 /* 122 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -6580,7 +6565,15 @@
 
 /***/ }),
 /* 132 */
-[395, 156],
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	__webpack_require__(57);
+
+	__webpack_require__(156);
+
+/***/ }),
 /* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8924,7 +8917,101 @@
 
 /***/ }),
 /* 166 */
-127,
+/***/ (function(module, exports) {
+
+	/*
+	object-assign
+	(c) Sindre Sorhus
+	@license MIT
+	*/
+
+	'use strict';
+	/* eslint-disable no-unused-vars */
+	var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+	var hasOwnProperty = Object.prototype.hasOwnProperty;
+	var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+
+	function toObject(val) {
+		if (val === null || val === undefined) {
+			throw new TypeError('Object.assign cannot be called with null or undefined');
+		}
+
+		return Object(val);
+	}
+
+	function shouldUseNative() {
+		try {
+			if (!Object.assign) {
+				return false;
+			}
+
+			// Detect buggy property enumeration order in older V8 versions.
+
+			// https://bugs.chromium.org/p/v8/issues/detail?id=4118
+			var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
+			test1[5] = 'de';
+			if (Object.getOwnPropertyNames(test1)[0] === '5') {
+				return false;
+			}
+
+			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+			var test2 = {};
+			for (var i = 0; i < 10; i++) {
+				test2['_' + String.fromCharCode(i)] = i;
+			}
+			var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+				return test2[n];
+			});
+			if (order2.join('') !== '0123456789') {
+				return false;
+			}
+
+			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+			var test3 = {};
+			'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
+				test3[letter] = letter;
+			});
+			if (Object.keys(Object.assign({}, test3)).join('') !==
+					'abcdefghijklmnopqrst') {
+				return false;
+			}
+
+			return true;
+		} catch (err) {
+			// We don't expect any of the above to throw, but better to be safe.
+			return false;
+		}
+	}
+
+	module.exports = shouldUseNative() ? Object.assign : function (target, source) {
+		var from;
+		var to = toObject(target);
+		var symbols;
+
+		for (var s = 1; s < arguments.length; s++) {
+			from = Object(arguments[s]);
+
+			for (var key in from) {
+				if (hasOwnProperty.call(from, key)) {
+					to[key] = from[key];
+				}
+			}
+
+			if (getOwnPropertySymbols) {
+				symbols = getOwnPropertySymbols(from);
+				for (var i = 0; i < symbols.length; i++) {
+					if (propIsEnumerable.call(from, symbols[i])) {
+						to[symbols[i]] = from[symbols[i]];
+					}
+				}
+			}
+		}
+
+		return to;
+	};
+
+
+/***/ }),
 /* 167 */
 /***/ (function(module, exports) {
 
@@ -9668,7 +9755,15 @@
 
 /***/ }),
 /* 179 */
-[395, 299],
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	__webpack_require__(57);
+
+	__webpack_require__(299);
+
+/***/ }),
 /* 180 */,
 /* 181 */,
 /* 182 */,
@@ -11750,7 +11845,15 @@
 
 /***/ }),
 /* 208 */
-[395, 294],
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	__webpack_require__(57);
+
+	__webpack_require__(294);
+
+/***/ }),
 /* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12108,7 +12211,15 @@
 
 /***/ }),
 /* 211 */
-[395, 295],
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	__webpack_require__(57);
+
+	__webpack_require__(295);
+
+/***/ }),
 /* 212 */,
 /* 213 */,
 /* 214 */,
@@ -12972,7 +13083,15 @@
 
 /***/ }),
 /* 227 */
-[395, 301],
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	__webpack_require__(57);
+
+	__webpack_require__(301);
+
+/***/ }),
 /* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13188,7 +13307,15 @@
 
 /***/ }),
 /* 229 */
-[395, 302],
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	__webpack_require__(57);
+
+	__webpack_require__(302);
+
+/***/ }),
 /* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13533,7 +13660,15 @@
 
 /***/ }),
 /* 232 */
-[395, 303],
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	__webpack_require__(57);
+
+	__webpack_require__(303);
+
+/***/ }),
 /* 233 */,
 /* 234 */,
 /* 235 */,
@@ -13595,16 +13730,26 @@
 	        title: '设置代理服务器',
 	        content:
 	        _react2.default.createElement('div', null,
-	          _react2.default.createElement('div', null, '\u4EE3\u7406\u670D\u52A1\u5668\u5730\u5740\u4E3A\uFF1A',
+	          _react2.default.createElement('p', null, '\u4EE3\u7406\u670D\u52A1\u5668\u5730\u5740\u4E3A\uFF1A',
 	            location.hostname, ', \u7AEF\u53E3: 8001'),
 
-	          _react2.default.createElement('div', null, '\u8BF7\u5728wifi\u8BBE\u7F6E\u4E2D\u914D\u7F6E,',
-	            _react2.default.createElement('a', { href: 'http://anyproxy.io/cn.html#\u914D\u7F6Eios/android\u7CFB\u7EDF\u4EE3\u7406' }, '\u70B9\u51FB\u67E5\u770B')),
+	          _react2.default.createElement('p', null, '\u8BF7\u5728wifi\u8BBE\u7F6E\u4E2D\u914D\u7F6E'),
+
+
+	          _react2.default.createElement('div', null,
+	            _react2.default.createElement('div', { className: _Introduction2.default.proxyConfigWrap },
+	              _react2.default.createElement('div', null, 'ios'),
+	              _react2.default.createElement('img', { className: _Introduction2.default.proxyConfigImage, src: 'https://zos.alipayobjects.com/rmsportal/tLGqIozhffTccUgPakuw.png' })),
+
+	            _react2.default.createElement('div', { className: _Introduction2.default.proxyConfigWrap },
+	              _react2.default.createElement('div', null, 'android'),
+	              _react2.default.createElement('img', { className: _Introduction2.default.proxyConfigImage, src: 'https://zos.alipayobjects.com/rmsportal/YQtbQYVNuOszZGdAOauU.png' }))),
+
 
 	          _react2.default.createElement(_alert2.default, {
 	            message:
-	            _react2.default.createElement('div', null, '\u5728\u8BBE\u7F6E\u4EE3\u7406\u670D\u52A1\u5668\u4E4B\u524D\uFF0C\u9700\u8981\u4FE1\u4EFBhttps\u8BC1\u4E66\uFF0C\u8BF7\u53C2\u8003\u5982\u4E0B',
-	              _react2.default.createElement('a', { href: 'http://anyproxy.io/cn.html#ios\u7CFB\u7EDF\u4FE1\u4EFBca\u8BC1\u4E66' }, '\u6587\u6863')),
+	            _react2.default.createElement('div', null, '\u5728\u8BBE\u7F6E\u4EE3\u7406\u670D\u52A1\u5668\u4E4B\u524D\uFF0C\u9700\u8981\u4FE1\u4EFBhttps\u8BC1\u4E66\uFF0C\u8BF7\u53C2\u8003\u5982\u4E0B\u94FE\u63A5\u6587\u6863"\u4FE1\u4EFBCA\u8BC1\u4E66"\u90E8\u5206  http://anyproxy.io/cn.html'),
+
 
 
 	            type: 'warning',
@@ -16696,7 +16841,16 @@
 
 /***/ }),
 /* 260 */
-168,
+/***/ (function(module, exports) {
+
+	var toString = {}.toString;
+
+	module.exports = Array.isArray || function (arr) {
+	  return toString.call(arr) == '[object Array]';
+	};
+
+
+/***/ }),
 /* 261 */,
 /* 262 */,
 /* 263 */,
@@ -17586,7 +17740,101 @@
 
 /***/ }),
 /* 274 */
-127,
+/***/ (function(module, exports) {
+
+	/*
+	object-assign
+	(c) Sindre Sorhus
+	@license MIT
+	*/
+
+	'use strict';
+	/* eslint-disable no-unused-vars */
+	var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+	var hasOwnProperty = Object.prototype.hasOwnProperty;
+	var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+
+	function toObject(val) {
+		if (val === null || val === undefined) {
+			throw new TypeError('Object.assign cannot be called with null or undefined');
+		}
+
+		return Object(val);
+	}
+
+	function shouldUseNative() {
+		try {
+			if (!Object.assign) {
+				return false;
+			}
+
+			// Detect buggy property enumeration order in older V8 versions.
+
+			// https://bugs.chromium.org/p/v8/issues/detail?id=4118
+			var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
+			test1[5] = 'de';
+			if (Object.getOwnPropertyNames(test1)[0] === '5') {
+				return false;
+			}
+
+			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+			var test2 = {};
+			for (var i = 0; i < 10; i++) {
+				test2['_' + String.fromCharCode(i)] = i;
+			}
+			var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+				return test2[n];
+			});
+			if (order2.join('') !== '0123456789') {
+				return false;
+			}
+
+			// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+			var test3 = {};
+			'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
+				test3[letter] = letter;
+			});
+			if (Object.keys(Object.assign({}, test3)).join('') !==
+					'abcdefghijklmnopqrst') {
+				return false;
+			}
+
+			return true;
+		} catch (err) {
+			// We don't expect any of the above to throw, but better to be safe.
+			return false;
+		}
+	}
+
+	module.exports = shouldUseNative() ? Object.assign : function (target, source) {
+		var from;
+		var to = toObject(target);
+		var symbols;
+
+		for (var s = 1; s < arguments.length; s++) {
+			from = Object(arguments[s]);
+
+			for (var key in from) {
+				if (hasOwnProperty.call(from, key)) {
+					to[key] = from[key];
+				}
+			}
+
+			if (getOwnPropertySymbols) {
+				symbols = getOwnPropertySymbols(from);
+				for (var i = 0; i < symbols.length; i++) {
+					if (propIsEnumerable.call(from, symbols[i])) {
+						to[symbols[i]] = from[symbols[i]];
+					}
+				}
+			}
+		}
+
+		return to;
+	};
+
+
+/***/ }),
 /* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19023,7 +19271,7 @@
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-	module.exports = {"container":"container___4Tf_x","title":"title___1LiB7","urlQrGenContainer":"urlQrGenContainer___2QakQ","bulletTitle":"bulletTitle___35KRd"};
+	module.exports = {"container":"container___4Tf_x","proxyConfigWrap":"proxyConfigWrap___2BWm0","proxyConfigImage":"proxyConfigImage___264r3","title":"title___1LiB7","urlQrGenContainer":"urlQrGenContainer___2QakQ","bulletTitle":"bulletTitle___35KRd"};
 
 /***/ }),
 /* 291 */
@@ -28934,15 +29182,5 @@
 	module.exports = function() { throw new Error("define cannot be used indirect"); };
 
 
-/***/ }),
-/* 395 */
-/***/ (function(module, exports, __webpack_require__, __webpack_module_template_argument_0__) {
-
-	'use strict';
-
-	__webpack_require__(57);
-
-	__webpack_require__(__webpack_module_template_argument_0__);
-
 /***/ })
-/******/ ])));
+/******/ ]);

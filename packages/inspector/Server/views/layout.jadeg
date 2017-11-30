@@ -1,0 +1,29 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='description', content='')
+    meta(name='author', content='')
+
+    title Vorlon.js
+    script!='var vorlonBaseURL = "' +  baseURL + '";'
+    link(rel='stylesheet', href=baseURL + '/stylesheets/x-tag-components.css')
+    link(rel='stylesheet', href=baseURL + '/stylesheets/jquery-ui.css')
+    link(rel='stylesheet', href=baseURL + '/stylesheets/contextMenu.css')
+    link(rel='stylesheet', href=baseURL + '/stylesheets/jquery.switchButton.css')
+    
+    link(href='https://fonts.googleapis.com/css?family=Oswald:400' rel='stylesheet')
+    link(href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300|Roboto:400,300' rel='stylesheet')
+
+    link(rel='icon', type='image/png', href=baseURL + '/images/favicon.png')
+    link(rel='stylesheet', href=baseURL + '/stylesheets/style.css')
+    link(rel='stylesheet', href=baseURL + '/fonts/fontawesome/css/font-awesome.min.css')
+  body
+
+    block content
+
+    script(src=baseURL + '/javascripts/jquery-2.1.1.min.js')
+    
+    block scripts

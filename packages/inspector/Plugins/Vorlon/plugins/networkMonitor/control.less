@@ -1,0 +1,36 @@
+.plugin-network {
+    height: 400px;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    .network-log-list {
+        transform: translateZ(0);/*开启3D加速，防止tab切换时发生白屏*/
+        width: 100%;
+        margin: 0px 0 30px;
+
+        th,
+        td {
+            padding: 5px 10px;
+            text-align: left;
+        }
+
+        th {
+            background: #f7f7f7;
+            border-bottom: 1px solid #ddd;
+            font-weight: 400;
+        }
+
+        td {
+            border-bottom: 1px solid #eee;
+        }
+
+        .network-log-list-right {
+            text-align: right;
+        }
+
+        td .chart-bar {
+            position: absolute;
+            height: 10px;
+        }
+    }
+}

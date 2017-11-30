@@ -1,0 +1,5 @@
+*.ts
+./Plugins
+*.sln
+*.njsproj
+server/web.config

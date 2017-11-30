@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="control.css" rel="stylesheet" />
+</head>
+<body>
+<div id="ObjectExplorerContainer" class="obj-explorer-container">
+    <div class="tree-view-wrapper">
+      <x-controlbar id="searchbox">
+      	<input type="text" aria-label="Property Name" stretch name="txtPropertyName" id="txtPropertyName" class="dashboard-input" placeholder="type object or property path here" />
+        <input type="text" aria-label="Filter" name="txtFilter" id="txtFilter" class="dashboard-input" placeholder="Filter by name" />
+        <button id="btnSearchUp" class="fa fa-arrow-up" title="Search up"></button>
+      	<button id="btnSearchProp" class="fa fa-refresh" title="Refresh"></button>
+      </x-controlbar>
+      <div id="treeViewObj" class="code-text"></div>          
+    </div>
+</div>
+</body>
+</html>

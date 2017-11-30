@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>支付宝小程序开发工具</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="format-detection" content="email=no" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+
+  <link rel="stylesheet" href="./dist/renderer.css" />
+  <script>!function(e){function t(a){if(i[a])return i[a].exports;var n=i[a]={exports:{},id:a,loaded:!1};return e[a].call(n.exports,n,n.exports,t),n.loaded=!0,n.exports}var i={};return t.m=e,t.c=i,t.p="",t(0)}([function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var i=window;t["default"]=i.flex=function(e,t){var a=e||100,n=t||1,r=i.document,o=navigator.userAgent,d=o.match(/Android[\S\s]+AppleWebkit\/(\d{3})/i),l=o.match(/U3\/((\d+|\.){5,})/i),c=l&&parseInt(l[1].split(".").join(""),10)>=80,p=navigator.appVersion.match(/(iphone|ipad|ipod)/gi),s=i.devicePixelRatio||1;p||d&&d[1]>534||c||(s=1);var u=1/s,m=r.querySelector('meta[name="viewport"]');m||(m=r.createElement("meta"),m.setAttribute("name","viewport"),r.head.appendChild(m)),m.setAttribute("content","width=device-width,user-scalable=no,initial-scale="+u+",maximum-scale="+u+",minimum-scale="+u),r.documentElement.style.fontSize=a/2*s*n+"px"},e.exports=t["default"]}]);
+flex(100, 1);</script>
+</head>
+<body>
+  <div id="electron_container">
+  </div>
+  <webview id="auth" src="" partition="persist:auth" disablewebsecurity nodeintegration preload="./dist/authPreload.js" style="width:0;height:0;"></webview>
+  <webview id="refresh-auth" src="" partition="persist:auth" nodeintegration preload="./dist/refreshPreload.js" style="width:0;height:0;"></webview>
+  <!-- electron control -->
+  <script src="./dist/renderer.js"></script>
+  <script charset="utf-8" src="https://as.alipayobjects.com/g/component/tracker/2.2.10/index.js"></script>
+  <script>
+    window.Tracker && Tracker.start && Tracker.start();
+  </script>
+  <script>
+    // Only attach the livereloading script if
+    // the app is in development mode
+    if (require('electron').remote.require('electron-is-dev')) {
+      const me = document.createElement('script');
+      me.setAttribute('src', 'http://localhost:35729/livereload.js');
+      document.body.appendChild(me);
+    }
+
+    // Workaround monaco-typescript not understanding the environment
+    self.process.browser = true;
+  </script>
+</body>
+</html>

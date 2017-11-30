@@ -1,0 +1,44 @@
+
+.wrapper {
+  //margin-left: 10px;
+  //border-left: 1px solid #d9d9d9;
+  overflow: hidden;
+}
+
+.menuTitle {
+  padding: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.menuItem[role="menuitem"] {
+  padding: 10px;
+  line-height: 14px;
+  height: auto;
+}
+
+.menuItemReloadIcon {
+  display: none;
+
+}
+
+.menuItemCloseIcon {
+  position: absolute;
+  display: none;
+}
+
+:global(.ant-menu-item-selected) {
+  .menuItemReloadIcon {
+    display: initial;
+    position: absolute;
+    left: 4px;
+  }
+
+  .menuItemCloseIcon {
+    display: initial;
+    position: absolute;
+    left: 4px;
+    top: 26px;
+  }
+}

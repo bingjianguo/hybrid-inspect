@@ -1,0 +1,45 @@
+{
+  "name": "ant-proxy-vorlon",
+  "productName": "ProxyVorlon",
+  "description": "支付宝web开发调试工具",
+  "author": [
+    "bingjian.guo"
+  ],
+  "version": "0.0.1",
+  "main": "dist/main.js",
+  "scripts": {
+    "proxy": "anyproxy --rule lib/asset-rule.js,lib/agent-rule.js,lib/service-rule.js -i"
+  },
+  "dependencies": {
+    "anyproxy": "beta",
+    "async-task-mgr": "^1.1.0",
+    "babel-runtime": "^6.11.6",
+    "cheerio": "^1.0.0-rc.2",
+    "colorful": "^2.1.0",
+    "commander": "^2.9.0",
+    "debug": "^2.2.0",
+    "electron-config": "^0.2.1",
+    "electron-is-dev": "^0.1.2",
+    "electron-log": "^1.2.2",
+    "electron-updater": "^2.16.1",
+    "fs-extra": "^0.30.0",
+    "homedir": "^0.6.0",
+    "hybrid-inspect": "^0.0.4",
+    "iconv-lite": "^0.4.19",
+    "jschardet": "^1.5.1",
+    "log": "*",
+    "node-forge": "^0.6.42",
+    "npm": "^4.0.5",
+    "npm-run-path": "^2.0.2",
+    "opn": "^4.0.2",
+    "semver": "^5.3.0",
+    "socket.io": "^1.5.0",
+    "tracer": "^0.8.7",
+    "tree-kill": "^1.1.0",
+    "url": "^0.11.0",
+    "yargs": "^6.3.0"
+  },
+  "devDependencies": {
+    "color": "^2.0.0"
+  }
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>支付宝小程序开发工具</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="format-detection" content="email=no" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+  <style type="text/css">
+    * {
+      cursor: url('http://gtms02.alicdn.com/tps/i2/T1_PMSFLBaXXcu5FDa-20-20.png') 10 10,pointer!important;
+      font-family: tahoma,arial,"Hiragino Sans GB","Microsoft Yahei","\5b8b\4f53";
+    }
+    body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+    button {
+      margin: 5px;
+    }
+    .middle_info {
+      opacity: 0;
+      font-size: 14px;
+      text-align: center;
+      transform: translateY(140px);
+      transition: all 600ms ease-in;
+    }
+
+    .middle_info p.en {
+      margin: 0;
+      color: #108ee9;
+    }
+
+    .show_ad {
+      color: #108ee9;
+      color: #999;
+      opacity: 1;
+      font-size: 25px;
+    }
+    .ide-center {
+      font-size: 80px;
+      text-align: center;
+      transform: translateY(100px);
+      opacity: 0;
+      color: #108ee9;
+      transition: opacity 400ms ease-in;
+    }
+  </style>
+</head>
+<body>
+  <div class="middle_info">
+    <p class="en">支付宝小程序开发工具</p>
+  </div>
+  <div class="ide-center">
+
+  </div>
+
+  <script type="text/javascript">
+    setTimeout(() => {
+      document.querySelector('.ide-center').style.opacity = 0.7;
+      document.querySelector('.middle_info').classList.add('show_ad');
+    }, 50);
+  </script>
+</body>
+</html>

@@ -1,0 +1,1321 @@
+0 silly input []
+1 silly flags { _: [ 'bootstrap' ],
+1 silly flags   'reject-cycles': false,
+1 silly flags   rejectCycles: false,
+1 silly flags   args: [] }
+2 verbose rootPath /Users/guobingjian/workspace/lerna-repo
+3 info version 2.5.1
+4 info versioning independent
+5 silly existsSync /Users/guobingjian/workspace/lerna-repo/VERSION
+6 silly initialize attempt
+7 silly npmConfig { registry: undefined,
+7 silly npmConfig   npmClient: undefined,
+7 silly npmConfig   npmClientArgs: undefined,
+7 silly npmConfig   mutex: undefined }
+8 silly initialize success
+9 silly execute attempt
+10 info Bootstrapping 2 packages
+11 info lifecycle preinstall
+12 silly runScript preinstall hybrid-inspect
+13 silly hybrid-inspect
+14 silly runScript preinstall undefined
+15 silly
+16 silly hasDependencyInstalled hybrid-inspect anyproxy
+17 silly dependencyIsSatisfied [ 'anyproxy',
+17 silly dependencyIsSatisfied   '^4.0.0-beta18',
+17 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+18 verbose dependencyIsSatisfied anyproxy true
+19 silly hasDependencyInstalled undefined 'anyproxy'
+20 silly dependencyIsSatisfied [ 'anyproxy',
+20 silly dependencyIsSatisfied   '^3.10.3',
+20 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+21 verbose dependencyIsSatisfied anyproxy false
+22 silly hasDependencyInstalled hybrid-inspect atool-build
+23 silly dependencyIsSatisfied [ 'atool-build',
+23 silly dependencyIsSatisfied   '^1.0.2',
+23 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+24 verbose dependencyIsSatisfied atool-build true
+25 silly hasDependencyInstalled undefined 'atool-build'
+26 silly dependencyIsSatisfied [ 'atool-build',
+26 silly dependencyIsSatisfied   '^0.8.0',
+26 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+27 verbose dependencyIsSatisfied atool-build false
+28 silly hasDependencyInstalled hybrid-inspect babel-cli
+29 silly dependencyIsSatisfied [ 'babel-cli',
+29 silly dependencyIsSatisfied   '^6.22.2',
+29 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+30 verbose dependencyIsSatisfied babel-cli true
+31 silly hasDependencyInstalled undefined 'babel-cli'
+32 silly dependencyIsSatisfied [ 'babel-cli',
+32 silly dependencyIsSatisfied   '^6.16.0',
+32 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+33 verbose dependencyIsSatisfied babel-cli false
+34 silly hasDependencyInstalled hybrid-inspect babel-core
+35 silly dependencyIsSatisfied [ 'babel-core',
+35 silly dependencyIsSatisfied   '^6.22.1',
+35 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+36 verbose dependencyIsSatisfied babel-core true
+37 silly hasDependencyInstalled hybrid-inspect babel-loader
+38 silly dependencyIsSatisfied [ 'babel-loader',
+38 silly dependencyIsSatisfied   '^6.2.10',
+38 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+39 verbose dependencyIsSatisfied babel-loader true
+40 silly hasDependencyInstalled hybrid-inspect babel-plugin-add-module-exports
+41 silly dependencyIsSatisfied [ 'babel-plugin-add-module-exports',
+41 silly dependencyIsSatisfied   '^0.2.1',
+41 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+42 verbose dependencyIsSatisfied babel-plugin-add-module-exports true
+43 silly hasDependencyInstalled undefined 'babel-plugin-add-module-exports'
+44 silly dependencyIsSatisfied [ 'babel-plugin-add-module-exports',
+44 silly dependencyIsSatisfied   '^0.2.1',
+44 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+45 verbose dependencyIsSatisfied babel-plugin-add-module-exports false
+46 silly hasDependencyInstalled hybrid-inspect babel-plugin-import
+47 silly dependencyIsSatisfied [ 'babel-plugin-import',
+47 silly dependencyIsSatisfied   '^1.6.2',
+47 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+48 verbose dependencyIsSatisfied babel-plugin-import true
+49 silly hasDependencyInstalled undefined 'babel-plugin-import'
+50 silly dependencyIsSatisfied [ 'babel-plugin-import',
+50 silly dependencyIsSatisfied   '^1.0.1',
+50 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+51 verbose dependencyIsSatisfied babel-plugin-import false
+52 silly hasDependencyInstalled hybrid-inspect babel-plugin-transform-runtime
+53 silly dependencyIsSatisfied [ 'babel-plugin-transform-runtime',
+53 silly dependencyIsSatisfied   '^6.23.0',
+53 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+54 verbose dependencyIsSatisfied babel-plugin-transform-runtime true
+55 silly hasDependencyInstalled undefined 'babel-plugin-transform-runtime'
+56 silly dependencyIsSatisfied [ 'babel-plugin-transform-runtime',
+56 silly dependencyIsSatisfied   '^6.12.0',
+56 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+57 verbose dependencyIsSatisfied babel-plugin-transform-runtime false
+58 silly hasDependencyInstalled hybrid-inspect babel-preset-es2015
+59 silly dependencyIsSatisfied [ 'babel-preset-es2015',
+59 silly dependencyIsSatisfied   '^6.18.0',
+59 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+60 verbose dependencyIsSatisfied babel-preset-es2015 true
+61 silly hasDependencyInstalled undefined 'babel-preset-es2015'
+62 silly dependencyIsSatisfied [ 'babel-preset-es2015',
+62 silly dependencyIsSatisfied   '^6.16.0',
+62 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+63 verbose dependencyIsSatisfied babel-preset-es2015 false
+64 silly hasDependencyInstalled hybrid-inspect babel-preset-react
+65 silly dependencyIsSatisfied [ 'babel-preset-react',
+65 silly dependencyIsSatisfied   '^6.11.1',
+65 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+66 verbose dependencyIsSatisfied babel-preset-react true
+67 silly hasDependencyInstalled undefined 'babel-preset-react'
+68 silly dependencyIsSatisfied [ 'babel-preset-react',
+68 silly dependencyIsSatisfied   '^6.16.0',
+68 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+69 verbose dependencyIsSatisfied babel-preset-react false
+70 silly hasDependencyInstalled hybrid-inspect babel-preset-stage-0
+71 silly dependencyIsSatisfied [ 'babel-preset-stage-0',
+71 silly dependencyIsSatisfied   '^6.16.0',
+71 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+72 verbose dependencyIsSatisfied babel-preset-stage-0 true
+73 silly hasDependencyInstalled undefined 'babel-preset-stage-0'
+74 silly dependencyIsSatisfied [ 'babel-preset-stage-0',
+74 silly dependencyIsSatisfied   '^6.16.0',
+74 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+75 verbose dependencyIsSatisfied babel-preset-stage-0 false
+76 silly hasDependencyInstalled hybrid-inspect concurrently
+77 silly dependencyIsSatisfied [ 'concurrently',
+77 silly dependencyIsSatisfied   '^3.5.0',
+77 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+78 verbose dependencyIsSatisfied concurrently true
+79 silly hasDependencyInstalled undefined 'concurrently'
+80 silly dependencyIsSatisfied [ 'concurrently',
+80 silly dependencyIsSatisfied   '^3.1.0',
+80 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+81 verbose dependencyIsSatisfied concurrently false
+82 silly hasDependencyInstalled hybrid-inspect gulp
+83 silly dependencyIsSatisfied [ 'gulp',
+83 silly dependencyIsSatisfied   '^3.9.1',
+83 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+84 verbose dependencyIsSatisfied gulp true
+85 silly hasDependencyInstalled hybrid-inspect gulp-concat
+86 silly dependencyIsSatisfied [ 'gulp-concat',
+86 silly dependencyIsSatisfied   '~2.2.0',
+86 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+87 verbose dependencyIsSatisfied gulp-concat true
+88 silly hasDependencyInstalled hybrid-inspect gulp-filter
+89 silly dependencyIsSatisfied [ 'gulp-filter',
+89 silly dependencyIsSatisfied   '~0.4.1',
+89 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+90 verbose dependencyIsSatisfied gulp-filter true
+91 silly hasDependencyInstalled hybrid-inspect gulp-less
+92 silly dependencyIsSatisfied [ 'gulp-less',
+92 silly dependencyIsSatisfied   '~3.0.3',
+92 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+93 verbose dependencyIsSatisfied gulp-less true
+94 silly hasDependencyInstalled hybrid-inspect gulp-mocha
+95 silly dependencyIsSatisfied [ 'gulp-mocha',
+95 silly dependencyIsSatisfied   '~2.2.0',
+95 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+96 verbose dependencyIsSatisfied gulp-mocha true
+97 silly hasDependencyInstalled hybrid-inspect gulp-plumber
+98 silly dependencyIsSatisfied [ 'gulp-plumber',
+98 silly dependencyIsSatisfied   '^1.1.0',
+98 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+99 verbose dependencyIsSatisfied gulp-plumber true
+100 silly hasDependencyInstalled hybrid-inspect gulp-rename
+101 silly dependencyIsSatisfied [ 'gulp-rename',
+101 silly dependencyIsSatisfied   '^1.2.2',
+101 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+102 verbose dependencyIsSatisfied gulp-rename true
+103 silly hasDependencyInstalled hybrid-inspect gulp-shell
+104 silly dependencyIsSatisfied [ 'gulp-shell',
+104 silly dependencyIsSatisfied   '^0.6.3',
+104 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+105 verbose dependencyIsSatisfied gulp-shell true
+106 silly hasDependencyInstalled hybrid-inspect gulp-sourcemaps
+107 silly dependencyIsSatisfied [ 'gulp-sourcemaps',
+107 silly dependencyIsSatisfied   '~1.5.2',
+107 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+108 verbose dependencyIsSatisfied gulp-sourcemaps true
+109 silly hasDependencyInstalled hybrid-inspect gulp-typescript
+110 silly dependencyIsSatisfied [ 'gulp-typescript',
+110 silly dependencyIsSatisfied   '~2.13.6',
+110 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+111 verbose dependencyIsSatisfied gulp-typescript true
+112 silly hasDependencyInstalled hybrid-inspect gulp-uglify
+113 silly dependencyIsSatisfied [ 'gulp-uglify',
+113 silly dependencyIsSatisfied   '^0.3.2',
+113 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+114 verbose dependencyIsSatisfied gulp-uglify true
+115 silly hasDependencyInstalled hybrid-inspect gulp-util
+116 silly dependencyIsSatisfied [ 'gulp-util',
+116 silly dependencyIsSatisfied   '~2.2.14',
+116 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+117 verbose dependencyIsSatisfied gulp-util true
+118 silly hasDependencyInstalled hybrid-inspect gulp-webserver
+119 silly dependencyIsSatisfied [ 'gulp-webserver',
+119 silly dependencyIsSatisfied   '~0.9.0',
+119 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+120 verbose dependencyIsSatisfied gulp-webserver true
+121 silly hasDependencyInstalled hybrid-inspect gulp-zip
+122 silly dependencyIsSatisfied [ 'gulp-zip',
+122 silly dependencyIsSatisfied   '~3.0.2',
+122 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+123 verbose dependencyIsSatisfied gulp-zip true
+124 silly hasDependencyInstalled hybrid-inspect merge2
+125 silly dependencyIsSatisfied [ 'merge2',
+125 silly dependencyIsSatisfied   '~0.3.5',
+125 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+126 verbose dependencyIsSatisfied merge2 true
+127 silly hasDependencyInstalled hybrid-inspect mocha-junit-reporter
+128 silly dependencyIsSatisfied [ 'mocha-junit-reporter',
+128 silly dependencyIsSatisfied   '^1.9.1',
+128 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+129 verbose dependencyIsSatisfied mocha-junit-reporter true
+130 silly hasDependencyInstalled hybrid-inspect through
+131 silly dependencyIsSatisfied [ 'through',
+131 silly dependencyIsSatisfied   '~2.3.4',
+131 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+132 verbose dependencyIsSatisfied through true
+133 silly hasDependencyInstalled hybrid-inspect typescript
+134 silly dependencyIsSatisfied [ 'typescript',
+134 silly dependencyIsSatisfied   '^1.8.10',
+134 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+135 verbose dependencyIsSatisfied typescript true
+136 silly hasDependencyInstalled hybrid-inspect antd
+137 silly dependencyIsSatisfied [ 'antd',
+137 silly dependencyIsSatisfied   '^2.13.9',
+137 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+138 verbose dependencyIsSatisfied antd true
+139 silly hasDependencyInstalled undefined 'antd'
+140 silly dependencyIsSatisfied [ 'antd',
+140 silly dependencyIsSatisfied   '^2.0.1',
+140 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+141 verbose dependencyIsSatisfied antd false
+142 silly hasDependencyInstalled hybrid-inspect body-parser
+143 silly dependencyIsSatisfied [ 'body-parser',
+143 silly dependencyIsSatisfied   '~1.12.3',
+143 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+144 verbose dependencyIsSatisfied body-parser true
+145 silly hasDependencyInstalled hybrid-inspect codemirror
+146 silly dependencyIsSatisfied [ 'codemirror',
+146 silly dependencyIsSatisfied   '^5.31.0',
+146 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+147 verbose dependencyIsSatisfied codemirror true
+148 silly hasDependencyInstalled hybrid-inspect colorful
+149 silly dependencyIsSatisfied [ 'colorful',
+149 silly dependencyIsSatisfied   '^2.1.0',
+149 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+150 verbose dependencyIsSatisfied colorful true
+151 silly hasDependencyInstalled hybrid-inspect colors
+152 silly dependencyIsSatisfied [ 'colors',
+152 silly dependencyIsSatisfied   '~1.1.2',
+152 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+153 verbose dependencyIsSatisfied colors true
+154 silly hasDependencyInstalled hybrid-inspect cookie-parser
+155 silly dependencyIsSatisfied [ 'cookie-parser',
+155 silly dependencyIsSatisfied   '~1.3.5',
+155 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+156 verbose dependencyIsSatisfied cookie-parser true
+157 silly hasDependencyInstalled hybrid-inspect cookieparser
+158 silly dependencyIsSatisfied [ 'cookieparser',
+158 silly dependencyIsSatisfied   '~0.1.0',
+158 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+159 verbose dependencyIsSatisfied cookieparser true
+160 silly hasDependencyInstalled hybrid-inspect cors
+161 silly dependencyIsSatisfied [ 'cors',
+161 silly dependencyIsSatisfied   '^2.7.1',
+161 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+162 verbose dependencyIsSatisfied cors true
+163 silly hasDependencyInstalled hybrid-inspect express
+164 silly dependencyIsSatisfied [ 'express',
+164 silly dependencyIsSatisfied   '~4.12.3',
+164 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+165 verbose dependencyIsSatisfied express true
+166 silly hasDependencyInstalled hybrid-inspect express-session
+167 silly dependencyIsSatisfied [ 'express-session',
+167 silly dependencyIsSatisfied   '~1.11.1',
+167 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+168 verbose dependencyIsSatisfied express-session true
+169 silly hasDependencyInstalled hybrid-inspect favicon
+170 silly dependencyIsSatisfied [ 'favicon',
+170 silly dependencyIsSatisfied   '0.0.2',
+170 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+171 verbose dependencyIsSatisfied favicon true
+172 silly hasDependencyInstalled hybrid-inspect gulp-if
+173 silly dependencyIsSatisfied [ 'gulp-if',
+173 silly dependencyIsSatisfied   '^2.0.2',
+173 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+174 verbose dependencyIsSatisfied gulp-if true
+175 silly hasDependencyInstalled hybrid-inspect homedir
+176 silly dependencyIsSatisfied [ 'homedir',
+176 silly dependencyIsSatisfied   '^0.6.0',
+176 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+177 verbose dependencyIsSatisfied homedir true
+178 silly hasDependencyInstalled hybrid-inspect hooks
+179 silly dependencyIsSatisfied [ 'hooks',
+179 silly dependencyIsSatisfied   '^0.3.2',
+179 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+180 verbose dependencyIsSatisfied hooks true
+181 silly hasDependencyInstalled hybrid-inspect html2canvas
+182 silly dependencyIsSatisfied [ 'html2canvas',
+182 silly dependencyIsSatisfied   '^0.5.0-beta4',
+182 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+183 verbose dependencyIsSatisfied html2canvas true
+184 silly hasDependencyInstalled hybrid-inspect http-proxy
+185 silly dependencyIsSatisfied [ 'http-proxy',
+185 silly dependencyIsSatisfied   '~1.11.2',
+185 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+186 verbose dependencyIsSatisfied http-proxy true
+187 silly hasDependencyInstalled hybrid-inspect jade
+188 silly dependencyIsSatisfied [ 'jade',
+188 silly dependencyIsSatisfied   '~1.9.2',
+188 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+189 verbose dependencyIsSatisfied jade true
+190 silly hasDependencyInstalled hybrid-inspect json
+191 silly dependencyIsSatisfied [ 'json',
+191 silly dependencyIsSatisfied   '~9.0.3',
+191 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+192 verbose dependencyIsSatisfied json true
+193 silly hasDependencyInstalled hybrid-inspect method-override
+194 silly dependencyIsSatisfied [ 'method-override',
+194 silly dependencyIsSatisfied   '2.3.4',
+194 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+195 verbose dependencyIsSatisfied method-override true
+196 silly hasDependencyInstalled hybrid-inspect minimist
+197 silly dependencyIsSatisfied [ 'minimist',
+197 silly dependencyIsSatisfied   '^1.2.0',
+197 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+198 verbose dependencyIsSatisfied minimist true
+199 silly hasDependencyInstalled hybrid-inspect multer
+200 silly dependencyIsSatisfied [ 'multer',
+200 silly dependencyIsSatisfied   '~0.1.8',
+200 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+201 verbose dependencyIsSatisfied multer true
+202 silly hasDependencyInstalled hybrid-inspect pageres
+203 silly dependencyIsSatisfied [ 'pageres',
+203 silly dependencyIsSatisfied   '^4.1.2',
+203 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+204 verbose dependencyIsSatisfied pageres true
+205 silly hasDependencyInstalled hybrid-inspect passport
+206 silly dependencyIsSatisfied [ 'passport',
+206 silly dependencyIsSatisfied   '~0.2.1',
+206 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+207 verbose dependencyIsSatisfied passport true
+208 silly hasDependencyInstalled hybrid-inspect passport-local
+209 silly dependencyIsSatisfied [ 'passport-local',
+209 silly dependencyIsSatisfied   '~1.0.0',
+209 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+210 verbose dependencyIsSatisfied passport-local true
+211 silly hasDependencyInstalled hybrid-inspect passport-twitter
+212 silly dependencyIsSatisfied [ 'passport-twitter',
+212 silly dependencyIsSatisfied   '~1.0.3',
+212 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+213 verbose dependencyIsSatisfied passport-twitter true
+214 silly hasDependencyInstalled hybrid-inspect qrcode
+215 silly dependencyIsSatisfied [ 'qrcode',
+215 silly dependencyIsSatisfied   '^1.0.0',
+215 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+216 verbose dependencyIsSatisfied qrcode true
+217 silly hasDependencyInstalled hybrid-inspect qrcode-npm
+218 silly dependencyIsSatisfied [ 'qrcode-npm',
+218 silly dependencyIsSatisfied   '^0.0.3',
+218 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+219 verbose dependencyIsSatisfied qrcode-npm true
+220 silly hasDependencyInstalled hybrid-inspect react-split-pane
+221 silly dependencyIsSatisfied [ 'react-split-pane',
+221 silly dependencyIsSatisfied   '^0.1.71',
+221 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+222 verbose dependencyIsSatisfied react-split-pane true
+223 silly hasDependencyInstalled hybrid-inspect socket.io
+224 silly dependencyIsSatisfied [ 'socket.io',
+224 silly dependencyIsSatisfied   '^1.5.0',
+224 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+225 verbose dependencyIsSatisfied socket.io true
+226 silly hasDependencyInstalled hybrid-inspect stylus
+227 silly dependencyIsSatisfied [ 'stylus',
+227 silly dependencyIsSatisfied   '~0.50.0',
+227 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+228 verbose dependencyIsSatisfied stylus true
+229 silly hasDependencyInstalled hybrid-inspect winston
+230 silly dependencyIsSatisfied [ 'winston',
+230 silly dependencyIsSatisfied   '~1.0.1',
+230 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+231 verbose dependencyIsSatisfied winston true
+232 silly hasDependencyInstalled hybrid-inspect winston-azure
+233 silly dependencyIsSatisfied [ 'winston-azure',
+233 silly dependencyIsSatisfied   '0.0.4',
+233 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+234 verbose dependencyIsSatisfied winston-azure true
+235 silly hasDependencyInstalled hybrid-inspect winston-logs-display
+236 silly dependencyIsSatisfied [ 'winston-logs-display',
+236 silly dependencyIsSatisfied   '~0.1.1',
+236 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+237 verbose dependencyIsSatisfied winston-logs-display true
+238 silly hasDependencyInstalled hybrid-inspect xmlhttprequest
+239 silly dependencyIsSatisfied [ 'xmlhttprequest',
+239 silly dependencyIsSatisfied   '~1.7.0',
+239 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/hybrid-inspect/node_modules' ]
+240 verbose dependencyIsSatisfied xmlhttprequest true
+241 silly hasDependencyInstalled undefined 'ali-contributors'
+242 silly dependencyIsSatisfied [ 'ali-contributors',
+242 silly dependencyIsSatisfied   '^1.0.11',
+242 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+243 verbose dependencyIsSatisfied ali-contributors false
+244 silly hasDependencyInstalled undefined 'babel-eslint'
+245 silly dependencyIsSatisfied [ 'babel-eslint',
+245 silly dependencyIsSatisfied   '^7.0.0',
+245 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+246 verbose dependencyIsSatisfied babel-eslint false
+247 silly hasDependencyInstalled undefined 'babel-polyfill'
+248 silly dependencyIsSatisfied [ 'babel-polyfill',
+248 silly dependencyIsSatisfied   '^6.16.0',
+248 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+249 verbose dependencyIsSatisfied babel-polyfill false
+250 silly hasDependencyInstalled undefined 'babel-preset-electron'
+251 silly dependencyIsSatisfied [ 'babel-preset-electron',
+251 silly dependencyIsSatisfied   '^0.37.8',
+251 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+252 verbose dependencyIsSatisfied babel-preset-electron false
+253 silly hasDependencyInstalled undefined 'babel-register'
+254 silly dependencyIsSatisfied [ 'babel-register',
+254 silly dependencyIsSatisfied   '^6.16.3',
+254 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+255 verbose dependencyIsSatisfied babel-register false
+256 silly hasDependencyInstalled undefined 'babel-runtime'
+257 silly dependencyIsSatisfied [ 'babel-runtime',
+257 silly dependencyIsSatisfied   '^6.11.6',
+257 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+258 verbose dependencyIsSatisfied babel-runtime false
+259 silly hasDependencyInstalled undefined 'classnames'
+260 silly dependencyIsSatisfied [ 'classnames',
+260 silly dependencyIsSatisfied   '^2.2.5',
+260 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+261 verbose dependencyIsSatisfied classnames false
+262 silly hasDependencyInstalled undefined 'conventional-changelog'
+263 silly dependencyIsSatisfied [ 'conventional-changelog',
+263 silly dependencyIsSatisfied   '^1.1.0',
+263 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+264 verbose dependencyIsSatisfied conventional-changelog false
+265 silly hasDependencyInstalled undefined 'copy-webpack-plugin'
+266 silly dependencyIsSatisfied [ 'copy-webpack-plugin',
+266 silly dependencyIsSatisfied   '^3.0.1',
+266 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+267 verbose dependencyIsSatisfied copy-webpack-plugin false
+268 silly hasDependencyInstalled undefined 'cross-env'
+269 silly dependencyIsSatisfied [ 'cross-env',
+269 silly dependencyIsSatisfied   '^3.1.2',
+269 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+270 verbose dependencyIsSatisfied cross-env false
+271 silly hasDependencyInstalled undefined 'cz-conventional-changelog'
+272 silly dependencyIsSatisfied [ 'cz-conventional-changelog',
+272 silly dependencyIsSatisfied   '^1.2.0',
+272 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+273 verbose dependencyIsSatisfied cz-conventional-changelog false
+274 silly hasDependencyInstalled undefined 'devtron'
+275 silly dependencyIsSatisfied [ 'devtron',
+275 silly dependencyIsSatisfied   '^1.4.0',
+275 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+276 verbose dependencyIsSatisfied devtron false
+277 silly hasDependencyInstalled undefined 'dora'
+278 silly dependencyIsSatisfied [ 'dora',
+278 silly dependencyIsSatisfied   '^0.4.3',
+278 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+279 verbose dependencyIsSatisfied dora false
+280 silly hasDependencyInstalled undefined 'dora-plugin-webpack'
+281 silly dependencyIsSatisfied [ 'dora-plugin-webpack',
+281 silly dependencyIsSatisfied   '^0.8.1',
+281 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+282 verbose dependencyIsSatisfied dora-plugin-webpack false
+283 silly hasDependencyInstalled undefined 'electron'
+284 silly dependencyIsSatisfied [ 'electron',
+284 silly dependencyIsSatisfied   '1.4.10',
+284 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+285 verbose dependencyIsSatisfied electron false
+286 silly hasDependencyInstalled undefined 'electron-builder'
+287 silly dependencyIsSatisfied [ 'electron-builder',
+287 silly dependencyIsSatisfied   '^7.15.2',
+287 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+288 verbose dependencyIsSatisfied electron-builder false
+289 silly hasDependencyInstalled undefined 'electron-debug'
+290 silly dependencyIsSatisfied [ 'electron-debug',
+290 silly dependencyIsSatisfied   '^1.0.1',
+290 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+291 verbose dependencyIsSatisfied electron-debug false
+292 silly hasDependencyInstalled undefined 'electron-devtools-installer'
+293 silly dependencyIsSatisfied [ 'electron-devtools-installer',
+293 silly dependencyIsSatisfied   '^2.0.1',
+293 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+294 verbose dependencyIsSatisfied electron-devtools-installer false
+295 silly hasDependencyInstalled undefined 'eslint'
+296 silly dependencyIsSatisfied [ 'eslint',
+296 silly dependencyIsSatisfied   '^3.7.1',
+296 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+297 verbose dependencyIsSatisfied eslint false
+298 silly hasDependencyInstalled undefined 'eslint-config-airbnb'
+299 silly dependencyIsSatisfied [ 'eslint-config-airbnb',
+299 silly dependencyIsSatisfied   '^12.0.0',
+299 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+300 verbose dependencyIsSatisfied eslint-config-airbnb false
+301 silly hasDependencyInstalled undefined 'eslint-formatter-pretty'
+302 silly dependencyIsSatisfied [ 'eslint-formatter-pretty',
+302 silly dependencyIsSatisfied   '^1.0.0',
+302 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+303 verbose dependencyIsSatisfied eslint-formatter-pretty false
+304 silly hasDependencyInstalled undefined 'eslint-plugin-import'
+305 silly dependencyIsSatisfied [ 'eslint-plugin-import',
+305 silly dependencyIsSatisfied   '^1.16.0',
+305 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+306 verbose dependencyIsSatisfied eslint-plugin-import false
+307 silly hasDependencyInstalled undefined 'eslint-plugin-jsx-a11y'
+308 silly dependencyIsSatisfied [ 'eslint-plugin-jsx-a11y',
+308 silly dependencyIsSatisfied   '^2.2.2',
+308 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+309 verbose dependencyIsSatisfied eslint-plugin-jsx-a11y false
+310 silly hasDependencyInstalled undefined 'eslint-plugin-promise'
+311 silly dependencyIsSatisfied [ 'eslint-plugin-promise',
+311 silly dependencyIsSatisfied   '^2.0.1',
+311 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+312 verbose dependencyIsSatisfied eslint-plugin-promise false
+313 silly hasDependencyInstalled undefined 'eslint-plugin-react'
+314 silly dependencyIsSatisfied [ 'eslint-plugin-react',
+314 silly dependencyIsSatisfied   '^6.3.0',
+314 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+315 verbose dependencyIsSatisfied eslint-plugin-react false
+316 silly hasDependencyInstalled undefined 'findup'
+317 silly dependencyIsSatisfied [ 'findup',
+317 silly dependencyIsSatisfied   '^0.1.5',
+317 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+318 verbose dependencyIsSatisfied findup false
+319 silly hasDependencyInstalled undefined 'ghooks'
+320 silly dependencyIsSatisfied [ 'ghooks',
+320 silly dependencyIsSatisfied   '^1.3.2',
+320 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+321 verbose dependencyIsSatisfied ghooks false
+322 silly hasDependencyInstalled undefined 'html-webpack-plugin'
+323 silly dependencyIsSatisfied [ 'html-webpack-plugin',
+323 silly dependencyIsSatisfied   '^2.22.0',
+323 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+324 verbose dependencyIsSatisfied html-webpack-plugin false
+325 silly hasDependencyInstalled undefined 'postcss-pxtorem'
+326 silly dependencyIsSatisfied [ 'postcss-pxtorem',
+326 silly dependencyIsSatisfied   '^3.3.1',
+326 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+327 verbose dependencyIsSatisfied postcss-pxtorem false
+328 silly hasDependencyInstalled undefined 'pre-commit'
+329 silly dependencyIsSatisfied [ 'pre-commit',
+329 silly dependencyIsSatisfied   '^1.1.3',
+329 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+330 verbose dependencyIsSatisfied pre-commit false
+331 silly hasDependencyInstalled undefined 'redbox-react'
+332 silly dependencyIsSatisfied [ 'redbox-react',
+332 silly dependencyIsSatisfied   '^1.3.0',
+332 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+333 verbose dependencyIsSatisfied redbox-react false
+334 silly hasDependencyInstalled undefined 'redux-logger'
+335 silly dependencyIsSatisfied [ 'redux-logger',
+335 silly dependencyIsSatisfied   '^2.7.0',
+335 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+336 verbose dependencyIsSatisfied redux-logger false
+337 silly hasDependencyInstalled undefined 'semver-regex'
+338 silly dependencyIsSatisfied [ 'semver-regex',
+338 silly dependencyIsSatisfied   '^1.0.0',
+338 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+339 verbose dependencyIsSatisfied semver-regex false
+340 silly hasDependencyInstalled undefined 'validate-commit-msg'
+341 silly dependencyIsSatisfied [ 'validate-commit-msg',
+341 silly dependencyIsSatisfied   '^2.8.2',
+341 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+342 verbose dependencyIsSatisfied validate-commit-msg false
+343 silly hasDependencyInstalled undefined 'ansi_up'
+344 silly dependencyIsSatisfied [ 'ansi_up',
+344 silly dependencyIsSatisfied   '^1.3.0',
+344 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+345 verbose dependencyIsSatisfied ansi_up false
+346 silly hasDependencyInstalled undefined 'formstream'
+347 silly dependencyIsSatisfied [ 'formstream',
+347 silly dependencyIsSatisfied   '^1.1.0',
+347 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+348 verbose dependencyIsSatisfied formstream false
+349 silly hasDependencyInstalled undefined 'fs-extra'
+350 silly dependencyIsSatisfied [ 'fs-extra',
+350 silly dependencyIsSatisfied   '^0.30.0',
+350 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+351 verbose dependencyIsSatisfied fs-extra false
+352 silly hasDependencyInstalled undefined 'fstream'
+353 silly dependencyIsSatisfied [ 'fstream',
+353 silly dependencyIsSatisfied   '^1.0.10',
+353 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+354 verbose dependencyIsSatisfied fstream false
+355 silly hasDependencyInstalled undefined 'iconv-lite'
+356 silly dependencyIsSatisfied [ 'iconv-lite',
+356 silly dependencyIsSatisfied   '^0.4.15',
+356 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+357 verbose dependencyIsSatisfied iconv-lite false
+358 silly hasDependencyInstalled undefined 'md5'
+359 silly dependencyIsSatisfied [ 'md5',
+359 silly dependencyIsSatisfied   '^2.2.1',
+359 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+360 verbose dependencyIsSatisfied md5 false
+361 silly hasDependencyInstalled undefined 'monaco-editor'
+362 silly dependencyIsSatisfied [ 'monaco-editor',
+362 silly dependencyIsSatisfied   '^0.7.0',
+362 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+363 verbose dependencyIsSatisfied monaco-editor false
+364 silly hasDependencyInstalled undefined 'qrcode.react'
+365 silly dependencyIsSatisfied [ 'qrcode.react',
+365 silly dependencyIsSatisfied   '^0.6.1',
+365 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+366 verbose dependencyIsSatisfied qrcode.react false
+367 silly hasDependencyInstalled undefined 'react'
+368 silly dependencyIsSatisfied [ 'react',
+368 silly dependencyIsSatisfied   '^15.1.0',
+368 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+369 verbose dependencyIsSatisfied react false
+370 silly hasDependencyInstalled undefined 'react-dom'
+371 silly dependencyIsSatisfied [ 'react-dom',
+371 silly dependencyIsSatisfied   '^15.1.0',
+371 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+372 verbose dependencyIsSatisfied react-dom false
+373 silly hasDependencyInstalled undefined 'react-redux'
+374 silly dependencyIsSatisfied [ 'react-redux',
+374 silly dependencyIsSatisfied   '^4.4.5',
+374 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+375 verbose dependencyIsSatisfied react-redux false
+376 silly hasDependencyInstalled undefined 'react-router'
+377 silly dependencyIsSatisfied [ 'react-router',
+377 silly dependencyIsSatisfied   '^2.8.1',
+377 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+378 verbose dependencyIsSatisfied react-router false
+379 silly hasDependencyInstalled undefined 'redux'
+380 silly dependencyIsSatisfied [ 'redux',
+380 silly dependencyIsSatisfied   '^3.6.0',
+380 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+381 verbose dependencyIsSatisfied redux false
+382 silly hasDependencyInstalled undefined 'redux-thunk'
+383 silly dependencyIsSatisfied [ 'redux-thunk',
+383 silly dependencyIsSatisfied   '^2.1.0',
+383 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+384 verbose dependencyIsSatisfied redux-thunk false
+385 silly hasDependencyInstalled undefined 'semver'
+386 silly dependencyIsSatisfied [ 'semver',
+386 silly dependencyIsSatisfied   '^5.3.0',
+386 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+387 verbose dependencyIsSatisfied semver false
+388 silly hasDependencyInstalled undefined 'tar-fs'
+389 silly dependencyIsSatisfied [ 'tar-fs',
+389 silly dependencyIsSatisfied   '^1.15.0',
+389 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+390 verbose dependencyIsSatisfied tar-fs false
+391 silly hasDependencyInstalled undefined 'tree-kill'
+392 silly dependencyIsSatisfied [ 'tree-kill',
+392 silly dependencyIsSatisfied   '^1.1.0',
+392 silly dependencyIsSatisfied   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/node_modules' ]
+393 verbose dependencyIsSatisfied tree-kill false
+394 silly root dependencies []
+395 silly leaf dependencies {
+395 silly leaf dependencies   "hybrid-inspect": [
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "anyproxy@^4.0.0-beta18",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "atool-build@^1.0.2",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "babel-cli@^6.22.2",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "babel-core@^6.22.1",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "babel-loader@^6.2.10",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "babel-plugin-add-module-exports@^0.2.1",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "babel-plugin-import@^1.6.2",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "babel-plugin-transform-runtime@^6.23.0",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "babel-preset-es2015@^6.18.0",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "babel-preset-react@^6.11.1",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "babel-preset-stage-0@^6.16.0",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "concurrently@^3.5.0",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "gulp@^3.9.1",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "gulp-concat@~2.2.0",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "gulp-filter@~0.4.1",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "gulp-less@~3.0.3",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "gulp-mocha@~2.2.0",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "gulp-plumber@^1.1.0",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "gulp-rename@^1.2.2",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "gulp-shell@^0.6.3",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "gulp-sourcemaps@~1.5.2",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "gulp-typescript@~2.13.6",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "gulp-uglify@^0.3.2",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "gulp-util@~2.2.14",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "gulp-webserver@~0.9.0",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "gulp-zip@~3.0.2",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "merge2@~0.3.5",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "mocha-junit-reporter@^1.9.1",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "through@~2.3.4",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "typescript@^1.8.10",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "antd@^2.13.9",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "body-parser@~1.12.3",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "codemirror@^5.31.0",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "colorful@^2.1.0",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "colors@~1.1.2",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "cookie-parser@~1.3.5",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "cookieparser@~0.1.0",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "cors@^2.7.1",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "express@~4.12.3",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "express-session@~1.11.1",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "favicon@0.0.2",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "gulp-if@^2.0.2",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "homedir@^0.6.0",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "hooks@^0.3.2",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "html2canvas@^0.5.0-beta4",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "http-proxy@~1.11.2",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "jade@~1.9.2",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "json@~9.0.3",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "method-override@2.3.4",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "minimist@^1.2.0",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "multer@~0.1.8",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "pageres@^4.1.2",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "passport@~0.2.1",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "passport-local@~1.0.0",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "passport-twitter@~1.0.3",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "qrcode@^1.0.0",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "qrcode-npm@^0.0.3",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "react-split-pane@^0.1.71",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "socket.io@^1.5.0",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "stylus@~0.50.0",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "winston@~1.0.1",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "winston-azure@0.0.4",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "winston-logs-display@~0.1.1",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "xmlhttprequest@~1.7.0",
+395 silly leaf dependencies       "isSatisfied": true
+395 silly leaf dependencies     }
+395 silly leaf dependencies   ],
+395 silly leaf dependencies   "undefined": [
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "anyproxy@^3.10.3",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "atool-build@^0.8.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "babel-cli@^6.16.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "babel-plugin-add-module-exports@^0.2.1",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "babel-plugin-import@^1.0.1",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "babel-plugin-transform-runtime@^6.12.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "babel-preset-es2015@^6.16.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "babel-preset-react@^6.16.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "babel-preset-stage-0@^6.16.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "concurrently@^3.1.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "antd@^2.0.1",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "ali-contributors@^1.0.11",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "babel-eslint@^7.0.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "babel-polyfill@^6.16.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "babel-preset-electron@^0.37.8",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "babel-register@^6.16.3",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "babel-runtime@^6.11.6",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "classnames@^2.2.5",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "conventional-changelog@^1.1.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "copy-webpack-plugin@^3.0.1",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "cross-env@^3.1.2",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "cz-conventional-changelog@^1.2.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "devtron@^1.4.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "dora@^0.4.3",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "dora-plugin-webpack@^0.8.1",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "electron@1.4.10",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "electron-builder@^7.15.2",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "electron-debug@^1.0.1",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "electron-devtools-installer@^2.0.1",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "eslint@^3.7.1",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "eslint-config-airbnb@^12.0.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "eslint-formatter-pretty@^1.0.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "eslint-plugin-import@^1.16.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "eslint-plugin-jsx-a11y@^2.2.2",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "eslint-plugin-promise@^2.0.1",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "eslint-plugin-react@^6.3.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "findup@^0.1.5",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "ghooks@^1.3.2",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "html-webpack-plugin@^2.22.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "postcss-pxtorem@^3.3.1",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "pre-commit@^1.1.3",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "redbox-react@^1.3.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "redux-logger@^2.7.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "semver-regex@^1.0.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "validate-commit-msg@^2.8.2",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "ansi_up@^1.3.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "formstream@^1.1.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "fs-extra@^0.30.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "fstream@^1.0.10",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "iconv-lite@^0.4.15",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "md5@^2.2.1",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "monaco-editor@^0.7.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "qrcode.react@^0.6.1",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "react@^15.1.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "react-dom@^15.1.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "react-redux@^4.4.5",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "react-router@^2.8.1",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "redux@^3.6.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "redux-thunk@^2.1.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "semver@^5.3.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "tar-fs@^1.15.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     },
+395 silly leaf dependencies     {
+395 silly leaf dependencies       "dependency": "tree-kill@^1.1.0",
+395 silly leaf dependencies       "isSatisfied": false
+395 silly leaf dependencies     }
+395 silly leaf dependencies   ]
+395 silly leaf dependencies }
+396 info Installing external dependencies
+397 verbose actions 1 actions, concurrency 4
+398 silly installInDir inspect-client [ 'anyproxy@^3.10.3',
+398 silly installInDir   'atool-build@^0.8.0',
+398 silly installInDir   'babel-cli@^6.16.0',
+398 silly installInDir   'babel-plugin-add-module-exports@^0.2.1',
+398 silly installInDir   'babel-plugin-import@^1.0.1',
+398 silly installInDir   'babel-plugin-transform-runtime@^6.12.0',
+398 silly installInDir   'babel-preset-es2015@^6.16.0',
+398 silly installInDir   'babel-preset-react@^6.16.0',
+398 silly installInDir   'babel-preset-stage-0@^6.16.0',
+398 silly installInDir   'concurrently@^3.1.0',
+398 silly installInDir   'antd@^2.0.1',
+398 silly installInDir   'ali-contributors@^1.0.11',
+398 silly installInDir   'babel-eslint@^7.0.0',
+398 silly installInDir   'babel-polyfill@^6.16.0',
+398 silly installInDir   'babel-preset-electron@^0.37.8',
+398 silly installInDir   'babel-register@^6.16.3',
+398 silly installInDir   'babel-runtime@^6.11.6',
+398 silly installInDir   'classnames@^2.2.5',
+398 silly installInDir   'conventional-changelog@^1.1.0',
+398 silly installInDir   'copy-webpack-plugin@^3.0.1',
+398 silly installInDir   'cross-env@^3.1.2',
+398 silly installInDir   'cz-conventional-changelog@^1.2.0',
+398 silly installInDir   'devtron@^1.4.0',
+398 silly installInDir   'dora@^0.4.3',
+398 silly installInDir   'dora-plugin-webpack@^0.8.1',
+398 silly installInDir   'electron@1.4.10',
+398 silly installInDir   'electron-builder@^7.15.2',
+398 silly installInDir   'electron-debug@^1.0.1',
+398 silly installInDir   'electron-devtools-installer@^2.0.1',
+398 silly installInDir   'eslint@^3.7.1',
+398 silly installInDir   'eslint-config-airbnb@^12.0.0',
+398 silly installInDir   'eslint-formatter-pretty@^1.0.0',
+398 silly installInDir   'eslint-plugin-import@^1.16.0',
+398 silly installInDir   'eslint-plugin-jsx-a11y@^2.2.2',
+398 silly installInDir   'eslint-plugin-promise@^2.0.1',
+398 silly installInDir   'eslint-plugin-react@^6.3.0',
+398 silly installInDir   'findup@^0.1.5',
+398 silly installInDir   'ghooks@^1.3.2',
+398 silly installInDir   'html-webpack-plugin@^2.22.0',
+398 silly installInDir   'postcss-pxtorem@^3.3.1',
+398 silly installInDir   'pre-commit@^1.1.3',
+398 silly installInDir   'redbox-react@^1.3.0',
+398 silly installInDir   'redux-logger@^2.7.0',
+398 silly installInDir   'semver-regex@^1.0.0',
+398 silly installInDir   'validate-commit-msg@^2.8.2',
+398 silly installInDir   'ansi_up@^1.3.0',
+398 silly installInDir   'formstream@^1.1.0',
+398 silly installInDir   'fs-extra@^0.30.0',
+398 silly installInDir   'fstream@^1.0.10',
+398 silly installInDir   'iconv-lite@^0.4.15',
+398 silly installInDir   'md5@^2.2.1',
+398 silly installInDir   'monaco-editor@^0.7.0',
+398 silly installInDir   'qrcode.react@^0.6.1',
+398 silly installInDir   'react@^15.1.0',
+398 silly installInDir   'react-dom@^15.1.0',
+398 silly installInDir   'react-redux@^4.4.5',
+398 silly installInDir   'react-router@^2.8.1',
+398 silly installInDir   'redux@^3.6.0',
+398 silly installInDir   'redux-thunk@^2.1.0',
+398 silly installInDir   'semver@^5.3.0',
+398 silly installInDir   'tar-fs@^1.15.0',
+398 silly installInDir   'tree-kill@^1.1.0' ]
+399 silly installInDir backup /Users/guobingjian/workspace/lerna-repo/packages/inspect-client/package.json
+400 silly rename [ '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/package.json',
+400 silly rename   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/package.json.lerna_backup' ]
+401 silly installInDir writing tempJson { dependencies:
+401 silly installInDir    { anyproxy: '^3.10.3',
+401 silly installInDir      'atool-build': '^0.8.0',
+401 silly installInDir      'babel-cli': '^6.16.0',
+401 silly installInDir      'babel-plugin-add-module-exports': '^0.2.1',
+401 silly installInDir      'babel-plugin-import': '^1.0.1',
+401 silly installInDir      'babel-plugin-transform-runtime': '^6.12.0',
+401 silly installInDir      'babel-preset-es2015': '^6.16.0',
+401 silly installInDir      'babel-preset-react': '^6.16.0',
+401 silly installInDir      'babel-preset-stage-0': '^6.16.0',
+401 silly installInDir      concurrently: '^3.1.0',
+401 silly installInDir      antd: '^2.0.1',
+401 silly installInDir      'ali-contributors': '^1.0.11',
+401 silly installInDir      'babel-eslint': '^7.0.0',
+401 silly installInDir      'babel-polyfill': '^6.16.0',
+401 silly installInDir      'babel-preset-electron': '^0.37.8',
+401 silly installInDir      'babel-register': '^6.16.3',
+401 silly installInDir      'babel-runtime': '^6.11.6',
+401 silly installInDir      classnames: '^2.2.5',
+401 silly installInDir      'conventional-changelog': '^1.1.0',
+401 silly installInDir      'copy-webpack-plugin': '^3.0.1',
+401 silly installInDir      'cross-env': '^3.1.2',
+401 silly installInDir      'cz-conventional-changelog': '^1.2.0',
+401 silly installInDir      devtron: '^1.4.0',
+401 silly installInDir      dora: '^0.4.3',
+401 silly installInDir      'dora-plugin-webpack': '^0.8.1',
+401 silly installInDir      electron: '1.4.10',
+401 silly installInDir      'electron-builder': '^7.15.2',
+401 silly installInDir      'electron-debug': '^1.0.1',
+401 silly installInDir      'electron-devtools-installer': '^2.0.1',
+401 silly installInDir      eslint: '^3.7.1',
+401 silly installInDir      'eslint-config-airbnb': '^12.0.0',
+401 silly installInDir      'eslint-formatter-pretty': '^1.0.0',
+401 silly installInDir      'eslint-plugin-import': '^1.16.0',
+401 silly installInDir      'eslint-plugin-jsx-a11y': '^2.2.2',
+401 silly installInDir      'eslint-plugin-promise': '^2.0.1',
+401 silly installInDir      'eslint-plugin-react': '^6.3.0',
+401 silly installInDir      findup: '^0.1.5',
+401 silly installInDir      ghooks: '^1.3.2',
+401 silly installInDir      'html-webpack-plugin': '^2.22.0',
+401 silly installInDir      'postcss-pxtorem': '^3.3.1',
+401 silly installInDir      'pre-commit': '^1.1.3',
+401 silly installInDir      'redbox-react': '^1.3.0',
+401 silly installInDir      'redux-logger': '^2.7.0',
+401 silly installInDir      'semver-regex': '^1.0.0',
+401 silly installInDir      'validate-commit-msg': '^2.8.2',
+401 silly installInDir      ansi_up: '^1.3.0',
+401 silly installInDir      formstream: '^1.1.0',
+401 silly installInDir      'fs-extra': '^0.30.0',
+401 silly installInDir      fstream: '^1.0.10',
+401 silly installInDir      'iconv-lite': '^0.4.15',
+401 silly installInDir      md5: '^2.2.1',
+401 silly installInDir      'monaco-editor': '^0.7.0',
+401 silly installInDir      'qrcode.react': '^0.6.1',
+401 silly installInDir      react: '^15.1.0',
+401 silly installInDir      'react-dom': '^15.1.0',
+401 silly installInDir      'react-redux': '^4.4.5',
+401 silly installInDir      'react-router': '^2.8.1',
+401 silly installInDir      redux: '^3.6.0',
+401 silly installInDir      'redux-thunk': '^2.1.0',
+401 silly installInDir      semver: '^5.3.0',
+401 silly installInDir      'tar-fs': '^1.15.0',
+401 silly installInDir      'tree-kill': '^1.1.0' } }
+402 silly getExecOpts { cwd: '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client' }
+403 silly installInDir [ 'npm', [ 'install' ] ]
+404 silly installInDir cleanup /Users/guobingjian/workspace/lerna-repo/packages/inspect-client/package.json
+405 silly renameSync [ '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/package.json.lerna_backup',
+405 silly renameSync   '/Users/guobingjian/workspace/lerna-repo/packages/inspect-client/package.json' ]
+406 verbose installed leaf undefined
+407 error execute callback with error
+408 error Error: Command failed: npm install
+408 error npm WARN deprecated validate-commit-msg@2.14.0: Check out CommitLint which provides the same functionality with a more user-focused experience.
+408 error npm WARN deprecated babel-preset-es2015@6.24.1: 🙌  Thanks for using Babel: we recommend using babel-preset-env now: please read babeljs.io/env to update!
+408 error npm ERR! Darwin 16.7.0
+408 error npm ERR! argv "/Users/guobingjian/git/nvs/node/6.11.0/x64/bin/node" "/Users/guobingjian/git/nvs/node/6.11.0/x64/bin/npm" "install"
+408 error npm ERR! node v6.11.0
+408 error npm ERR! npm  v3.10.10
+408 error npm ERR! code E404
+408 error
+408 error npm ERR! 404 Registry returned 404 for GET on https://registry.npm.taobao.org/ali-contributors
+408 error npm ERR! 404
+408 error npm ERR! 404  'ali-contributors' is not in the npm registry.
+408 error npm ERR! 404 You should bug the author to publish it (or use the name yourself!)
+408 error npm ERR! 404
+408 error npm ERR! 404 Note that you can also install from a
+408 error npm ERR! 404 tarball, folder, http url, or git url.
+408 error
+408 error npm ERR! Please include the following file with any support request:
+408 error npm ERR!     /Users/guobingjian/workspace/lerna-repo/packages/inspect-client/npm-debug.log
+408 error
+408 error     at Promise.all.then.arr (/Users/guobingjian/.npm-global/lib/node_modules/lerna/node_modules/execa/index.js:236:11)

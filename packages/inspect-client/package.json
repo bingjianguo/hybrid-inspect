@@ -1,0 +1,181 @@
+{
+  "entry": {
+    "index": "./src/renderer/ide/index.js"
+  },
+  "build": {
+    "appId": "com.alipay.hybrid.ide",
+    "category": "public.app-category.developer-tools",
+    "asar": false,
+
+    "publish": {
+      "provider": "generic",
+      "url": "http://update.anyproxy.io/redirect",
+      "channel": "latest"
+    },
+    "mac": {
+      "category": "public.app-category.utilities",
+      "target": ["dmg", "zip"]
+    },
+    "win": {
+      "target": ["nsis"]
+    },
+
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "language": 2052
+    },
+
+    "dmg": {
+      "iconSize": 120,
+      "contents": [
+        {
+          "x": 165,
+          "y": 205
+        },
+        {
+          "x": 480,
+          "y": 200,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "files": [
+      "**/*",
+      "!bugme/*.gz",
+      "!bugme/index_debug.html",
+      "!cache${/*}"
+    ]
+  },
+  "directories": {
+    "output": "release"
+  },
+  "devDependencies": {
+    "antd": "^2.4.3",
+    "atool-build": "^1.0.2",
+    "babel": "6.5.2",
+    "babel-cli": "^6.16.0",
+    "babel-core": "^6.18.2",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^6.2.8",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-import": "^1.0.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-remove-strict-mode": "*",
+    "babel-plugin-transform-runtime": "^6.12.0",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-electron": "^0.37.8",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "babel-register": "^6.16.3",
+    "babel-runtime": "^6.11.6",
+    "classnames": "^2.2.5",
+    "concurrently": "^3.1.0",
+    "conventional-changelog": "^1.1.0",
+    "copy-webpack-plugin": "^4.0.1",
+    "cross-env": "^3.1.2",
+    "css-loader": "^0.26.0",
+    "cz-conventional-changelog": "^1.2.0",
+    "del-cli": "^0.2.1",
+    "devtron": "^1.4.0",
+    "dva": "^1.2.1",
+    "electron": "^1.4.14",
+    "electron-builder": "^8.6.0",
+    "electron-debug": "^1.0.1",
+    "electron-devtools-installer": "^2.0.1",
+    "electron-rebuild": "^1.4.0",
+    "eslint": "^3.7.1",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-formatter-pretty": "^1.0.0",
+    "eslint-plugin-import": "^1.16.0",
+    "eslint-plugin-jsx-a11y": "^2.2.2",
+    "eslint-plugin-promise": "^2.0.1",
+    "eslint-plugin-react": "^6.3.0",
+    "extract-text-webpack-plugin": "2.0.0-rc.3",
+    "ghooks": "^1.3.2",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
+    "less-plugin-npm-import": "^2.1.0",
+    "postcss": "^5.2.5",
+    "postcss-import": "^9.1.0",
+    "postcss-loader": "^1.3.0",
+    "postcss-nested": "^1.0.0",
+    "postcss-plugin-px2rem": "^0.7.0",
+    "pre-commit": "^1.1.3",
+    "react": "^15.4.0",
+    "react-dnd": "^2.1.4",
+    "react-dnd-html5-backend": "^2.1.2",
+    "react-dom": "^15.4.0",
+    "validate-commit-msg": "^2.8.2",
+    "webpack": "^2.2.1",
+    "webpack-livereload-plugin": "^0.10.0"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-0",
+      "react"
+    ],
+    "plugins": [
+      "add-module-exports"
+    ]
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "scripts": {
+    "start": "electron ./app/dist/main",
+    "bugme": "cross-env NODE_ENV=\"development\" node ./app/dist/bugmeServer",
+    "lint": "eslint --ext .js,.jsx src",
+    "dev": "webpack -w",
+    "atool": "atool-build -w",
+    "build": "del-cli -f ./app/dist/ && cross-env NODE_ENV=\"production\" webpack",
+    "changelog": "node ./changelog",
+    "dev_old": "concurrently --prefix \"[{name}]\" --names \"webpack,electron\" -c \"bgBlue.bold,bgMagenta.bold\" --kill-others \"npm run web\" \"npm start\" ",
+    "postinstall": "cd app && npm i --registry=http://registry.npm.alibaba-inc.com && cd .. && npm run rebuild",
+    "pack": "build --dir",
+    "predist_bak": "mv ./app/assets/node.exe ./ ",
+    "dist": "npm run build && build",
+    "postdist_bak": "mv ./node.exe ./app/assets/",
+    "electron-dist": "build",
+    "clean": "del-cli -f ./app/dist/",
+    "predist:win32_bak": "move ./app/assets/node ./",
+    "dist:win32": "npm run build && build --win --ia32",
+    "postdist:win32_bak": "move ./node ./app/assets/",
+    "dist:stable": "ALIPAY_ENV=stable npm run build && ALIPAY_ENV=stable npm run dist",
+    "rebuild": "electron-rebuild -d=https://gh-contractor-zcbenz.cnpmjs.org/atom-shell/dist/ -m ./app"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    },
+    "validate-commit-msg": {
+      "types": [
+        "feat",
+        "fix",
+        "docs",
+        "style",
+        "refactor",
+        "perf",
+        "test",
+        "chore",
+        "revert",
+        "build",
+        "ci"
+      ]
+    },
+    "ghooks": {
+      "commit-msg": "./node_modules/.bin/validate-commit-msg"
+    }
+  },
+  "theme": {
+    "primary-color": "#1D8FE1",
+    "info-color": "#1D8FE1"
+  },
+  "dependencies": {
+    "homedir": "^0.6.0",
+    "request": "^2.83.0"
+  }
+}

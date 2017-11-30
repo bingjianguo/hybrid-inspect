@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>支付宝web开发调试工具</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="format-detection" content="email=no" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0" />
+
+  <link rel="stylesheet" href="../dist/renderer.css" />
+
+</head>
+<body>
+  <div id="electron_container">
+  </div>
+ <!-- electron control -->
+  <script src="../dist/renderer.js"></script>
+  <script>
+    // Only attach the livereloading script if
+    // the app is in development mode
+    if (require('electron').remote.require('electron-is-dev')) {
+      const me = document.createElement('script');
+      me.setAttribute('src', 'http://localhost:35729/livereload.js');
+      document.body.appendChild(me);
+    }
+
+    // Workaround monaco-typescript not understanding the environment
+    self.process.browser = true;
+  </script>
+</body>
+</html>

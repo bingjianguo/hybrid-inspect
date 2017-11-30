@@ -2,6 +2,7 @@ const webpack = require('atool-build/lib/webpack');
 const path = require('path');
 const glob = require('glob');
 const fs = require('fs');
+const serverConfig = require('../Server/config.json');
 
 module.exports = function (webpackConfig) {
   webpackConfig.externals = Object.assign({},webpackConfig.module.externals, {
@@ -53,11 +54,15 @@ module.exports = function (webpackConfig) {
     return memo;
   }, {});
 
-  const plugins = [
-    'domExplorer',
-    'interactiveConsole',
-    'networkMonitor'
-  ];
+
+
+  const pluginObjects = serverConfig.plugins.filter((item) => {
+    return item.enabled
+  });
+
+  const plugins = pluginObjects.map((plugin) => {
+    return plugin.foldername;
+  });
   // ./Plugins/Vorlon/plugins/domExplorer/vorlon.domExplorer.client.ts
   const pluginEntries = {};
   plugins.forEach(function(plugin) {

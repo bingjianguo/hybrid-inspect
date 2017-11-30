@@ -26,6 +26,13 @@
             "enabled": true
         },
         {
+            "id": "PREVIEW",
+            "name": "实时预览",
+            "panel": "top",
+            "foldername": "preview",
+            "enabled": true
+        },
+        {
             "id": "OBJEXPLORER",
             "name": "Obj. Explorer",
             "panel": "top",

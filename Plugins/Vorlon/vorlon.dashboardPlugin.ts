@@ -60,6 +60,11 @@ export class DashboardPlugin extends BasePlugin {
         }
 
         var request = new XMLHttpRequest();
+        if ( !this.htmlFragmentUrl ) {
+            callback(divContainer);
+            return;
+        } 
+            
         request.open('GET', basedUrl + this.htmlFragmentUrl, true);
 
         request.onreadystatechange = (ev: Event) => {

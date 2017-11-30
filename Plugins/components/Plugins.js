@@ -19,7 +19,6 @@ class Plugins extends React.Component {
     $(window).on('PluginLoadFinish', () => {
       const topHeight = $('#pluginsPaneTop').outerHeight();
       this.onResizeLogsHeight(topHeight);
-debugger;
     });
   }
 
@@ -45,7 +44,7 @@ debugger;
             document.body.appendChild(pluginscript);
         }}
       >
-        <div data-plugin={plugin.id} className={`${Style.pluginContainer}`}></div>
+        <div data-plugin={plugin.id} className={Style.pluginContainer}></div>
       </TabPane>
     )
   }

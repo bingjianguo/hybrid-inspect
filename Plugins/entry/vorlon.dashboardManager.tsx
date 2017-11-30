@@ -5,7 +5,7 @@ declare var React: any;
 declare var ReactDOM: any;
 
 import 'antd/dist/antd.css';
-import DashBoard from '../pages/DashBoard';
+import DashBoard from '../components/DashBoard';
 
 
 class DashboardManager {

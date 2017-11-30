@@ -12,8 +12,17 @@ var gulp = require('gulp'),
   sourcemaps = require('gulp-sourcemaps'),
   zip = require('gulp-zip'),
   plumber = require('gulp-plumber'),
-  shell = require('gulp-shell')
+  shell = require('gulp-shell');
+var gulpif = require('gulp-if');
+var serverConfig = require('./Server/config.json');
 
+const pluginObjects = serverConfig.plugins.filter((item) => {
+  return item.enabled
+});
+
+const plugins = pluginObjects.map((plugin) => {
+  return plugin.foldername;
+});
 /// ********
 
 /// GLOBAL
@@ -100,134 +109,7 @@ gulp.task('scripts-specific-plugins-plugins', ['scripts-plugins'], function() {
 
 });
 
-// gulp.task('scripts-specific-plugins-plugins', ['scripts-plugins'], function() {
-//   // DOMTimeline
-//   gulp.src([
-//     'Plugins/Vorlon/plugins/domtimeline/mapping-system.js',
-//     'Plugins/release/plugins/domtimeline/vorlon.domtimeline.dashboard.js',
-//   ])
-//     .pipe(concat('vorlon.domtimeline.dashboard.min.js'))
-//     .pipe(gulp.dest('Plugins/release/plugins/domtimeline/'));
-//   gulp.src([
-//     'Plugins/Vorlon/plugins/domtimeline/dom-timeline.js',
-//     'Plugins/Vorlon/plugins/domtimeline/mapping-system.js',
-//     'Plugins/release/plugins/domtimeline/vorlon.domtimeline.client.js',
-//   ])
-//     .pipe(concat('vorlon.domtimeline.client.js'))
-//     .pipe(gulp.dest('Plugins/release/plugins/domtimeline/'));
-//
-//
-//   // Babylon Inspector
-//   gulp.src([
-//     'Plugins/release/plugins/babylonInspector/vorlon.babylonInspector.interfaces.js',
-//     'Plugins/release/plugins/babylonInspector/vorlon.babylonInspector.client.js'
-//   ])
-//     .pipe(concat('vorlon.babylonInspector.client.js'))
-//     .pipe(gulp.dest('Plugins/release/plugins/babylonInspector/'));
-//
-//   gulp.src([
-//     'Plugins/release/plugins/babylonInspector/vorlon.babylonInspector.interfaces.js',
-//     'Plugins/release/plugins/babylonInspector/vorlon.babylonInspector.dashboard.js'
-//   ])
-//     .pipe(concat('vorlon.babylonInspector.dashboard.js'))
-//     .pipe(gulp.dest('Plugins/release/plugins/babylonInspector/'));
-//
-//   gulp.src([
-//     'Plugins/release/plugins/babylonInspector/vorlon.babylonInspector.interfaces.min.js',
-//     'Plugins/release/plugins/babylonInspector/vorlon.babylonInspector.client.min.js'
-//   ])
-//     .pipe(concat('vorlon.babylonInspector.client.min.js'))
-//     .pipe(gulp.dest('Plugins/release/plugins/babylonInspector/'));
-//
-//   gulp.src([
-//     'Plugins/release/plugins/babylonInspector/vorlon.babylonInspector.interfaces.min.js',
-//     'Plugins/release/plugins/babylonInspector/vorlon.babylonInspector.dashboard.min.js'
-//   ])
-//     .pipe(concat('vorlon.babylonInspector.dashboard.min.js'))
-//     .pipe(gulp.dest('Plugins/release/plugins/babylonInspector/'));
-//
-//   // Bot framework inspector
-//   gulp.src([
-//     'Plugins/release/plugins/botFrameworkInspector/vorlon.botFrameworkInspector.interfaces.js',
-//     'Plugins/release/plugins/botFrameworkInspector/vorlon.botFrameworkInspector.client.js'
-//   ])
-//     .pipe(concat('vorlon.botFrameworkInspector.client.js'))
-//     .pipe(gulp.dest('Plugins/release/plugins/botFrameworkInspector/'));
-//
-//   gulp.src([
-//     'Plugins/release/plugins/botFrameworkInspector/vorlon.botFrameworkInspector.interfaces.js',
-//     'Plugins/release/plugins/botFrameworkInspector/vorlon.botFrameworkInspector.dashboard.js'
-//   ])
-//     .pipe(concat('vorlon.botFrameworkInspector.dashboard.js'))
-//     .pipe(gulp.dest('Plugins/release/plugins/botFrameworkInspector/'));
-//
-//   gulp.src([
-//     'Plugins/release/plugins/botFrameworkInspector/vorlon.botFrameworkInspector.interfaces.min.js',
-//     'Plugins/release/plugins/botFrameworkInspector/vorlon.botFrameworkInspector.client.min.js'
-//   ])
-//     .pipe(concat('vorlon.botFrameworkInspector.client.min.js'))
-//     .pipe(gulp.dest('Plugins/release/plugins/botFrameworkInspector/'));
-//
-//   gulp.src([
-//     'Plugins/release/plugins/botFrameworkInspector/vorlon.botFrameworkInspector.interfaces.min.js',
-//     'Plugins/release/plugins/botFrameworkInspector/vorlon.botFrameworkInspector.dashboard.min.js'
-//   ])
-//     .pipe(concat('vorlon.botFrameworkInspector.dashboard.min.js'))
-//     .pipe(gulp.dest('Plugins/release/plugins/botFrameworkInspector/'));
-//
-//   // Office
-//   gulp.src([
-//     'Plugins/release/plugins/office/vorlon.office.interfaces.js',
-//     'Plugins/release/plugins/office/vorlon.office.tools.js',
-//     'Plugins/release/plugins/office/vorlon.office.document.js',
-//     'Plugins/release/plugins/office/vorlon.office.outlook.js',
-//     'Plugins/release/plugins/office/vorlon.office.powerpoint.js',
-//     'Plugins/release/plugins/office/vorlon.office.dashboard.js'
-//   ])
-//     .pipe(concat('vorlon.office.dashboard.js'))
-//     .pipe(gulp.dest('Plugins/release/plugins/office/'));
-//
-//   gulp.src([
-//     'Plugins/release/plugins/office/vorlon.office.interfaces.min.js',
-//     'Plugins/release/plugins/office/vorlon.office.tools.min.js',
-//     'Plugins/release/plugins/office/vorlon.office.document.min.js',
-//     'Plugins/release/plugins/office/vorlon.office.outlook.min.js',
-//     'Plugins/release/plugins/office/vorlon.office.powerpoint.min.js',
-//     'Plugins/release/plugins/office/vorlon.office.dashboard.min.js'
-//   ])
-//     .pipe(concat('vorlon.office.dashboard.min.js'))
-//     .pipe(gulp.dest('Plugins/release/plugins/office/'));
-//
-//   // NG Inspector
-//   gulp.src([
-//     'Plugins/release/plugins/ngInspector/vorlon.ngInspector.interfaces.js',
-//     'Plugins/release/plugins/ngInspector/vorlon.ngInspector.client.js'
-//   ])
-//     .pipe(concat('vorlon.ngInspector.client.js'))
-//     .pipe(gulp.dest('Plugins/release/plugins/ngInspector/'));
-//
-//   gulp.src([
-//     'Plugins/release/plugins/ngInspector/vorlon.ngInspector.interfaces.js',
-//     'Plugins/release/plugins/ngInspector/vorlon.ngInspector.dashboard.js'
-//   ])
-//     .pipe(concat('vorlon.ngInspector.dashboard.js'))
-//     .pipe(gulp.dest('Plugins/release/plugins/ngInspector/'));
-//
-//   gulp.src([
-//     'Plugins/release/plugins/ngInspector/vorlon.ngInspector.interfaces.min.js',
-//     'Plugins/release/plugins/ngInspector/vorlon.ngInspector.client.min.js'
-//   ])
-//     .pipe(concat('vorlon.ngInspector.client.min.js'))
-//     .pipe(gulp.dest('Plugins/release/plugins/ngInspector/'));
-//
-//   return gulp.src([
-//     'Plugins/release/plugins/ngInspector/vorlon.ngInspector.interfaces.min.js',
-//     'Plugins/release/plugins/ngInspector/vorlon.ngInspector.dashboard.min.js'
-//   ])
-//     .pipe(concat('vorlon.ngInspector.dashboard.min.js'))
-//     .pipe(gulp.dest('Plugins/release/plugins/ngInspector/'));
-//
-// });
+
 
 /**
  * Minify all plugins.
@@ -410,9 +292,12 @@ gulp.task('watch-copy', function() {
     'Plugins/Vorlon/plugins/**/*.html',
     'Plugins/Vorlon/plugins/**/*.png',
     'Plugins/Vorlon/plugins/**/*.PNG',
+    '!Plugins/Vorlon/plugins/**/components/*',
     'Plugins/release/plugins/**/*'
-  ])
-    .pipe(gulp.dest('./Server/public/vorlon/plugins'));
+  ]).pipe(gulpif((file) => {
+    const reg = new RegExp(plugins.join('|'));
+    return reg.test(file.path);
+  }, gulp.dest('./Server/public/vorlon/plugins')));
 
 });
 

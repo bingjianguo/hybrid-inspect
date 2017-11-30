@@ -165,8 +165,6 @@
         "build",
         "ci"
       ]
-    },
-    "ghooks": {
     }
   },
   "theme": {

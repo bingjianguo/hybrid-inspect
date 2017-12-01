@@ -2,11 +2,11 @@
   "entry": {
     "index": "./src/renderer/ide/index.js"
   },
+  "private": true,
   "build": {
     "appId": "com.alipay.hybrid.ide",
     "category": "public.app-category.developer-tools",
     "asar": false,
-
     "publish": {
       "provider": "generic",
       "url": "http://update.anyproxy.io/redirect",
@@ -14,18 +14,21 @@
     },
     "mac": {
       "category": "public.app-category.utilities",
-      "target": ["dmg", "zip"]
+      "target": [
+        "dmg",
+        "zip"
+      ]
     },
     "win": {
-      "target": ["nsis"]
+      "target": [
+        "nsis"
+      ]
     },
-
     "nsis": {
       "oneClick": false,
       "perMachine": true,
       "language": 2052
     },
-
     "dmg": {
       "iconSize": 120,
       "contents": [

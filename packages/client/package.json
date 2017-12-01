@@ -140,15 +140,11 @@
     "dev_old": "concurrently --prefix \"[{name}]\" --names \"webpack,electron\" -c \"bgBlue.bold,bgMagenta.bold\" --kill-others \"npm run web\" \"npm start\" ",
     "postinstall": "cd app && npm i --registry=http://registry.npm.alibaba-inc.com && cd .. && npm run rebuild",
     "pack": "build --dir",
-    "predist_bak": "mv ./app/assets/node.exe ./ ",
     "dist": "npm run build && build",
-    "postdist_bak": "mv ./node.exe ./app/assets/",
     "electron-dist": "build",
     "clean": "del-cli -f ./app/dist/",
     "predist:win32_bak": "move ./app/assets/node ./",
     "dist:win32": "npm run build && build --win --ia32",
-    "postdist:win32_bak": "move ./node ./app/assets/",
-    "dist:stable": "ALIPAY_ENV=stable npm run build && ALIPAY_ENV=stable npm run dist",
     "rebuild": "electron-rebuild -d=https://gh-contractor-zcbenz.cnpmjs.org/atom-shell/dist/ -m ./app"
   },
   "config": {

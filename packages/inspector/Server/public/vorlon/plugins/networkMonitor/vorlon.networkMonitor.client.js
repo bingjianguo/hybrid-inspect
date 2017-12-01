@@ -44,7 +44,7 @@
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	"use strict";var _classCallCheck2 = __webpack_require__(5);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _possibleConstructorReturn2 = __webpack_require__(10);var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);var _inherits2 = __webpack_require__(9);var _inherits3 = _interopRequireDefault(_inherits2);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _VORLON = VORLON,Core = _VORLON.Core,ClientPlugin = _VORLON.ClientPlugin;var
+	"use strict";var _classCallCheck2 = __webpack_require__(5);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _possibleConstructorReturn2 = __webpack_require__(11);var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);var _inherits2 = __webpack_require__(10);var _inherits3 = _interopRequireDefault(_inherits2);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _VORLON = VORLON,Core = _VORLON.Core,ClientPlugin = _VORLON.ClientPlugin;var
 	NetworkMonitorClient = function (_ClientPlugin) {(0, _inherits3.default)(NetworkMonitorClient, _ClientPlugin);
 	    function NetworkMonitorClient() {(0, _classCallCheck3.default)(this, NetworkMonitorClient);var _this = (0, _possibleConstructorReturn3.default)(this,
 	        _ClientPlugin.call(this, "networkMonitor"));
@@ -194,6 +194,20 @@
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	var dP = __webpack_require__(7);
+	var createDesc = __webpack_require__(18);
+	module.exports = __webpack_require__(8) ? function (object, key, value) {
+	  return dP.f(object, key, createDesc(1, value));
+	} : function (object, key, value) {
+	  object[key] = value;
+	  return object;
+	};
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
 	"use strict";
 
 	exports.__esModule = true;
@@ -229,7 +243,7 @@
 	};
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -251,20 +265,6 @@
 	};
 
 /***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	var dP = __webpack_require__(7);
-	var createDesc = __webpack_require__(18);
-	module.exports = __webpack_require__(8) ? function (object, key, value) {
-	  return dP.f(object, key, createDesc(1, value));
-	} : function (object, key, value) {
-	  object[key] = value;
-	  return object;
-	};
-
-
-/***/ }),
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -283,7 +283,7 @@
 	var global = __webpack_require__(1);
 	var core = __webpack_require__(3);
 	var ctx = __webpack_require__(40);
-	var hide = __webpack_require__(11);
+	var hide = __webpack_require__(9);
 	var PROTOTYPE = 'prototype';
 
 	var $export = function (type, name, source) {
@@ -696,7 +696,7 @@
 	var LIBRARY = __webpack_require__(28);
 	var $export = __webpack_require__(13);
 	var redefine = __webpack_require__(48);
-	var hide = __webpack_require__(11);
+	var hide = __webpack_require__(9);
 	var has = __webpack_require__(6);
 	var Iterators = __webpack_require__(23);
 	var $iterCreate = __webpack_require__(71);
@@ -826,7 +826,7 @@
 /* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(11);
+	module.exports = __webpack_require__(9);
 
 
 /***/ }),
@@ -967,7 +967,7 @@
 
 	__webpack_require__(78);
 	var global = __webpack_require__(1);
-	var hide = __webpack_require__(11);
+	var hide = __webpack_require__(9);
 	var Iterators = __webpack_require__(23);
 	var TO_STRING_TAG = __webpack_require__(4)('toStringTag');
 
@@ -1122,7 +1122,7 @@
 	var IteratorPrototype = {};
 
 	// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
-	__webpack_require__(11)(IteratorPrototype, __webpack_require__(4)('iterator'), function () { return this; });
+	__webpack_require__(9)(IteratorPrototype, __webpack_require__(4)('iterator'), function () { return this; });
 
 	module.exports = function (Constructor, NAME, next) {
 	  Constructor.prototype = create(IteratorPrototype, { next: descriptor(1, next) });
@@ -1573,7 +1573,7 @@
 	});
 
 	// 19.4.3.4 Symbol.prototype[@@toPrimitive](hint)
-	$Symbol[PROTOTYPE][TO_PRIMITIVE] || __webpack_require__(11)($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
+	$Symbol[PROTOTYPE][TO_PRIMITIVE] || __webpack_require__(9)($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
 	// 19.4.3.5 Symbol.prototype[@@toStringTag]
 	setToStringTag($Symbol, 'Symbol');
 	// 20.2.1.9 Math[@@toStringTag]

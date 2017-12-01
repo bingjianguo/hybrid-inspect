@@ -10,6 +10,8 @@ let home = homedir();
 let bInitialize = false;
 let vorlonProcess = null;
 let anyproxyProcess = null;
+const bAnyproxyLogDisabled = true;
+const bVorlonLogDisabled = false;
 
 export function startup() {
 
@@ -24,10 +26,10 @@ export function startup() {
       resolve();
       return;
     }
-    const bAnyproxyLogDisabled = false;
+
     anyproxyExtension.forkStartup({ home, bDisableLog: bAnyproxyLogDisabled }).then((p) => {
       anyproxyProcess = p;
-      const bVorlonLogDisabled = true;
+ 
       vorlonProcess = vorlonExtension.forkStartup({ home, bDisableLog: bVorlonLogDisabled }).then((p) => {
         vorlonProcess = p;
         bInitialize = true;

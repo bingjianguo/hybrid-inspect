@@ -1,4 +1,5 @@
 {
+  "name": "hybrid-client",
   "entry": {
     "index": "./src/renderer/ide/index.js"
   },

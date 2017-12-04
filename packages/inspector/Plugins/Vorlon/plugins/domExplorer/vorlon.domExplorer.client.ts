@@ -304,7 +304,7 @@ class DOMExplorerClient extends ClientPlugin {
   }
 
   public onRealtimeMessageReceivedFromDashboardSide(receivedObject: any): void {
-
+    
   }
 
   refresh(): void {

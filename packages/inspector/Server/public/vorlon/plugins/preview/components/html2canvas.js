@@ -1322,6 +1322,7 @@ ImageLoader.prototype.hasImageBackground = function(imageData) {
 ImageLoader.prototype.loadImage = function(imageData) {
     if (imageData.method === "url") {
         var src = imageData.args[0];
+        
         if (this.isSVG(src) && !this.support.svg && !this.options.allowTaint) {
             return new SVGContainer(src);
         } else if (src.match(/data:image\/.*;base64,/i)) {

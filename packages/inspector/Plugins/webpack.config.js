@@ -63,6 +63,7 @@ module.exports = function (webpackConfig) {
   const plugins = pluginObjects.map((plugin) => {
     return plugin.foldername;
   });
+  console.log(plugins);
   // ./Plugins/Vorlon/plugins/domExplorer/vorlon.domExplorer.client.ts
   const pluginEntries = {};
   plugins.forEach(function(plugin) {

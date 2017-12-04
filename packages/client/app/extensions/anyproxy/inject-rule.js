@@ -43,7 +43,6 @@ function *injectDebugJs( { body, url } ) {
   if ( url.indexOf('?') > 0 || url.indexOf('#')) {
     pureUrl = url.split(/[#?]/)[0];
 
-
   }
 
   // 编码方式不定的页面不加入debug view
@@ -62,6 +61,7 @@ function *injectDebugJs( { body, url } ) {
   let title = $('title').html();
   title = encode(title,lowerCaseEncoding);
 
+  // 做firebug-lite对css文件做跨域，去掉vorlon的干扰
   $('head').prepend(`
     <script>window.vorlonTitle=unescape("${title}".replace(/&#x/g,'%u').replace(/;/g,''));</script>
     <script src="https://${ip}:5680/vorlon.js" ></script>
@@ -106,11 +106,16 @@ module.exports = {
     headers['Cache-Control'] = 'no-cache';
     headers['Access-Control-Allow-Origin'] = '*';
     headers['Access-Control-Allow-Credentials'] = true;
+    headers['Access-Control-Allow-Methods'] = 'GET,POST';
     const targetReg = (/\/proxyToLocal/);
     const urlReg = /^[http]/i;
     const { url } = requestDetail;
     const { Accept } = headers;
 
+    if ( !urlReg.test(url) ) {
+      console.log(url);
+      return null;
+    }
 
     if ( targetReg.test(url) ) {
       // 加过重定向到本地服务
@@ -132,15 +137,15 @@ module.exports = {
     } else if ( Accept && Accept.indexOf('image') >= 0 && urlReg.test(url)) {
 
       // 没有加过重定向到本地服务
-      console.log('----------302--------------');
-      return {
-        response: {
-          statusCode: 302,
-          header: {
-            'Location': `/proxyToLocal?url=${encodeURIComponent(url)}`
-          }
-        }
-      }
+      // console.log('----------302--------------');
+      // return {
+      //   response: {
+      //     statusCode: 302,
+      //     header: {
+      //       'Location': `/proxyToLocal?url=${encodeURIComponent(url)}`
+      //     }
+      //   }
+      // }
     }
 
     // if ( Accept && Accept.indexOf('image') >= 0  ) {
@@ -215,6 +220,7 @@ module.exports = {
     header['Cache-Control'] = 'no-cache';
     header['Access-Control-Allow-Origin'] = '*';
     header['Access-Control-Allow-Credentials'] = true;
+    header['Access-Control-Allow-Methods'] = 'GET,POST';
 
     return new Promise((resolve) => {
       resolve(responseDetail);

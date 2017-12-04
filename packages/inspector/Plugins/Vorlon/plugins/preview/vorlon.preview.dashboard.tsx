@@ -43,12 +43,19 @@ export class PreviewDashboard extends DashboardPlugin {
 
   // When we get a message from the client, just show it
   public onRealtimeMessageReceivedFromClientSide(receivedObject: any): void {
-    
+   
     if (receivedObject.message == 'preview') {
       const { data } = receivedObject;
       const { dataUrl, screen } = data;
       this.root.externalSetProps({
         dataUrl: dataUrl,
+        screen
+      })
+    } else if (receivedObject.message == 'previewByIframe') {
+      const { data } = receivedObject;
+      const { html, screen } = data;
+      this.root.externalSetProps({
+        html,
         screen
       })
     }

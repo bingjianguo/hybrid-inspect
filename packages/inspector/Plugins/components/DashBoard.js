@@ -22,7 +22,22 @@ class DashBoard extends React.Component {
     };
 
     this.DashboardManager = window.VORLON.DashboardManager;
-    this.vorlonBaseURL = window.vorlonBaseURL
+    this.vorlonBaseURL = window.vorlonBaseURL;
+    this.onHeartUpdateClientStatus = this.onHeartUpdateClientStatus.bind(this);
+  }
+
+  onHeartUpdateClientStatus(client) {
+    const { clients } = this.state;
+    const filterClient = clients.filter(item => {
+      return item.clientid === client.clientid;
+    });
+    if (filterClient.length > 0) {
+      filterClient[0].heart = client.heart;
+      const newClients = [...clients];
+      this.setState({
+        clients: newClients
+      });
+    }
   }
 
   onGetClientsFromManager ( clients ) {
@@ -146,35 +161,6 @@ class DashBoard extends React.Component {
           height: contentHeight - 20,
           overflow: 'hidden'
         });
-
-        // 动态设置domExplorer的高度
-        // if (!$('dashboard-plugins').data('splitter')) {
-        //   const domPluginsPaneBottom = $('#pluginsPaneBottom');
-        //   const spliter = 10;
-        //   let bottomHeight = 0;
-        //   if ( domPluginsPaneBottom.length > 0 ) {
-        //     bottomHeight = ( contentHeight - spliter ) * .3 - 
-        //       parseFloat(domPluginsPaneBottom.css('padding-top')) - 
-        //       parseFloat(domPluginsPaneBottom.css('padding-bottom'));
-        //   }
-        //   domPluginsPaneBottom.css({ 
-        //     height: bottomHeight,
-        //     overflow: 'hidden'
-        //   });
-        //   const domPluginsPaneTop = $('#pluginsPaneTop');
-        //   let topHeight = 0;
-        //   if (domPluginsPaneTop.length >0) {
-        //     topHeight = ( contentHeight - spliter ) * .7 - 
-        //       parseFloat(domPluginsPaneTop.css('padding-top')) - 
-        //       parseFloat(domPluginsPaneTop.css('padding-bottom'));
-        //   }
-        //   domPluginsPaneTop.css({
-        //     height: topHeight,
-        //     overflow: 'hidden'
-        //   });
-        //   $(window).trigger('FirstResize');
-        // }
-        
         
       }
     });

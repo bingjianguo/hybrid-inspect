@@ -61,6 +61,11 @@ export class PreviewClient extends ClientPlugin {
 
   // Handle messages from the dashboard, on the client
   public onRealtimeMessageReceivedFromDashboardSide(receivedObject: any): void {
+
+    const screen = {
+      width: window.screen.width,
+      height: window.screen.height
+    };
     if (receivedObject.message == 'preview') {
         const width= document.body.clientWidth;   //准备截图div的宽
         const height= document.body.clientHeight;  //准备截图div的高
@@ -78,27 +83,35 @@ export class PreviewClient extends ClientPlugin {
 
         html2canvas(node,{
             useCORS: true,
-            allowTaint:true,
+            // allowTaint:true,
+            onrendered: () => {
+
+            },
           }).then((canvas) => {
             canvas.id="mycanvas";
             // document.body.appendChild(canvas);
             //生成base64图片数据
-            
             var dataUrl= canvas.toDataURL('image/png');
             
             // document.execCommand("dataUrl");
             // var newImg=document.createElement("img");
             // newImg.crossOrigin="anonymous";//关键
             // newImg.src=dataUrl;
-            const screen = {
-                width: window.screen.width,
-                height: window.screen.height
-            };
+            
             this.sendToDashboard({data: { dataUrl,  screen }, message: 'preview'});
-        }).catch(() => {
-            this.sendToDashboard({data: { dataUrl: '' }, message: 'preview'});
+        }).catch((error) => {
+          this.sendToDashboard({data: { error, dataUrl: '', screen }, message: 'preview'});
         });
       
+    } else if ( receivedObject.message === 'previewByIframe') {
+      let html = document.getElementsByTagName('html')[0].outerHTML;
+      function stripscript(s) {  
+        // return s.replace(/<script.*?>.*?<\/script>/ig, '');  
+        return s.replace(/<script(([\s\S])*?)<\/script>/ig, '');  
+      } 
+
+      html = stripscript(html);
+      this.sendToDashboard({data: { html, screen }, message: 'previewByIframe'});
     }
   }
 }

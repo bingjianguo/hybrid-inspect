@@ -44,286 +44,154 @@
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(global) {"use strict";var _getOwnPropertyNames = __webpack_require__(287);var _getOwnPropertyNames2 = _interopRequireDefault(_getOwnPropertyNames);var _typeof2 = __webpack_require__(27);var _typeof3 = _interopRequireDefault(_typeof2);var _getPrototypeOf = __webpack_require__(288);var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);var _classCallCheck2 = __webpack_require__(7);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _possibleConstructorReturn2 = __webpack_require__(12);var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);var _inherits2 = __webpack_require__(11);var _inherits3 = _interopRequireDefault(_inherits2);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _VORLON = VORLON,Core = _VORLON.Core,ClientPlugin = _VORLON.ClientPlugin,Tools = _VORLON.Tools,Connection = _VORLON.Connection;var
-	InteractiveConsoleClient = function (_ClientPlugin) {(0, _inherits3.default)(InteractiveConsoleClient, _ClientPlugin);
-	    function InteractiveConsoleClient() {(0, _classCallCheck3.default)(this, InteractiveConsoleClient);var _this = (0, _possibleConstructorReturn3.default)(this,
-	        _ClientPlugin.call(this, "interactiveConsole"));
-	        _this._cache = [];
-	        _this._pendingEntries = [];
-	        _this._maxBatchSize = 50;
-	        _this._maxBatchTimeout = 200;
-	        _this._objPrototype = (0, _getPrototypeOf2.default)({});
-	        _this._hooks = {
-	            clear: null,
-	            dir: null,
-	            log: null,
-	            debug: null,
-	            error: null,
-	            warn: null,
-	            info: null };
+	"use strict";Object.defineProperty(exports, "__esModule", { value: true });exports.DeviceClient = undefined;var _classCallCheck2 = __webpack_require__(7);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _possibleConstructorReturn2 = __webpack_require__(12);var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);var _inherits2 = __webpack_require__(11);var _inherits3 = _interopRequireDefault(_inherits2);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _VORLON = VORLON,Core = _VORLON.Core,ClientPlugin = _VORLON.ClientPlugin;var
+	DeviceClient = exports.DeviceClient = function (_ClientPlugin) {(0, _inherits3.default)(DeviceClient, _ClientPlugin);
+	    function DeviceClient() {(0, _classCallCheck3.default)(this, DeviceClient);var _this = (0, _possibleConstructorReturn3.default)(this,
+	        _ClientPlugin.call(this, "device"));
+	        _this._ready = true;return _this;
+	    }
+	    //Return unique id for your plugin
+	    DeviceClient.prototype.getID = function getID() {
+	        return "DEVICE";
+	    };DeviceClient.prototype.
+	    refresh = function refresh() {var _this2 = this;
+	        // override this method with cleanup work that needs to happen
+	        // as the user switches between clients on the dashboard
+	        if (typeof verge === 'undefined' || typeof res === 'undefined') {
+	            return;
+	        }
+	        //sometimes refresh is called before document was loaded
+	        if (!document.body) {
+	            setTimeout(function () {
+	                _this2.refresh();
+	            }, 200);
+	            return;
+	        }
+	        // user agent string
+	        var userAgent = this.getUserAgent();
+	        // console.info('User agent:', userAgent);
+	        // meta viewport tag
+	        var metaViewport = this.getMetaViewport();
+	        // console.info('Meta viewport:', metaViewport);
+	        // screen widths
+	        var screenWidths = this.getScreenWidths();
+	        // console.info('Screen widths', screenWidths);
+	        // screen resolution
+	        var resolution = this.getResolution();
+	        // console.info('Resolution', resolution);
+	        // root font size
+	        var rootFontSize = this.getRootFontSize();
+	        // console.info('Root font size:', rootFontSize);
+	        // viewport
+	        var viewport = this.getViewport();
+	        // console.info('Viewport', viewport);
+	        // pixel ratio
+	        var pixelRatio = this.getPixelRatio();
+	        // console.info('Pixel ratio:', pixelRatio);
+	        var data = {
+	            userAgent: userAgent,
+	            metaViewport: metaViewport,
+	            screenWidths: screenWidths,
+	            resolution: resolution,
+	            rootFontSize: rootFontSize,
+	            viewport: viewport,
+	            pixelRatio: pixelRatio };
 
-	        _this._ready = false;
-	        _this._id = "CONSOLE";
-	        _this.traceLog = function (msg) {
-	            if (_this._hooks && _this._hooks.log) {
-	                _this._hooks.log.call(console, msg);
-	            } else
-	            {
-	                console.log(msg);
-	            }
-	        };return _this;
-	    }InteractiveConsoleClient.prototype.
-	    inspect = function inspect(obj, context, deepness) {
-	        if (!obj || (typeof obj === "undefined" ? "undefined" : (0, _typeof3.default)(obj)) != "object") {
-	            return null;
-	        }
-	        var objProperties = (0, _getOwnPropertyNames2.default)(obj);
-	        var proto = (0, _getPrototypeOf2.default)(obj);
-	        var res = {
-	            functions: [],
-	            properties: [] };
+	        var message = {
+	            type: 'full',
+	            data: data };
 
-	        if (proto && proto != this._objPrototype)
-	        res.proto = this.inspect(proto, context, deepness + 1);
-	        for (var i = 0, l = objProperties.length; i < l; i++) {
-	            var p = objProperties[i];
-	            var propertyType = "";
-	            if (p === '__vorlon' || p === '__ob__')
-	            continue;
-	            try {
-	                var objValue = context[p];
-	                propertyType = typeof objValue === "undefined" ? "undefined" : (0, _typeof3.default)(objValue);
-	                if (propertyType === 'function') {
-	                    res.functions.push(p);
-	                } else
-	                if (propertyType === 'undefined') {
-	                    res.properties.push({ name: p, val: undefined });
-	                } else
-	                if (propertyType === 'null') {
-	                    res.properties.push({ name: p, val: null });
-	                } else
-	                if (propertyType === 'object') {
-	                    if (deepness > 5) {
-	                        res.properties.push({ name: p, val: "Vorlon cannot inspect deeper, try inspecting the proper object directly" });
-	                    } else
-	                    {
-	                        res.properties.push({ name: p, val: this.inspect(objValue, objValue, deepness + 1) });
-	                    }
-	                } else
-	                {
-	                    res.properties.push({ name: p, val: objValue.toString() });
-	                }
-	            }
-	            catch (exception) {
-	                this.trace('error reading property ' + p + ' of type ' + propertyType);
-	                this.trace(exception);
-	                res.properties.push({ name: p, val: "oups, Vorlon has an error reading this " + propertyType + " property..." });
-	            }
+	        this.sendToDashboard(message);
+	    };DeviceClient.prototype.
+	    refreshResize = function refreshResize() {
+	        if (typeof verge === 'undefined') {
+	            return;
 	        }
-	        res.functions = res.functions.sort(function (a, b) {
-	            var lowerAName = a.toLowerCase();
-	            var lowerBName = b.toLowerCase();
-	            if (lowerAName > lowerBName)
-	            return 1;
-	            if (lowerAName < lowerBName)
-	            return -1;
-	            return 0;
-	        });
-	        res.properties = res.properties.sort(function (a, b) {
-	            var lowerAName = a.name.toLowerCase();
-	            var lowerBName = b.name.toLowerCase();
-	            if (lowerAName > lowerBName)
-	            return 1;
-	            if (lowerAName < lowerBName)
-	            return -1;
-	            return 0;
-	        });
-	        return res;
-	    };InteractiveConsoleClient.prototype.
-	    getMessages = function getMessages(messages) {
-	        var resmessages = [];
-	        if (messages && messages.length > 0) {
-	            for (var i = 0, l = messages.length; i < l; i++) {
-	                var msg = messages[i];
-	                if (typeof msg === 'string' || typeof msg === 'number') {
-	                    resmessages.push(msg);
-	                } else
-	                {
-	                    if (!Tools.IsWindowAvailable) {
-	                        resmessages.push(this.inspect(msg, msg, 0));
-	                    } else
-	                    if (msg == window || msg == document) {
-	                        resmessages.push('VORLON : object cannot be inspected, too big...');
-	                    } else
-	                    {
-	                        resmessages.push(this.inspect(msg, msg, 0));
-	                    }
-	                }
-	            }
-	        }
-	        return resmessages;
-	    };InteractiveConsoleClient.prototype.
-	    addEntry = function addEntry(entry) {
-	        this._cache.push(entry);
-	        //non batch send
-	        //this.sendCommandToDashboard('entries', { entries: [entry] });
-	        this._pendingEntries.push(entry);
-	        if (this._pendingEntries.length > this._maxBatchSize) {
-	            this.sendPendings();
+	        var data = {
+	            screenWidths: this.getScreenWidths(),
+	            viewport: this.getViewport() };
+
+	        var message = {
+	            type: 'resize',
+	            data: data };
+
+	        this.sendToDashboard(message);
+	        // console.log('Device information refreshed for resize.');
+	    };DeviceClient.prototype.
+	    getUserAgent = function getUserAgent() {
+	        return navigator.userAgent;
+	    };DeviceClient.prototype.
+	    getMetaViewport = function getMetaViewport() {
+	        var metaViewportTag = document.querySelector('meta[name="viewport"]');
+	        var metaViewport;
+	        if ((metaViewport !== null || metaViewport === []) && typeof metaViewportTag != 'undefined' && metaViewportTag != null) {
+	            metaViewport = metaViewportTag.outerHTML;
 	        } else
 	        {
-	            this.checkPendings();
+	            console.log('No meta viewport tag found.');
+	            metaViewport = 'No meta viewport tag found.';
 	        }
-	    };InteractiveConsoleClient.prototype.
-	    checkPendings = function checkPendings() {var _this2 = this;
-	        if (!this._pendingEntriesTimeout) {
-	            this._pendingEntriesTimeout = setTimeout(function () {
-	                _this2._pendingEntriesTimeout = null;
-	                _this2.sendPendings();
-	            }, this._maxBatchTimeout);
-	        }
-	    };InteractiveConsoleClient.prototype.
-	    sendPendings = function sendPendings() {
-	        var currentPendings = this._pendingEntries;
-	        this._pendingEntries = [];
-	        this.sendCommandToDashboard('entries', { entries: currentPendings });
-	    };InteractiveConsoleClient.prototype.
-	    batchSend = function batchSend(items) {
-	        if (this._pendingEntriesTimeout) {
-	            clearTimeout(this._pendingEntriesTimeout);
-	            this._pendingEntriesTimeout = null;
-	        }
-	        var batch = [];
-	        for (var i = 0, l = items.length; i < l; i++) {
-	            if (batch.length < this._maxBatchSize) {
-	                batch.push(items[i]);
-	            } else
-	            {
-	                this.sendCommandToDashboard('entries', { entries: batch });
-	                batch = [];
+	        return metaViewport;
+	    };DeviceClient.prototype.
+	    getScreenWidths = function getScreenWidths() {
+	        return {
+	            screenWidth: screen.width,
+	            screenAvailWidth: screen.availWidth,
+	            windowInnerWidth: window.innerWidth,
+	            bodyClientWidth: document.body.clientWidth };
+
+	    };DeviceClient.prototype.
+	    getResolution = function getResolution() {
+	        return {
+	            dpi: res.dpi(),
+	            dppx: res.dppx(),
+	            dpcm: res.dpcm() };
+
+	    };DeviceClient.prototype.
+	    getRootFontSize = function getRootFontSize() {
+	        // returns the root font size in pixels
+	        var htmlRoot = document.getElementsByTagName('html')[0];
+	        return parseInt(window.getComputedStyle(htmlRoot, null).getPropertyValue('font-size'));
+	    };DeviceClient.prototype.
+	    getViewport = function getViewport() {
+	        var rootFontSize = this.getRootFontSize();
+	        return {
+	            aspectRatio: verge.aspect(screen),
+	            width: verge.viewportW(),
+	            widthEm: (verge.viewportW() / rootFontSize).toFixed(0) };
+
+	    };DeviceClient.prototype.
+	    getPixelRatio = function getPixelRatio() {
+	        // pixel ratio refers to ratio between physical pixels and logical pixels
+	        // see http://stackoverflow.com/a/8785677 for more information
+	        var pixelRatio = window.devicePixelRatio || window.screen.availWidth / document.documentElement.clientWidth;
+	        pixelRatio = pixelRatio.toFixed(2);
+	        return pixelRatio;
+	    };
+	    // This code will run on the client //////////////////////
+	    // Start the clientside code
+	    DeviceClient.prototype.startClientSide = function startClientSide() {var _this3 = this;
+	        // load the "res" and "verge" libraries
+	        this._loadNewScriptAsync("res.min.js", function () {
+	            if (res) {
+	                _this3.refresh();
 	            }
-	        }
-	        this.sendCommandToDashboard('entries', { entries: batch });
-	    };InteractiveConsoleClient.prototype.
-	    startClientSide = function startClientSide() {var _this3 = this;
-	        this._cache = [];
-	        this._pendingEntries = [];
-	        var console = Tools.IsWindowAvailable ? window.console : global.console;
-	        // Overrides clear, log, error and warn
-	        this._hooks.clear = Tools.Hook(console, "clear", function () {
-	            _this3.clearClientConsole();
 	        });
-	        this._hooks.dir = Tools.Hook(console, "dir", function (message) {
-	            var data = {
-	                messages: _this3.getMessages(message),
-	                type: "dir" };
-
-	            _this3.addEntry(data);
-	        });
-	        this._hooks.log = Tools.Hook(console, "log", function (message) {
-	            var data = {
-	                messages: _this3.getMessages(message),
-	                type: "log" };
-
-	            _this3.addEntry(data);
-	        });
-	        this._hooks.debug = Tools.Hook(console, "debug", function (message) {
-	            var data = {
-	                messages: _this3.getMessages(message),
-	                type: "debug" };
-
-	            _this3.addEntry(data);
-	        });
-	        this._hooks.info = Tools.Hook(console, "info", function (message) {
-	            var data = {
-	                messages: _this3.getMessages(message),
-	                type: "info" };
-
-	            _this3.addEntry(data);
-	        });
-	        this._hooks.warn = Tools.Hook(console, "warn", function (message) {
-	            var data = {
-	                messages: _this3.getMessages(message),
-	                type: "warn" };
-
-	            _this3.addEntry(data);
-	        });
-	        this._hooks.error = Tools.Hook(console, "error", function (message) {
-	            var messages = _this3.getMessages(message);
-	            var data = {
-	                messages: messages,
-	                type: "error" };
-
-	            _this3.addEntry(data);
-	        });
-	        // Override Error constructor
-	        // 复写浏览器端创建Error的过程
-	        var previousError = Error;
-	        Error = function Error(message) {
-	            var error = new previousError(message);
-	            var data = {
-	                messages: typeof message === 'string' ? [message] : _this3.getMessages(message),
-	                type: "exception" };
-
-	            // 锁屏后能够检测到websocket error的地方
-	            if (message === 'websocket error') {
-	                // 尝试重新连接
-	                if (!Connection.inRetry) {
-	                    Connection.inRetry = true;
-	                    Core.Messenger.retryConnect();
-	                    _this3.addEntry(data);
-	                    setTimeout(function () {
-	                        Connection.inRetry = false;
-	                    }, 1000);
-	                }
-	                return error;
+	        this._loadNewScriptAsync("verge.min.js", function () {
+	            if (verge) {
+	                _this3.refresh();
 	            }
-	            _this3.addEntry(data);
-	            return error;
-	        };
-	        Error.prototype = previousError.prototype;
-	        if (Tools.IsWindowAvailable) {
-	            window.addEventListener('error', function (err) {
-	                if (err && err.error) {
-	                    //this.addEntry({ messages: [err.error.message], type: "exception" });
-	                    _this3.addEntry({ messages: [err.error.stack], type: "exception" });
-	                }
-	            });
-	        }
-	    };InteractiveConsoleClient.prototype.
-	    clearClientConsole = function clearClientConsole() {
-	        this.sendCommandToDashboard('clear');
-	        this._cache = [];
-	    };InteractiveConsoleClient.prototype.
-	    evalOrderFromDashboard = function evalOrderFromDashboard(order) {
-	        try {
-	            eval(order);
-	        }
-	        catch (e) {
-	            console.error("Unable to execute order: " + e.message);
-	        }
-	    };InteractiveConsoleClient.prototype.
-	    refresh = function refresh() {var _this4 = this;
-	        //delay sending cache to dashboard to let other plugins load...
-	        setTimeout(function () {
-	            _this4.sendCommandToDashboard("clear");
-	            _this4.batchSend(_this4._cache);
-	        }, 300);
-	    };return InteractiveConsoleClient;}(ClientPlugin);
+	        });
+	        // update certain information when the page is resized
+	        window.addEventListener('resize', this.refreshResize.bind(this));
+	    };
+	    // Handle messages from the dashboard, on the client
+	    DeviceClient.prototype.onRealtimeMessageReceivedFromDashboardSide = function onRealtimeMessageReceivedFromDashboardSide(receivedObject) {
+	        // the dashboard shouldn't be sending anything
+	    };return DeviceClient;}(ClientPlugin);
 
-	InteractiveConsoleClient.prototype.ClientCommands = {
-	    order: function order(data) {
-	        var plugin = this;
-	        plugin.evalOrderFromDashboard(data.order);
-	    },
-	    clear: function clear(data) {
-	        var plugin = this;
-	        console.clear();
-	    } };
-
-	// Register
-	Core.RegisterClientPlugin(new InteractiveConsoleClient());
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+	// Register the plugin with vorlon core
+	Core.RegisterClientPlugin(new DeviceClient());
 
 /***/ }),
 /* 1 */
@@ -1823,297 +1691,6 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	__webpack_require__(37)('observable');
-
-
-/***/ }),
-/* 84 */,
-/* 85 */,
-/* 86 */,
-/* 87 */,
-/* 88 */,
-/* 89 */,
-/* 90 */,
-/* 91 */,
-/* 92 */,
-/* 93 */,
-/* 94 */,
-/* 95 */,
-/* 96 */,
-/* 97 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	// most Object methods by ES6 should accept primitives
-	var $export = __webpack_require__(14);
-	var core = __webpack_require__(3);
-	var fails = __webpack_require__(16);
-	module.exports = function (KEY, exec) {
-	  var fn = (core.Object || {})[KEY] || Object[KEY];
-	  var exp = {};
-	  exp[KEY] = exec(fn);
-	  $export($export.S + $export.F * fails(function () { fn(1); }), 'Object', exp);
-	};
-
-
-/***/ }),
-/* 98 */,
-/* 99 */,
-/* 100 */,
-/* 101 */,
-/* 102 */,
-/* 103 */,
-/* 104 */,
-/* 105 */,
-/* 106 */,
-/* 107 */,
-/* 108 */,
-/* 109 */,
-/* 110 */,
-/* 111 */,
-/* 112 */,
-/* 113 */,
-/* 114 */,
-/* 115 */,
-/* 116 */,
-/* 117 */,
-/* 118 */,
-/* 119 */,
-/* 120 */,
-/* 121 */,
-/* 122 */,
-/* 123 */,
-/* 124 */,
-/* 125 */,
-/* 126 */,
-/* 127 */,
-/* 128 */,
-/* 129 */,
-/* 130 */,
-/* 131 */,
-/* 132 */,
-/* 133 */,
-/* 134 */,
-/* 135 */,
-/* 136 */,
-/* 137 */,
-/* 138 */,
-/* 139 */,
-/* 140 */,
-/* 141 */,
-/* 142 */,
-/* 143 */,
-/* 144 */,
-/* 145 */,
-/* 146 */,
-/* 147 */,
-/* 148 */,
-/* 149 */,
-/* 150 */,
-/* 151 */,
-/* 152 */,
-/* 153 */,
-/* 154 */,
-/* 155 */,
-/* 156 */,
-/* 157 */,
-/* 158 */,
-/* 159 */,
-/* 160 */,
-/* 161 */,
-/* 162 */,
-/* 163 */,
-/* 164 */,
-/* 165 */,
-/* 166 */,
-/* 167 */,
-/* 168 */,
-/* 169 */,
-/* 170 */,
-/* 171 */,
-/* 172 */,
-/* 173 */,
-/* 174 */,
-/* 175 */,
-/* 176 */,
-/* 177 */,
-/* 178 */,
-/* 179 */,
-/* 180 */,
-/* 181 */,
-/* 182 */,
-/* 183 */,
-/* 184 */,
-/* 185 */,
-/* 186 */,
-/* 187 */,
-/* 188 */,
-/* 189 */,
-/* 190 */,
-/* 191 */,
-/* 192 */,
-/* 193 */,
-/* 194 */,
-/* 195 */,
-/* 196 */,
-/* 197 */,
-/* 198 */,
-/* 199 */,
-/* 200 */,
-/* 201 */,
-/* 202 */,
-/* 203 */,
-/* 204 */,
-/* 205 */,
-/* 206 */,
-/* 207 */,
-/* 208 */,
-/* 209 */,
-/* 210 */,
-/* 211 */,
-/* 212 */,
-/* 213 */,
-/* 214 */,
-/* 215 */,
-/* 216 */,
-/* 217 */,
-/* 218 */,
-/* 219 */,
-/* 220 */,
-/* 221 */,
-/* 222 */,
-/* 223 */,
-/* 224 */,
-/* 225 */,
-/* 226 */,
-/* 227 */,
-/* 228 */,
-/* 229 */,
-/* 230 */,
-/* 231 */,
-/* 232 */,
-/* 233 */,
-/* 234 */,
-/* 235 */,
-/* 236 */,
-/* 237 */,
-/* 238 */,
-/* 239 */,
-/* 240 */,
-/* 241 */,
-/* 242 */,
-/* 243 */,
-/* 244 */,
-/* 245 */,
-/* 246 */,
-/* 247 */,
-/* 248 */,
-/* 249 */,
-/* 250 */,
-/* 251 */,
-/* 252 */,
-/* 253 */,
-/* 254 */,
-/* 255 */,
-/* 256 */,
-/* 257 */,
-/* 258 */,
-/* 259 */,
-/* 260 */,
-/* 261 */,
-/* 262 */,
-/* 263 */,
-/* 264 */,
-/* 265 */,
-/* 266 */,
-/* 267 */,
-/* 268 */,
-/* 269 */,
-/* 270 */,
-/* 271 */,
-/* 272 */,
-/* 273 */,
-/* 274 */,
-/* 275 */,
-/* 276 */,
-/* 277 */,
-/* 278 */,
-/* 279 */,
-/* 280 */,
-/* 281 */,
-/* 282 */,
-/* 283 */,
-/* 284 */,
-/* 285 */,
-/* 286 */,
-/* 287 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	module.exports = { "default": __webpack_require__(299), __esModule: true };
-
-/***/ }),
-/* 288 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	module.exports = { "default": __webpack_require__(300), __esModule: true };
-
-/***/ }),
-/* 289 */,
-/* 290 */,
-/* 291 */,
-/* 292 */,
-/* 293 */,
-/* 294 */,
-/* 295 */,
-/* 296 */,
-/* 297 */,
-/* 298 */,
-/* 299 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	__webpack_require__(308);
-	var $Object = __webpack_require__(3).Object;
-	module.exports = function getOwnPropertyNames(it) {
-	  return $Object.getOwnPropertyNames(it);
-	};
-
-
-/***/ }),
-/* 300 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	__webpack_require__(309);
-	module.exports = __webpack_require__(3).Object.getPrototypeOf;
-
-
-/***/ }),
-/* 301 */,
-/* 302 */,
-/* 303 */,
-/* 304 */,
-/* 305 */,
-/* 306 */,
-/* 307 */,
-/* 308 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	// 19.1.2.7 Object.getOwnPropertyNames(O)
-	__webpack_require__(97)('getOwnPropertyNames', function () {
-	  return __webpack_require__(56).f;
-	});
-
-
-/***/ }),
-/* 309 */
-/***/ (function(module, exports, __webpack_require__) {
-
-	// 19.1.2.9 Object.getPrototypeOf(O)
-	var toObject = __webpack_require__(49);
-	var $getPrototypeOf = __webpack_require__(57);
-
-	__webpack_require__(97)('getPrototypeOf', function () {
-	  return function getPrototypeOf(it) {
-	    return $getPrototypeOf(toObject(it));
-	  };
-	});
 
 
 /***/ })

@@ -38,6 +38,7 @@ export class ClientMessenger {
     public onRefreshClients: () => void;
     public onReload: (id: string) => void;
     public onError: (err: Error) => void;
+    public onHeart: (client: any) => void;
 
     public get isConnected(): boolean {
         return this._isConnected;
@@ -80,6 +81,7 @@ export class ClientMessenger {
 
             this._socket.on('message', message => {
                 var received = <VorlonMessage>JSON.parse(message);
+                
                 if (this.onRealtimeMessageReceived) {
                     this.onRealtimeMessageReceived(received);
                 }
@@ -125,7 +127,14 @@ export class ClientMessenger {
             this._socket.on('reload', message => {
                 Core._listenClientId = message;
                 if (this.onReload) {
+                    
                     this.onReload(message);
+                }
+            });
+
+            this._socket.on('heart', client => {
+                if (this.onHeart) {
+                    this.onHeart(client);
                 }
             });
         }
@@ -156,6 +165,9 @@ export class ClientMessenger {
     public retryConnect(): void {
         Connection.CurrentListenClientId = Core._listenClientId;
         this.stopListening();
+        this._isConnected = false;
+        this._socket.close();
+        this._socket = null;
 
         this.generateConnection();
         // 重新将本次建联的websocket注册到dashboard列表中

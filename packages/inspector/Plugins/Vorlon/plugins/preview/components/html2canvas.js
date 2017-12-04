@@ -1235,9 +1235,14 @@ function ImageContainer(src, cors) {
     // 写死在里面
     // To Be Continue
     // && /^[http]/.test(src)
-    if ( !/proxyToLocal/.test(src)  ) {
-        this.originSrc = src;
-        src = `${location.protocol}//${location.host}/proxyToLocal?url=${encodeURIComponent(src)}`;
+    
+    // if ( !/proxyToLocal/.test(src) && /^[http]/.test(src) ) {
+    //     this.originSrc = src;
+    //     src = `${location.protocol}//${location.host}/proxyToLocal?url=${encodeURIComponent(src)}`;
+    // }
+    // base64编码走跨域
+    if ( !/^[http]/.test(src) ) {
+        cors = true;
     }
     this.src = src;
     this.image = new Image();
@@ -1251,7 +1256,6 @@ function ImageContainer(src, cors) {
         }
         self.image.src = src;
         if (self.image.complete === true) {
-           
             resolve(self.image);
         }
     });
@@ -1319,7 +1323,7 @@ ImageLoader.prototype.hasImageBackground = function(imageData) {
     return imageData.method !== "none";
 };
 
-ImageLoader.prototype.loadImage = function(imageData) {
+ImageLoader.prototype.loadImage = function(imageData) {debugger;
     if (imageData.method === "url") {
         var src = imageData.args[0];
         if (this.isSVG(src) && !this.support.svg && !this.options.allowTaint) {
@@ -1358,6 +1362,10 @@ ImageLoader.prototype.imageExists = function(images, src) {
     });
 };
 
+/**
+ * 设置anyproxy时候，全部为同源
+ * @param {*} url 
+ */
 ImageLoader.prototype.isSameOrigin = function(url) {
     return (this.getOrigin(url) === this.origin);
 };

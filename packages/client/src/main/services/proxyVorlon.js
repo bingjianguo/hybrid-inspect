@@ -29,7 +29,7 @@ export function startup() {
 
     anyproxyExtension.forkStartup({ home, bDisableLog: bAnyproxyLogDisabled }).then((p) => {
       anyproxyProcess = p;
- 
+
       vorlonProcess = vorlonExtension.forkStartup({ home, bDisableLog: bVorlonLogDisabled }).then((p) => {
         vorlonProcess = p;
         bInitialize = true;

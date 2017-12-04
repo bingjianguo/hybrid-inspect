@@ -426,6 +426,7 @@ export class _Core {
     }
   }
 
+
   private _OnError(err: Error): void {
     Core.ShowError("Error while connecting to server. Server may be offline.<BR>Error message: " + err.message);
   }
@@ -492,6 +493,7 @@ export class _Core {
   private _DispatchPluginMessage(plugin: BasePlugin, message: VorlonMessage): void {
     plugin.trace('received ' + JSON.stringify(message));
     if (message.metadata.side === RuntimeSide.Client) {
+
       if (!plugin.isReady()) { // Plugin is not ready, let's try again later
         Core._RetrySendingRealtimeMessage(<DashboardPlugin>plugin, message);
       } else {

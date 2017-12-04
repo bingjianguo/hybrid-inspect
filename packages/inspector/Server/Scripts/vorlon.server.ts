@@ -4,11 +4,14 @@ import http = require("http");
 import socketio = require("socket.io");
 import fs = require("fs");
 import path = require("path");
-
+import util = require('util');
 //Vorlon
 import iwsc = require("./vorlon.IWebServerComponent");
 import tools = require("./vorlon.tools");
 import vorloncontext = require("../config/vorlon.servercontext");
+
+import { DashBoardMessage } from './message/dashboard';
+import { ClientMessage } from "./message/client";
 
 export module VORLON {
   export class Server implements iwsc.VORLON.IWebServerComponent {
@@ -20,7 +23,10 @@ export module VORLON {
     private httpConfig: vorloncontext.VORLON.IHttpConfig;
     private pluginsConfig: vorloncontext.VORLON.IPluginsProvider;
     private baseURLConfig: vorloncontext.VORLON.IBaseURLConfig;
-    private _mapChunkMessage: any;
+    
+
+    private _dashboardMessage: any;
+    private _clientMessage: any;
 
     constructor(context: vorloncontext.VORLON.IVorlonServerContext) {
       this.baseURLConfig = context.baseURLConfig;
@@ -28,7 +34,10 @@ export module VORLON {
       this.pluginsConfig = context.plugins;
       this._log = context.logger;
       this._sessions = context.sessions;
-      this._mapChunkMessage = {};
+      
+
+      this._clientMessage = new ClientMessage(this._sessions, this.dashboards, this._log, this.baseURLConfig);
+      this._dashboardMessage = new DashBoardMessage(this._sessions, this.dashboards, this._log);
     }
 
     public noCache(res: any) {
@@ -348,15 +357,15 @@ export module VORLON {
       this._io
         .of(this.baseURLConfig.baseURL + "/client")
         .on("connection", socket => {
-          console.log('in server side connection event');
-          this.addClient(socket);
+     
+          this._clientMessage.add(socket);
         });
 
       //Listen on /dashboard
       this._io
         .of(this.baseURLConfig.baseURL + "/dashboard")
         .on("connection", socket => {
-          this.addDashboard(socket);
+          this._dashboardMessage.add(socket);
         });
     }
 
@@ -383,449 +392,5 @@ export module VORLON {
         res.write(JSON.stringify(data));
       res.end();
     }
-
-    // 启动心跳机制
-    private _startHeart(client: vorloncontext.VORLON.Client): void {
-      let bInQuering = true;
-      const maxFailedTimes = 3;
-      let failedTimes = 0;
-      const queryHeart = () => {
-        if ( failedTimes > maxFailedTimes )
-            return;
-        bInQuering = true;
-
-        setTimeout(() => {
-          if ( bInQuering ) {
-            // 设置client的状态为心跳失败
-            client.heart = false;
-            failedTimes++;
-          } else {
-            // 设置client的状态为心跳成功
-            client.heart = true;
-            failedTimes = 0;
-          }
-
-          queryHeart();
-        },5000);
-      };
-      client.socket.on('heart', () => {
-        bInQuering = false;
-      });
-
-      queryHeart();
-    }
-
-
-    public addClient(socket: SocketIO.Socket): void {
-      this._log.warn('------------------------------------add client-----------------')
-      socket.on("helo", (message: string) => {
-        // 这里可以拿到viewId，目前返回的message当中没有页面的url地址
-        var receiveMessage = <VorlonMessage>JSON.parse(message);
-        var metadata = receiveMessage.metadata;
-        var data = receiveMessage.data;
-        var session = this._sessions.get(metadata.sessionId);
-
-        if (session == null) {
-          session = new vorloncontext.VORLON.Session();
-          this._sessions.add(metadata.sessionId, session);
-        }
-
-        var client = <vorloncontext.VORLON.Client>session.connectedClients[metadata.clientId];
-        var dashboard = this.dashboards[metadata.sessionId];
-        if (client == undefined) {
-          var client = new vorloncontext.VORLON.Client(metadata.clientId, data.ua, data.noWindow, socket, ++session.nbClients, data.url, data.title);
-          client.identity = data.identity;
-          session.connectedClients[metadata.clientId] = client;
-          this._log.debug(formatLog("PLUGIN", "Send Add Client to dashboard (" + client.displayId + ")[" + data.ua + "] socketid = " + socket.id, receiveMessage));
-          if (dashboard != undefined) {
-            dashboard.emit("addclient", client.data);
-          }
-
-          this._log.debug(formatLog("PLUGIN", "New client (" + client.displayId + ")[" + data.ua + "] socketid = " + socket.id, receiveMessage));
-        } else {
-          client.socket = socket;
-          client.opened = true;
-          client.identity = data.identity;
-          client.url = data.url;
-          client.title = data.title;
-          // 对于已经存在的client，不需要通知dashboard的socket增加信息
-          this._log.debug(formatLog("PLUGIN", "Client Reconnect (" + client.displayId + ")[" + data.ua + "] socketid=" + socket.id, receiveMessage));
-        }
-
-        this._startHeart(client);
-
-        this._sessions.update(metadata.sessionId, session);
-
-        this._log.debug(formatLog("PLUGIN", "Number clients in session : " + (session.nbClients + 1), receiveMessage));
-
-        //If dashboard already connected to this socket send "helo" else wait
-        if ((metadata.clientId != "") && (metadata.clientId == session.currentClientId)) {
-          this._log.debug(formatLog("PLUGIN", "Send helo to client to open socket : " + metadata.clientId, receiveMessage));
-          //socket.emit("helo", metadata.clientId);
-        }
-        else {
-          this._log.debug(formatLog("PLUGIN", "New client (" + client.displayId + ") wait...", receiveMessage));
-        }
-      });
-
-      socket.on("message", (message: string) => {
-
-        var receiveMessage = <VorlonMessage>JSON.parse(message);
-        var bInChunkProcess = false;
-        if (receiveMessage.chunked == true) {
-          bInChunkProcess = true;
-          var data = receiveMessage.data;
-          var metadata = receiveMessage.metadata;
-          var sessionId = metadata.sessionId;
-          var chunckSession = this._mapChunkMessage[sessionId];
-          if (!chunckSession) {
-            chunckSession = this._mapChunkMessage[sessionId] = {};
-          }
-          var chunkSessionMessage = chunckSession[data.name];
-          if (!chunkSessionMessage) {
-            chunkSessionMessage = chunckSession[data.name] = {};
-          }
-
-          chunkSessionMessage[data.index] = data.content;
-
-          this._log.warn("Chunked Message: " + sessionId + " - " + data.name + " - " + Object.keys(chunkSessionMessage));
-          var chunkFinised = true;
-          var chunkMessageString = '';
-          for (var iIndex = 0; iIndex < data.total; iIndex++) {
-            if (!chunkSessionMessage[iIndex]) {
-              chunkFinised = false;
-              break;
-            } else {
-              chunkMessageString += chunkSessionMessage[iIndex];
-            }
-          }
-
-          if (!chunkFinised) {
-            return;
-          }
-
-          try {
-            receiveMessage = <VorlonMessage>JSON.parse(chunkMessageString);
-            message = chunkMessageString;
-          } catch (e) {
-            this._log.debug(`error = ${JSON.stringify(e)}`);
-          }
-          delete chunckSession[data.name];
-          this._log.debug(`Chunk Message: ${JSON.stringify(receiveMessage)} - chunkFinised - ${chunkFinised}`);
-        }
-        if (bInChunkProcess) {
-          console.log("Handle chunk message Chunk Message meta: " + JSON.stringify(receiveMessage.metadata) + " - chunkFinised -" + chunkFinised);
-        }
-        var dashboard = this.dashboards[receiveMessage.metadata.sessionId];
-        if (dashboard != null) {
-          var session = this._sessions.get(receiveMessage.metadata.sessionId);
-          if (receiveMessage.metadata.clientId === "") {
-            //No broadcast id _clientID ===""
-            //this.dashboards[receiveMessage._sessionId].emit("message", message);
-            //***
-            //this._log.debug("PLUGIN : " + receiveMessage._pluginID + " message receive without clientId sent to dashboard for session id :" + receiveMessage._sessionId, { type: "PLUGIN", session: receiveMessage._sessionId });
-          }
-          else {
-            //Send message if _clientID = clientID selected by dashboard
-            if (session && receiveMessage.metadata.clientId === session.currentClientId) {
-              dashboard.emit("message", message);
-              this._log.debug(formatLog("PLUGIN", "PLUGIN=>DASHBOARD", receiveMessage));
-            }
-            else {
-              this._log.error(formatLog("PLUGIN", "must be disconnected", receiveMessage));
-            }
-          }
-        }
-        else {
-          this._log.error(formatLog("PLUGIN", "no dashboard found", receiveMessage));
-        }
-      });
-
-      socket.on("clientclosed", (message: string) => {
-        this._log.warn("CLIENT clientclosed " + message);
-        var receiveMessage = <VorlonMessage>JSON.parse(message);
-        this._sessions.all().forEach((session) => {
-          for (var clientid in session.connectedClients) {
-            var client = session.connectedClients[clientid];
-            if (this.baseURLConfig.baseURL + "/client#" + receiveMessage.data.socketid === client.socket.id) {
-              client.opened = false;
-              if (this.dashboards[session.sessionId]) {
-                this._log.debug(formatLog("PLUGIN", "Send RemoveClient to Dashboard " + socket.id, receiveMessage));
-                this.dashboards[session.sessionId].emit("removeclient", client.data);
-              } else {
-                this._log.debug(formatLog("PLUGIN", "NOT sending RefreshClients, no Dashboard " + socket.id, receiveMessage));
-              }
-              this._log.debug(formatLog("PLUGIN", "Client Close " + socket.id, receiveMessage));
-            }
-          }
-          this._sessions.update(session.sessionId, session);
-        });
-      });
-    }
-
-    public addDashboard(socket: SocketIO.Socket): void {
-      socket.on("helo", (message: string) => {
-        //this._log.warn("DASHBOARD helo " + message);
-        var receiveMessage = <VorlonMessage>JSON.parse(message);
-        var metadata = receiveMessage.metadata;
-        var dashboard = this.dashboards[metadata.sessionId];
-
-        if (dashboard == null) {
-          this._log.debug(formatLog("DASHBOARD", "New Dashboard", receiveMessage));
-        }
-        else {
-          this._log.debug(formatLog("DASHBOARD", "Reconnect", receiveMessage));
-        }
-
-        this.dashboards[metadata.sessionId] = socket;
-        dashboard = socket;
-
-        //if client listen by dashboard send helo to selected client
-        if (metadata.listenClientId !== "") {
-          this._log.debug(formatLog("DASHBOARD", "Client selected for :" + metadata.listenClientId, receiveMessage));
-          var session = this._sessions.get(metadata.sessionId);
-          if (session != undefined) {
-            this._log.debug(formatLog("DASHBOARD", "Change currentClient " + metadata.clientId, receiveMessage));
-            session.currentClientId = metadata.listenClientId;
-
-            for (var clientId in session.connectedClients) {
-              var client = session.connectedClients[clientId]
-              if (client.clientId === metadata.listenClientId) {
-                if (client.socket != null) {
-                  this._log.debug(formatLog("DASHBOARD", "Send helo to socketid :" + client.socket.id, receiveMessage));
-                  client.socket.emit("helo", metadata.listenClientId);
-                }
-              }
-              else {
-                this._log.debug(formatLog("DASHBOARD", "Wait for socketid (" + client.socket.id + ")", receiveMessage));
-              }
-            }
-
-            //Send Helo to DashBoard
-            this._log.debug(formatLog("DASHBOARD", "Send helo to Dashboard", receiveMessage));
-            socket.emit("helo", metadata.listenClientId);
-          }
-        }
-        else {
-          this._log.debug(formatLog("DASHBOARD", "No client selected for this dashboard"));
-          if (session != undefined) {
-            this._sessions.update(metadata.sessionId, session);
-          }
-        }
-      });
-
-      socket.on("reload", (message: string) => {
-        //this._log.warn("DASHBOARD reload " + message);
-        var receiveMessage = <VorlonMessage>JSON.parse(message);
-        var metadata = receiveMessage.metadata;
-
-        //if client listen by dashboard send reload to selected client
-        if (metadata.listenClientId !== "") {
-          this._log.debug(formatLog("DASHBOARD", "Client selected for :" + metadata.listenClientId, receiveMessage));
-          var session = this._sessions.get(metadata.sessionId);
-          if (session != undefined) {
-            this._log.debug(formatLog("DASHBOARD", "Change currentClient " + metadata.clientId, receiveMessage));
-            session.currentClientId = metadata.listenClientId;
-
-            for (var clientId in session.connectedClients) {
-              var client = session.connectedClients[clientId]
-              if (client.clientId === metadata.listenClientId) {
-                if (client.socket != null) {
-                  this._log.debug(formatLog("DASHBOARD", "Send reload to socketid :" + client.socket.id, receiveMessage));
-                  client.socket.emit("reload", metadata.listenClientId);
-
-                }
-              }
-              else {
-                this._log.debug(formatLog("DASHBOARD", "Wait for socketid (" + client.socket.id + ")", receiveMessage));
-              }
-            }
-          }
-        }
-        else {
-          this._log.debug(formatLog("DASHBOARD", "No client selected for this dashboard"));
-          if (session != undefined) {
-            this._sessions.update(metadata.sessionId, session);
-          }
-        }
-      });
-
-      socket.on("protocol", (message: string) => {
-        //this._log.warn("DASHBOARD protocol " + message);
-        var receiveMessage = <VorlonMessage>JSON.parse(message);
-        var metadata = receiveMessage.metadata;
-        var dashboard = this.dashboards[metadata.sessionId];
-        if (dashboard == null) {
-          this._log.error(formatLog("DASHBOARD", "No Dashboard to send message", receiveMessage));
-        }
-        else {
-          dashboard.emit("message", message);
-          this._log.debug(formatLog("DASHBOARD", "Dashboard send message", receiveMessage));
-        }
-      });
-
-      socket.on("identify", (message: string) => {
-        this._log.warn("DASHBOARD identify " + message);
-        var receiveMessage = <VorlonMessage>JSON.parse(message);
-        var metadata = receiveMessage.metadata;
-        this._log.debug(formatLog("DASHBOARD", "Identify clients", receiveMessage));
-        var session = this._sessions.get(metadata.sessionId);
-
-        if (session != null) {
-          var nbClients = 0;
-          const { data } = receiveMessage;
-
-          if ( data.clientId ) {
-            const targetClients = Object.keys(session.connectedClients).filter((key) => {
-              return key == data.clientId;
-            });
-
-            if (targetClients.length > 0) {
-              const targetClient = session.connectedClients[targetClients[0]];
-              if (targetClient.opened && targetClient.clientId == data.clientId) {
-                this._log.warn('finded target');
-                targetClient.socket.emit("identify", targetClient.displayId);
-              }
-            }
-          } else {
-
-            for (var client in session.connectedClients) {
-              var currentclient = session.connectedClients[client];
-              if (currentclient.opened) {
-                this._log.warn('find targetClients identify' + JSON.stringify(currentclient.data));
-                currentclient.socket.emit("identify", currentclient.displayId);
-                this._log.debug(formatLog("DASHBOARD", "Dashboard send identify " + currentclient.displayId + " to socketid : " + currentclient.socket.id, receiveMessage));
-                nbClients++;
-              }
-            }
-            this._log.debug(formatLog("DASHBOARD", "Send " + session.nbClients + " identify(s)", receiveMessage));
-
-          }
-
-        }
-        else {
-          this._log.error(formatLog("DASHBOARD", " No client to identify...", receiveMessage));
-          if (session != undefined) {
-            this._sessions.update(metadata.sessionId, session);
-          }
-        }
-      });
-
-      socket.on( 'closeclient', (message: string) => {
-        this._log.warn("DASHBOARD closeclient " + message);
-        const receiveMessage = <VorlonMessage>JSON.parse(message);
-        this._sessions.all().forEach((session) => {
-          for (const clientid in session.connectedClients) {
-            const client = session.connectedClients[clientid];
-            if (receiveMessage.data.clientid === client.clientId) {
-              client.opened = false;
-              if (this.dashboards[session.sessionId]) {
-                this.dashboards[session.sessionId].emit("removeclient", client.data);
-              }
-            }
-          }
-          this._sessions.update(session.sessionId, session);
-        });
-      });
-
-      socket.on("message", (message: string) => {
-        this._log.warn("DASHBOARD message " + message);
-        var receiveMessage = <VorlonMessage>JSON.parse(message);
-        var metadata = receiveMessage.metadata;
-        var arrayClients = this._sessions.get(metadata.sessionId);
-
-        if (arrayClients != null) {
-          for (var clientId in arrayClients.connectedClients) {
-            var client = arrayClients.connectedClients[clientId];
-            if (metadata.listenClientId === client.clientId) {
-              client.socket.emit("message", message);
-              this._log.debug(formatLog("DASHBOARD", "DASHBOARD=>PLUGIN", receiveMessage));
-              //this._log.debug(formatLog("DASHBOARD", "Send to client socketid : " + client.socket.id, receiveMessage));
-            }
-          }
-          //this._log.debug("DASHBOARD : " + metadata.sessionId + " Send " + (receiveMessage.command ? receiveMessage.command: "") + " to " + arrayClients.nbClients + " client(s)");
-        }
-        else {
-          this._log.error(formatLog("DASHBOARD", "No client for message", receiveMessage));
-          var session = this._sessions.get(metadata.sessionId);
-          if (session != undefined) {
-            this._sessions.update(metadata.sessionId, session);
-          }
-        }
-      });
-
-      socket.on("disconnect", (message: string) => {
-        //Delete dashboard session
-        this._log.warn("DASHBOARD disconnect " + message);
-        for (var dashboard in this.dashboards) {
-          if (this.dashboards[dashboard].id === socket.id) {
-            delete this.dashboards[dashboard];
-            this._log.debug(formatLog("DASHBOARD", "Delete dashboard " + dashboard + " socket " + socket.id));
-          }
-        }
-
-        //Send disconnect to all client
-        this._sessions.all().forEach((session) => {
-          for (var client in session.connectedClients) {
-            session.connectedClients[client].socket.emit("stoplisten");
-          }
-        });
-      });
-    }
   }
-
-  export interface VorlonMessageMetadata {
-    pluginID: string;
-    side: number;
-    sessionId: string;
-    clientId: string;
-    listenClientId: string;
-  }
-
-  export interface VorlonMessage {
-    metadata: VorlonMessageMetadata;
-    command?: string
-    data?: any
-    chunked?: any
-  }
-
-  function formatLog(type: string, message: string, vmessage?: VorlonMessage) {
-    var buffer = [];
-    buffer.push(type);
-    if (type.length < 10) {
-      for (var i = type.length; i < 10; i++) {
-        buffer.push(" ");
-      }
-    }
-
-    buffer.push(" : ");
-
-    if (vmessage) {
-      if (vmessage.metadata && vmessage.metadata.sessionId)
-        buffer.push(vmessage.metadata.sessionId + " ");
-    }
-
-    if (message)
-      buffer.push(message + " ");
-
-    if (vmessage) {
-      if (vmessage.metadata) {
-        if (vmessage.metadata.pluginID) {
-          buffer.push(vmessage.metadata.pluginID);
-          if (vmessage.command)
-            buffer.push(":" + vmessage.command)
-
-          buffer.push(" ");
-        }
-
-        if (vmessage.metadata.clientId) {
-          buffer.push(vmessage.metadata.clientId);
-        }
-      }
-    }
-
-
-    return buffer.join("");
-  }
-
 }

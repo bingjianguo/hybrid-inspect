@@ -1,7 +1,20 @@
-.previewImage {
-  border: 1px solid #ccc;
-  overflow-y: auto;
+.previewWrapper {
+
   :global(img) {
     width: 100%;
   }
+  border: 1px solid #ccc;
+  overflow-y: auto;
+  display: inline-block;
+  position: relative;
+}
+
+.operationBar {
+  padding: 10px;
+  text-align: center;
+}
+
+.previewImageContainer{
+  text-align: center;
+  width: 100%;
 }

@@ -1,6 +1,4 @@
 
-import html2canvas from './components/html2canvas';
-
 declare var VORLON: any;
 const { Core, ClientPlugin } = VORLON;
 
@@ -53,15 +51,20 @@ export class PreviewClient extends ClientPlugin {
   // Start the clientside code
   public startClientSide(): void {
     //don't actually need to do anything at startup
+
     ready(() => {
-     
+      const headID = document.getElementsByTagName("head")[0];
+      var jsNode = document.createElement('script');
+      jsNode.type = "text/javascript";
+      jsNode.src = `${window.vorlonHostURL}/javascripts/html2canvas.js` ;
+      headID.appendChild(jsNode);
     })
 
   }
 
   // Handle messages from the dashboard, on the client
   public onRealtimeMessageReceivedFromDashboardSide(receivedObject: any): void {
-
+    const html2canvas = require('html2canvas');
     const screen = {
       width: window.screen.width,
       height: window.screen.height

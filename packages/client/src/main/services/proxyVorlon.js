@@ -10,8 +10,8 @@ let home = homedir();
 let bInitialize = false;
 let vorlonProcess = null;
 let anyproxyProcess = null;
-const bAnyproxyLogDisabled = true;
-const bVorlonLogDisabled = false;
+const bAnyproxyLogDisabled = false;
+const bVorlonLogDisabled = true;
 
 export function startup() {
 

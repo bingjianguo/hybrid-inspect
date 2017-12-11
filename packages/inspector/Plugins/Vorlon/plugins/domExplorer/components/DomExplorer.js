@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Button, Input, Card, Collapse, Tabs } from 'antd';
+import { Button, Radio, Input, Card, Collapse, Tabs } from 'antd';
 import LayoutView from './LayoutView';
 import HTMLView from './HTMLView';
 import ComputedStyleView from './ComputedStyleView';
@@ -22,6 +22,7 @@ class DomExplorer extends React.Component {
     }
     this.extProps = { };
     this.onRefresh = this.onRefresh.bind(this);
+    this.onReload = this.onReload.bind(this);
     this.onStyleAccordionChanged = this.onStyleAccordionChanged.bind(this);
     this.onStyleViewTabChanged = this.onStyleViewTabChanged.bind(this);
   }
@@ -209,10 +210,43 @@ class DomExplorer extends React.Component {
   /**
    * 
    */
+  onReload () {
+    VORLON.DashboardManager.ReloadClient();
+    
+  }
+
+  /**
+   * 
+   */
   onRefresh () {
     const { root, dashboard } = this;
     dashboard.sendCommandToClient('refresh');
     // VORLON.DashboardManager.ReloadClient()
+  }
+
+  /**
+   * 
+   */
+  getCartToolBar () {
+    const size = 'small';
+    return (
+      <Button.Group size={size}>
+        <Button 
+          onClick={this.onRefresh} 
+          size={size} 
+          ref={ele => { this.refreshButton = ReactDOM.findDOMNode(ele); }}
+        >
+          刷新
+        </Button>
+
+        <Button 
+          onClick={this.onReload} 
+          size={size} 
+        >
+          重新加载
+        </Button>
+      </Button.Group>
+    )
   }
 
   /**
@@ -227,7 +261,7 @@ class DomExplorer extends React.Component {
     }
     return (
       <Card
-        title={ <Button onClick={this.onRefresh} type="primary" size={'small'} ref={ele => { this.refreshButton = ReactDOM.findDOMNode(ele); }}>刷新</Button>}
+        title={ this.getCartToolBar() }
         extra={ <Input size="small" />}
         className={ Style.treeViewCard}
         bordered={false}

@@ -7,7 +7,8 @@ const serverConfig = require('../Server/config.json');
 module.exports = function (webpackConfig) {
   webpackConfig.externals = Object.assign({},webpackConfig.module.externals, {
     'react': 'React',
-    'react-dom': 'ReactDOM'
+    'react-dom': 'ReactDOM',
+    'html2canvas': 'html2canvas'
   });
 
   // remove CommonChunkPlugin
@@ -44,6 +45,9 @@ module.exports = function (webpackConfig) {
       };
     }
   });
+
+  // const noParse = webpackConfig.module.noParse || [];
+  // noParse.push(/html2canvas\.js/);
 
   // 注入所有src下以 -index.jsx结尾的文件
   const files = glob.sync('./Plugins/entry/*.ts*');

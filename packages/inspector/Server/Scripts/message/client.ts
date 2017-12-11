@@ -89,9 +89,7 @@ export class ClientMessage {
       client.identity = data.identity;
       session.connectedClients[metadata.clientId] = client;
       this._log.debug(formatLog("PLUGIN", "Send Add Client to dashboard (" + client.displayId + ")[" + data.ua + "] socketid = " + socket.id, receiveMessage));
-      if (dashboard != undefined) {
-        dashboard.emit("addclient", client.data);
-      }
+  
       this._log.debug(formatLog("PLUGIN", "New client (" + client.displayId + ")[" + data.ua + "] socketid = " + socket.id, receiveMessage));
     } else {
       client.socket = socket;
@@ -102,6 +100,11 @@ export class ClientMessage {
       // 对于已经存在的client，不需要通知dashboard的socket增加信息
       this._log.debug(formatLog("PLUGIN", "Client Reconnect (" + client.displayId + ")[" + data.ua + "] socketid=" + socket.id, receiveMessage));
     }
+
+    if (dashboard != undefined) {
+      dashboard.emit("addclient", client.data);
+    }
+
     this._sessionId = metadata.sessionId;
     this._startHeart(client);
   

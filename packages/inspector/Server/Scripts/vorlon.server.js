@@ -241,6 +241,7 @@ var VORLON;
                 var vorlonpluginfiles = "";
                 var javascriptFile = "";
                 javascriptFile += 'var vorlonBaseURL="' + baseUrl + '";\n';
+                javascriptFile += "var vorlonHostURL='" + _this.httpConfig.protocol + "://" + req.headers.host + baseUrl + "';\n";
                 //read the socket.io file if needed
                 if (nodeOnly) {
                     javascriptFile += "var io = require('socket.io-client');\n";

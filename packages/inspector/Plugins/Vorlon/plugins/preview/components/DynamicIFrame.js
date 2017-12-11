@@ -1,6 +1,7 @@
 import React from 'react';
 import Style from './DynamicIFrame.less';
 
+const $ = window.$;
 const DocumentWriter = {
 
   write : function ( PADocument, $ele ) {
@@ -71,7 +72,7 @@ class DynamicIFrame extends React.PureComponent {
 
 
   refreshContent () {
-    const iframe = this.root;
+    const iframe = this.iframe;
     const { html } = this.props;
     function originLogic() {
       $(iframe).attr({ id: 'frameId', src: "#" + new Date().getTime() });
@@ -99,18 +100,34 @@ class DynamicIFrame extends React.PureComponent {
 
   componentDidMount () {
     this.refreshContent();
+    $(this.iframe).on('load', () => {
+      const scrollHeight = this.iframe.contentDocument.documentElement.scrollHeight
+      $(this.iframe).height(scrollHeight);
+    })
   }
 
   componentDidUpdate () {
     this.refreshContent();
   }
+
   render () {
+    const { containerStyle } = this.props;
     return (
-      <iframe 
-        scrolling="no"
-        className={Style.main}
-        ref={ele => {this.root = ele}}
-      />
+      <div
+        className={Style.previewWrapper} 
+        style={{ height: containerStyle['height']}}
+      >
+        <iframe 
+          scrolling="no"
+          className={Style.main}
+          ref={ele => this.iframe=ele}
+        />
+        <div 
+          style={containerStyle}
+        >
+        </div>
+      </div>
+
     )
   }
 }

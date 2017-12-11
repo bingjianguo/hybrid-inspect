@@ -64,6 +64,7 @@ function *injectDebugJs( { body, url } ) {
   // 做firebug-lite对css文件做跨域，去掉vorlon的干扰
   $('head').prepend(`
     <script>window.vorlonTitle=unescape("${title}".replace(/&#x/g,'%u').replace(/;/g,''));</script>
+    <script>window.vorlonUrl='https://${ip}:5680/'</script>
     <script src="https://${ip}:5680/vorlon.js" ></script>
   `);
 

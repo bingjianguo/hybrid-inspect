@@ -18,11 +18,10 @@ class NavClient extends React.Component {
   }
 
   render() {
-    const { clients, onMenuItemSelect } = this.props;
+    const { clients, onMenuItemSelect, ListenClientid } = this.props;
     let selectedKey = '-1';
-    const DashboardManager = window.VORLON.DashboardManager;
     clients.forEach((client, index) => {
-      if ( client.clientid == DashboardManager.ListenClientid) {
+      if ( client.clientid == ListenClientid) {
         selectedKey = index + '';
       }
     });
@@ -42,7 +41,11 @@ class NavClient extends React.Component {
               const { heart } = item;
               const status = heart ? 'success' : 'error';
               return (
-                <Menu.Item key={key} className={Style.menuItem} onMouseEnter={this.onMenuItemHover.bind(this, item)} >
+                <Menu.Item 
+                  key={key} 
+                  className={Style.menuItem} 
+                  onMouseEnter={this.onMenuItemHover.bind(this, item)} 
+                >
                   <Badge dot={true} status={status}/>
                   <div
                     className={Style.menuItemContent}

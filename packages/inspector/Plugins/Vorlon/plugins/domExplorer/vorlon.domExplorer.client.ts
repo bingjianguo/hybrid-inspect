@@ -127,7 +127,7 @@ class DOMExplorerClient extends ClientPlugin {
   }
 
   private _packageDOM(root: HTMLElement, packagedObject: PackagedNode, withChildsNodes: boolean = false, highlightElementID: string = ""): PackagedNode {
-    if (!root.childNodes || root.childNodes.length === 0) {
+    if (!root || !root.childNodes || root.childNodes.length === 0) {
       return;
     }
 
@@ -445,7 +445,6 @@ class DOMExplorerClient extends ClientPlugin {
   }
 
   public refreshbyId(internaID: string, internalIdToshow: string = ""): void {
-
     if (internaID && internalIdToshow) {
       const temp = this._getElementByInternalId(internaID, document.documentElement);
       this._packageAndSendDOM(temp, internalIdToshow);

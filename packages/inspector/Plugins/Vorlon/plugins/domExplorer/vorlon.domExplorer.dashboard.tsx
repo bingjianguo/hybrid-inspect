@@ -51,6 +51,7 @@ export class DOMExplorerDashboard extends DashboardPlugin {
   }
 
   public startDashboardSide(div: HTMLDivElement = null): void {
+
     this._dashboardDiv = div;
     this._insertHtmlContentAsync(this._dashboardDiv,(filledDiv: HTMLElement) => {
       this.root = ReactDOM.render(
@@ -212,7 +213,6 @@ export class DOMExplorerDashboard extends DashboardPlugin {
   }
 
   public initDashboard(root: PackagedNode) {
-   
     this.refreshButton.removeAttribute('changed');
     this._lastReceivedObject = root;
     while (this.treeDiv.hasChildNodes()) {

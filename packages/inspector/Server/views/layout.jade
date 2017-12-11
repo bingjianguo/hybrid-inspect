@@ -10,10 +10,13 @@ html(lang='en')
     title Hybrid Inspect
     script!='var vorlonBaseURL = "' +  baseURL + '";'
     script(src=baseURL + '/javascripts/react-15.5.4-core-dom.min.js')
+    script(src=baseURL + '/javascripts/jquery-2.1.1.min.js')
+
     link(rel='stylesheet', href=baseURL + '/stylesheets/x-tag-components.css')
     link(rel='stylesheet', href=baseURL + '/stylesheets/jquery-ui.css')
     link(rel='stylesheet', href=baseURL + '/stylesheets/contextMenu.css')
     link(rel='stylesheet', href=baseURL + '/stylesheets/jquery.switchButton.css')
+    link(rel='stylesheet', href=baseURL + '/stylesheets/jquery.mCustomScrollbar.min.css')
 
     link(rel='icon', type='image/png', href='https://zos.alipayobjects.com/rmsportal/wYNVXYkQwDpWpKo.png@64w.png')
     link(rel='stylesheet', href=baseURL + '/stylesheets/style.css')
@@ -22,7 +25,5 @@ html(lang='en')
   body
 
     block content
-
-    script(src=baseURL + '/javascripts/jquery-2.1.1.min.js')
 
     block scripts

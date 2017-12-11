@@ -132,6 +132,9 @@ class Window {
       ...options,
       ...localOpt,
       show: false,
+      webPreferences: {
+        allowRunningInsecureContent: true
+      }
     });
 
     this.on('ready-to-show', () => {

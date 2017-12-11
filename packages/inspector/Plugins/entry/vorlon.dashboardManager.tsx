@@ -251,6 +251,7 @@ class DashboardManager {
    * @param client
    */
   public static addClient(client: any): void {
+debugger;
     $(window).trigger('DashBoard.addClient',[client]);
     DashboardManager.AddClientToList(client);
     if(!DashboardManager.DisplayingClient){

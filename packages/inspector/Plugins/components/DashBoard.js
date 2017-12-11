@@ -18,7 +18,8 @@ class DashBoard extends React.Component {
       topPlugins: [],
       bottomPlugins: [],
       plugins: [],
-      bForceShowIntroduction: false
+      bForceShowIntroduction: false,
+      ListenClientid: ''
     };
 
     this.DashboardManager = window.VORLON.DashboardManager;
@@ -121,14 +122,45 @@ class DashBoard extends React.Component {
   componentDidMount () {
     $(window).on('DashBoard.GetClients', (e, clients) => {
       this.onGetClientsFromManager(clients);
-    });
 
+      const { ListenClientid } = window.VORLON.DashboardManager;
+      this.setState({ 
+        ListenClientid
+      });
+    });
+    
     $(window).on('DashBoard.addClient', (e, client) => {
-      let { clients } = this.state;
-      clients = [
-        ...clients,
-        client
-      ];
+      let { clients, ListenClientid } = this.state;
+      const existClients = clients.filter((item) => {
+        return item.clientid == client.clientid;
+      });
+
+      if ( ListenClientid === client.clientid ) {
+        const { DashboardManager } = this;
+        DashboardManager.StartListeningServer(client.clientid);
+      }
+
+      if (existClients.length > 0) {
+        existClients[0] = {
+          ...client
+        }
+        clients = [
+          ...clients
+        ];
+
+        
+      } else {
+        clients = [
+          ...clients,
+          client
+        ];
+      }
+
+      
+      clients.sort((a,b) => {
+        return parseInt(a.displayid) > parseInt(b.displayid)
+      })
+
       this.setState({
         clients
       });
@@ -181,13 +213,14 @@ class DashBoard extends React.Component {
   }
 
   render () {
-    const { clients,  bottomPlugins, topPlugins, bForceShowIntroduction } = this.state;
+    const { clients,  bottomPlugins, topPlugins, bForceShowIntroduction, ListenClientid } = this.state;
 
     return (
       <Layout>
         <Sider className={Style.sideBar} >
           <NavClient
             clients={clients}
+            ListenClientid={ListenClientid}
             onMenuItemSelect={this.onMenuItemSelect.bind(this)}
           />
           <div

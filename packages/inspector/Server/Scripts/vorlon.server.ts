@@ -294,6 +294,7 @@ export module VORLON {
         var javascriptFile: string = "";
 
         javascriptFile += 'var vorlonBaseURL="' + baseUrl + '";\n';
+        javascriptFile += `var vorlonHostURL='${this.httpConfig.protocol}://${req.headers.host}${baseUrl}';\n`; 
 
         //read the socket.io file if needed
         if (nodeOnly) {

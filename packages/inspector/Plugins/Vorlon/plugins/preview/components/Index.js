@@ -21,6 +21,7 @@ class Preview extends React.PureComponent {
   }
 
   componentDidMount () {
+
     let dashboard = null;
     const dashboardFilterArray = VORLON.Core.DashboardPlugins.filter( item  => item.name === 'preview' );
     if (dashboardFilterArray.length > 0) {
@@ -48,6 +49,9 @@ class Preview extends React.PureComponent {
     dashboard.sendToClient({
       message: 'previewByIframe'
     });
+
+
+  
   }
 
   externalSetProps (nextProps, cb) {
@@ -127,9 +131,11 @@ class Preview extends React.PureComponent {
             spinning={this.state.loading}
           >
             <div className={Style.previewImageContainer}>
-              <div className={Style.previewWrapper} style={containerStyle} >
-                <DynamicIFrame html={html}/>
-              </div>
+              <DynamicIFrame 
+                containerStyle={containerStyle} 
+                html={html} 
+                ref={ele => this.iframeWrap = ele}
+              />
             </div>
           </Spin>
         </Col>

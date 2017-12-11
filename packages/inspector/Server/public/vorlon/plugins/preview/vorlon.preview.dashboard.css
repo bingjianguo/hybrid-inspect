@@ -7252,8 +7252,15 @@ samp {
   position: absolute;
   width: 100%;
   height: 100%;
-  right: 0px;
+  left: 0px;
   top: 0px;
+}
+.previewWrapper___ceeKf {
+  display: inline-block;
+  position: relative;
+  overflow-y: auto;
+  width: 392px;
+  border: solid 1px #ccc;
 }
 .previewWrapper___3v6T8 {
   border: 1px solid #ccc;

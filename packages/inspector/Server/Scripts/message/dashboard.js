@@ -61,8 +61,9 @@ var DashBoardMessage = (function () {
         var metadata = receiveMessage.metadata;
         this._log.warn('in onReload');
         //if client listen by dashboard send reload to selected client
+        var session = null;
         if (metadata.listenClientId !== "") {
-            var session = this._sessions.get(metadata.sessionId);
+            session = this._sessions.get(metadata.sessionId);
             if (session != undefined) {
                 session.currentClientId = metadata.listenClientId;
                 for (var clientId in session.connectedClients) {

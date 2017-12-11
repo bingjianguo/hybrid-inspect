@@ -51,8 +51,8 @@ class InnerHTMLView extends React.Component {
       value = innerHTML.outerHTML.trim();
       
       value = stripscript(value);
-      value = striplink(value);
-      value = stripstyle(value);
+      //value = striplink(value);
+      //value = stripstyle(value);
     }
 
     return (

@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Button, Input, Card, Collapse } from 'antd';
+import { Button, Radio, Input, Card, Collapse, Tabs } from 'antd';
 import LayoutView from './LayoutView';
 import HTMLView from './HTMLView';
 import ComputedStyleView from './ComputedStyleView';
 import SettingView from './SettingView';
 import YScrollView from './YScrollView';
-
+import Style from './DomExplorer.less';
 const Panel = Collapse.Panel;
-
+const TabPane = Tabs.TabPane;
 class DomExplorer extends React.Component {
   constructor () {
     super();
@@ -22,7 +22,9 @@ class DomExplorer extends React.Component {
     }
     this.extProps = { };
     this.onRefresh = this.onRefresh.bind(this);
+    this.onReload = this.onReload.bind(this);
     this.onStyleAccordionChanged = this.onStyleAccordionChanged.bind(this);
+    this.onStyleViewTabChanged = this.onStyleViewTabChanged.bind(this);
   }
 
   externalSetProps (nextProps, cb) {
@@ -197,40 +199,178 @@ class DomExplorer extends React.Component {
     });
   }
 
+  onStyleViewTabChanged (index ) {
+    this.setState({
+      activeKey: index
+    }, () => {
+      this.updateAccordionPaneContent(index);
+    });
+  }
+
+  /**
+   * 
+   */
+  onReload () {
+    VORLON.DashboardManager.ReloadClient();
+    
+  }
+
   /**
    * 
    */
   onRefresh () {
     const { root, dashboard } = this;
     dashboard.sendCommandToClient('refresh');
+    // VORLON.DashboardManager.ReloadClient()
   }
 
+  /**
+   * 
+   */
+  getCartToolBar () {
+    const size = 'small';
+    return (
+      <Button.Group size={size}>
+        <Button 
+          onClick={this.onRefresh} 
+          size={size} 
+          ref={ele => { this.refreshButton = ReactDOM.findDOMNode(ele); }}
+        >
+          刷新
+        </Button>
 
-  render () {
-    const { active, activeKey, computedStyle, layoutStyle, innerHTML, maxHeight } = this.state;
-    const activeClass = active ? 'active' : '';
+        <Button 
+          onClick={this.onReload} 
+          size={size} 
+        >
+          重新加载
+        </Button>
+      </Button.Group>
+    )
+  }
+
+  /**
+   *
+   * @returns {XML}
+   */
+  getTreeViewContent () {
+    const { maxHeight } = this.state;
     const treeViewStyle = {};
-    let paneMaxHeight = 0;
     if (maxHeight) {
       treeViewStyle['height'] = `${maxHeight - 100}px`;
+    }
+    return (
+      <Card
+        title={ this.getCartToolBar() }
+        extra={ <Input size="small" />}
+        className={ Style.treeViewCard}
+        bordered={false}
+      >
+        <div
+          id="treeView"
+          onClick={this.onTreeViewClick.bind(this)}
+          className="code-text"
+          style={treeViewStyle}
+          ref={ele => this.treeDiv = ele }>
+        </div>
+      </Card>
+    )
+  }
+
+  /**
+   *
+   * @returns {XML}
+   */
+  getStyleViewContent_bak () {
+    const {  activeKey, computedStyle, layoutStyle, innerHTML, maxHeight } = this.state;
+    let paneMaxHeight = 0;
+    if (maxHeight) {
       paneMaxHeight = maxHeight - 260;
     }
+    return (
+      <Collapse
+        bordered={true}
+        defaultActiveKey={['1']}
+        activeKey={[activeKey]}
+        accordion
+        onChange={this.onStyleAccordionChanged}
+      >
+        <Panel header="样式" key="1">
+          <YScrollView
+            maxHeight={paneMaxHeight}
+          >
+            <div ref={ele => this.styleView=ReactDOM.findDOMNode(ele)}></div>
+          </YScrollView>
+
+        </Panel>
+        <Panel header="布局" key="2" >
+          <YScrollView id="layoutsection" maxHeight={paneMaxHeight}>
+            <LayoutView layoutStyle={layoutStyle}/>
+          </YScrollView>
+        </Panel>
+        <Panel header="计算样式" key="3" style={{padding: 0}}>
+          <YScrollView maxHeight={paneMaxHeight}>
+            <ComputedStyleView
+              computedStyle={computedStyle}
+            />
+          </YScrollView>
+        </Panel>
+        <Panel header="主文档结构" key="4" >
+          <div style={{padding: '10px'}}>
+            <HTMLView innerHTML= { innerHTML } maxHeight={paneMaxHeight}/>
+          </div>
+        </Panel>
+        <Panel header="设置" key="5">
+          <YScrollView maxHeight={paneMaxHeight}>
+            <SettingView />
+          </YScrollView>
+        </Panel>
+      </Collapse>
+    )
+  }
+
+  getStyleViewContent () {
+    const {  activeKey, computedStyle, layoutStyle, innerHTML, maxHeight } = this.state;
+    return (
+      <Tabs type="card" className={Style.styleViewTab} onChange={this.onStyleViewTabChanged}>
+        <TabPane tab="样式" key="1">
+          <div ref={ele => this.styleView=ReactDOM.findDOMNode(ele)}></div>
+        </TabPane>
+        <TabPane tab="布局" key="2">
+          <div id="layoutsection">
+            <LayoutView layoutStyle={layoutStyle}/>
+          </div>
+        </TabPane>
+        <TabPane tab="计算样式" key="3">
+            <ComputedStyleView
+              computedStyle={computedStyle}
+            />
+        </TabPane>
+        <TabPane tab="主文档结构" key="4">
+          <div style={{padding: '10px'}}>
+            <HTMLView innerHTML= { innerHTML }/>
+          </div>
+        </TabPane>
+        <TabPane tab="设置" key="5">
+          <SettingView />
+        </TabPane>
+      </Tabs>
+    )
+  }
+
+  render () {
+    const { active,  maxHeight } = this.state;
+    const activeClass = active ? 'active' : '';
 
     return (
-      <div id="rootDomExplorer" ref={ele => { this.root = ele}} >
+      <div
+        id="rootDomExplorer"
+        className={Style.main}
+        ref={ele => { this.root = ele}}
+      >
         <div className={ `tree-view-wrapper panel-left ${activeClass}`}>
-          <Card 
-            title={ <Button onClick={this.onRefresh} type="primary" size={'small'} ref={ele => { this.refreshButton = ReactDOM.findDOMNode(ele); }}>刷新</Button>}
-            extra={ <Input size="small" />} 
-            bordered={false}
-          >
-            <div id="treeView" 
-              onClick={this.onTreeViewClick.bind(this)}
-              className="code-text" 
-              style={treeViewStyle}
-              ref={ele => this.treeDiv = ele }>
-            </div>
-          </Card>
+          { this.getTreeViewContent() }
+
           <div className="domload-spinner">
             <div className="ant-spin ant-spin-lg ant-spin-spinning">
                 <span className="ant-spin-dot">
@@ -244,45 +384,7 @@ class DomExplorer extends React.Component {
         </div>
 
         <div className="style-view-wrapper panel-right code-text">
-
-          <Collapse 
-            bordered={true} 
-            defaultActiveKey={['1']}
-            activeKey={[activeKey]}
-            accordion
-            onChange={this.onStyleAccordionChanged}
-          >
-            <Panel header="样式" key="1">
-              <YScrollView
-                maxHeight={paneMaxHeight}
-              >
-                <div ref={ele => this.styleView=ReactDOM.findDOMNode(ele)}></div>
-              </YScrollView>
-              
-            </Panel>
-            <Panel header="布局" key="2" >
-              <YScrollView id="layoutsection" maxHeight={paneMaxHeight}>
-                <LayoutView layoutStyle={layoutStyle}/>
-              </YScrollView>
-            </Panel>
-            <Panel header="计算样式" key="3" style={{padding: 0}}>
-              <YScrollView maxHeight={paneMaxHeight}>
-                <ComputedStyleView 
-                  computedStyle={computedStyle}
-                />
-              </YScrollView>
-            </Panel>
-            <Panel header="主文档结构" key="4" >
-              <div style={{padding: '10px'}}>
-                <HTMLView innerHTML= { innerHTML } maxHeight={paneMaxHeight}/>
-              </div>
-            </Panel>
-            <Panel header="设置" key="5">
-              <YScrollView maxHeight={paneMaxHeight}>
-                <SettingView />
-              </YScrollView>
-            </Panel>
-          </Collapse>
+          {this.getStyleViewContent()}
         </div>
       </div>
     )

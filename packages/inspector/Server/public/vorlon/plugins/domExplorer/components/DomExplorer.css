@@ -1,0 +1,51 @@
+.main {
+  height: 100%;
+  position: relative;
+}
+.main .treeViewCard {
+  position: relative;
+  height: 100%;
+}
+.main :global(.panel-left) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+.main :global(.panel-right) {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: 0;
+}
+.main :global(#treeView) {
+  font-size: 13px;
+  line-height: 1.7em;
+  position: absolute;
+  top: 36px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: auto;
+}
+.main .styleViewTab {
+  height: 100%;
+}
+.main .styleViewTab :global(.ant-tabs-content) {
+  border-left: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  padding: 10px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 32px;
+  bottom: 0;
+  overflow: auto;
+}
+.main .styleViewTab :global(.ant-tabs-bar) {
+  margin-bottom: 0;
+}
+.main .styleViewTab :global(.CodeMirror) {
+  height: auto;
+}

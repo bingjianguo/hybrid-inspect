@@ -1,6 +1,7 @@
 // 获取ip地址后，在启动anyproxy脚本，用来将vorlon的js注入
 const { join } = require('path');
 const { fork } = require('child_process');
+const log = require('electron-log');
 const { outputFileSync, existsSync, readFileSync, ensureDir, outputJsonSync, readJsonSync } = require('fs-extra');
 const { getIPAddress } = require('../common');
 
@@ -13,7 +14,9 @@ module.exports = {
   forkStartup: ({ home, bDisableLog }) => {
     const caPath = join(home, '.anyproxy', 'certificates', 'rootCA.crt');
     let outerResolve = null;
+    log.info('anyproxy extension forkstartup');
     const forkAnyproxyProcess = () => {
+      log.info(`anyproxy command=${anyproxyCommand}`);
       const anyproxyProcess = fork(anyproxyCommand, [
         '--rule',
         'extensions/anyproxy/inject-rule.js',
@@ -31,14 +34,14 @@ module.exports = {
         const str = data.toString();
         if ( !bDisableLog ) {
           // anyproxy打印信息不显示
-          console.log(`${data.toString()}`);
+          log.info(`${data.toString()}`);
         }
         if ( str.indexOf('Http proxy started on port') >= 0 )
           outerResolve && outerResolve(anyproxyProcess);
       });
 
       anyproxyProcess.stderr.on('data', function(data) {
-        console.log(`error = ${data.toString()}`);
+        log.info(`error = ${data.toString()}`);
       });
 
       // anyproxyProcess.on('exit',  (e) => {
@@ -46,7 +49,7 @@ module.exports = {
       // });
 
       anyproxyProcess.on('error',  (err) => {
-        console.log('main process err : ' + JSON.stringify(err));
+        log.info('main process err : ' + JSON.stringify(err));
       });
     }
     if ( existsSync(caPath) ) {

@@ -17,7 +17,12 @@ if (isDev) {
 }
 
 if ( !isDev ) {
-  autoCheckUpdate();
+  try {
+    // autoCheckUpdate();
+  } catch (err) {
+    
+  }
+  
 }
 
 // 初始化

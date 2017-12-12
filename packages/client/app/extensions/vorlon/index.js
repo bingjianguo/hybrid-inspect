@@ -4,6 +4,8 @@
 const fork = require('child_process').fork;
 const util = require('util');
 const color = require('colorful');
+const log = require('electron-log');
+
 const { getIPAddress, getCertificate } = require('../common');
 const PORT = 5680;
 
@@ -11,7 +13,8 @@ const forkStartup = ({ home, bDisableLog }) => {
   process.env.HOME = home;
   const host = getIPAddress();
   let outerResolve = null;
-  console.log('home:' + home);
+  
+  log.info('home:' + home);
   getCertificate(host,  (error, keyContent, crtContent)  => {
     const vorlonProcess = fork(require.resolve('hybrid-inspect/Server/server.js'), [], {
       silent: true,
@@ -30,13 +33,13 @@ const forkStartup = ({ home, bDisableLog }) => {
         outerResolve && outerResolve(vorlonProcess);
       }
       if ( !bDisableLog ) {
-        console.log(`[vorlon] ${data.toString()}`);
+        log.info(`[vorlon] ${data.toString()}`);
       }
     });
 
     vorlonProcess.stderr.on('data', function(data) {
       // console.log(`[vorlon error] ${data.toString().split(' ').join('\n')}`);
-      console.log(data.toString());
+      log.info(data.toString());
     });
 
   });

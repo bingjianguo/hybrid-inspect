@@ -56,8 +56,8 @@ export function autoCheckUpdate () {
 
 // manually check update in menu
 export function checkForUpdate (menuItem, focusedWindow, event) {
-  updateMenuInstance = menuItem
-  updateMenuInstance.enabled = false
+  updateMenuInstance = menuItem;
+  updateMenuInstance.enabled = false;
   autoUpdater.checkForUpdates()
 }
 

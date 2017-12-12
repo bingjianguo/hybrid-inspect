@@ -9,7 +9,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // 打点
 // require('atool-monitor').emit();
 
-const outputPath = path.join(__dirname, 'app', 'dist');
+const outputPath = path.join(__dirname, 'app', 'build');
 const nodeEnv = process.env.NODE_ENV || 'development';
 const isProd = nodeEnv === 'production';
 

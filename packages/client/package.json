@@ -4,9 +4,10 @@
     "index": "./src/renderer/ide/index.js"
   },
   "private": true,
+  "author": "bingjian.guo",
+  "main": "main.js",
   "build": {
-    "appId": "com.alipay.hybrid.ide",
-    "category": "public.app-category.developer-tools",
+    "appId": "com.hybrid.inspect.devtool",
     "asar": false,
     "publish": {
       "provider": "generic",
@@ -14,10 +15,9 @@
       "channel": "latest"
     },
     "mac": {
-      "category": "public.app-category.utilities",
+      "category": "public.app-category.developer-tools",
       "target": [
-        "dmg",
-        "zip"
+        "dmg"
       ]
     },
     "win": {
@@ -29,21 +29,6 @@
       "oneClick": false,
       "perMachine": true,
       "language": 2052
-    },
-    "dmg": {
-      "iconSize": 120,
-      "contents": [
-        {
-          "x": 165,
-          "y": 205
-        },
-        {
-          "x": 480,
-          "y": 200,
-          "type": "link",
-          "path": "/Applications"
-        }
-      ]
     },
     "files": [
       "**/*",
@@ -85,11 +70,10 @@
     "del-cli": "^0.2.1",
     "devtron": "^1.4.0",
     "dva": "^1.2.1",
-    "electron": "^1.4.14",
-    "electron-builder": "^8.6.0",
+    "electron": "^1.8.1",
+    "electron-builder": "^19.48.3",
     "electron-debug": "^1.0.1",
     "electron-devtools-installer": "^2.0.1",
-    "electron-rebuild": "^1.4.0",
     "eslint": "^3.7.1",
     "eslint-config-airbnb": "^12.0.0",
     "eslint-formatter-pretty": "^1.0.0",
@@ -130,22 +114,20 @@
     "lint"
   ],
   "scripts": {
-    "start": "electron ./app/dist/main",
-    "bugme": "cross-env NODE_ENV=\"development\" node ./app/dist/bugmeServer",
+    "start": "electron ./app/build/main",
     "lint": "eslint --ext .js,.jsx src",
     "dev": "webpack -w",
     "atool": "atool-build -w",
-    "build": "del-cli -f ./app/dist/ && cross-env NODE_ENV=\"production\" webpack",
+    "build": "del-cli -f ./app/build/ && cross-env NODE_ENV=\"production\" webpack",
     "changelog": "node ./changelog",
     "dev_old": "concurrently --prefix \"[{name}]\" --names \"webpack,electron\" -c \"bgBlue.bold,bgMagenta.bold\" --kill-others \"npm run web\" \"npm start\" ",
-    "postinstall": "cd app && npm i --registry=http://registry.npm.alibaba-inc.com && cd .. && npm run rebuild",
+    "postinstall": "cd app && npm i --registry=https://registry.npm.taobao.org",
     "pack": "build --dir",
-    "dist": "npm run build && build",
-    "electron-dist": "build",
-    "clean": "del-cli -f ./app/dist/",
+    "dist": "npm run build && build --mac",
+    "electron-dist": "build --mac",
+    "clean": "del-cli -f ./app/build/",
     "predist:win32_bak": "move ./app/assets/node ./",
-    "dist:win32": "npm run build && build --win --ia32",
-    "rebuild": "electron-rebuild -d=https://gh-contractor-zcbenz.cnpmjs.org/atom-shell/dist/ -m ./app"
+    "dist:win32": "npm run build && build --win --ia32"
   },
   "config": {
     "commitizen": {

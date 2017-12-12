@@ -1,5 +1,7 @@
 import { app, BrowserWindow, ipcMain as ipc } from 'electron';
 import { format } from 'url';
+import log from 'electron-log';
+
 import {
   WELCOME_WINDOW_WIDTH,
   WELCOME_WINDOW_HEIGHT,
@@ -35,7 +37,7 @@ exports.newWindow = (options, callback) => new Window(options, callback);
 exports.Window = Window;
 
 exports.newWelcomeWindow = function newWelcomeWindow() {
-  console.log('in new welcome window');
+  log.info('in new welcome window');
   return new Window({
     htmlHash: WELCOME_HASH,
     width: WELCOME_WINDOW_WIDTH,
@@ -61,6 +63,7 @@ exports.newProxyVorlonWindow = function newProxyVorlonWindow() {
   }, () => {
 
   });
+  // proxyVorlonWindow.webContents.openDevTools();
   return proxyVorlonWindow;
 };
 
@@ -138,7 +141,7 @@ class Window {
     });
 
     this.on('ready-to-show', () => {
-      console.log('in ready to show');
+      log.info('in ready to show');
       this.show();
       if (callback) callback();
     });

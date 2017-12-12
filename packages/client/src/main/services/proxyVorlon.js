@@ -5,13 +5,14 @@ import { addDispose } from './dispose';
 import * as anyproxyExtension from '../extensions/anyproxy';
 import * as vorlonExtension from '../extensions/vorlon';
 import homedir from 'homedir';
+import log from 'electron-log';
 
 let home = homedir();
 let bInitialize = false;
 let vorlonProcess = null;
 let anyproxyProcess = null;
 const bAnyproxyLogDisabled = false;
-const bVorlonLogDisabled = true;
+const bVorlonLogDisabled = false;
 
 export function startup() {
 
@@ -19,14 +20,15 @@ export function startup() {
     anyproxyProcess && anyproxyProcess.kill('SIGHUP');
     vorlonProcess && vorlonProcess.kill('SIGHUP');
   });
-
+  log.info('startup in service proxy vorlon');
   return new Promise((resolve, reject) => {
 
     if ( bInitialize ) {
+      log.info('startup in service bInitialize true');
       resolve();
       return;
     }
-
+    log.info('befor startup anyproxyExtension');
     anyproxyExtension.forkStartup({ home, bDisableLog: bAnyproxyLogDisabled }).then((p) => {
       anyproxyProcess = p;
 

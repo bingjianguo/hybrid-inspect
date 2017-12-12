@@ -5,7 +5,7 @@
   "author": [
     "bingjian.guo"
   ],
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "./build/main.js",
   "scripts": {
     "proxy": "anyproxy --rule lib/asset-rule.js,lib/agent-rule.js,lib/service-rule.js -i"

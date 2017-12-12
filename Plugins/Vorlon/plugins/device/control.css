@@ -1,0 +1,23 @@
+#device-information {
+  padding: 20px;
+}
+#device-information > table {
+  width: 100%;
+  margin: 20px 0 30px;
+}
+#device-information > table th,
+#device-information > table td {
+  padding: 5px 10px;
+  text-align: left;
+}
+#device-information > table td {
+  border-bottom: 1px solid #eee;
+}
+#device-information > table td:first-child {
+  width: 30%;
+}
+#device-information > table .header {
+  background: #f7f7f7;
+  border-bottom: 1px solid #ddd;
+  font-weight: 400;
+}

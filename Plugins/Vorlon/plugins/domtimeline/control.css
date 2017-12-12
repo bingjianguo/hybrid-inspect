@@ -1,0 +1,545 @@
+.plugin-domtimeline {
+  overflow-y: scroll;
+}
+
+.plugin-domtimeline * {
+  box-sizing: border-box;
+}
+
+.plugin-domtimeline *:focus {
+  outline: 2px solid #00b7c7;
+}
+
+details { display: block; font-weight: normal !important; }
+details > summary { font-weight: bold; cursor: pointer; }
+details:not([open]) > aside { display: none; }
+details:not([open]) > summary { display: block; }
+details:not([open]) > summary:focus + aside { display: block; }
+#if-css-supports ::-webkit-details-marker, details:not([open]) > aside { display: block; }
+#if-css-supports ::-moz-details-marker,    details:not([open]) > aside { display: block; }
+#if-css-supports ::-ms-details-marker,     details:not([open]) > aside { display: block; }
+#if-css-supports ::details-marker,         details:not([open]) > aside { display: block; }
+
+.plugin-domtimeline dl > dt { margin-top: 10px; font-weight: bold; }
+.plugin-domtimeline pre { font-family: 'Consolas', monospace; max-width: 100%; overflow-x: hidden; }
+.plugin-domtimeline pre:hover { overflow-x: auto; overflow-x: overlay; -ms-overflow-style: -ms-autohiding-scrollbar; }
+
+.plugin-domtimeline #dom-recorder {
+  margin: auto;
+  padding: 10px;
+  font-size: 16px;
+  position: relative;
+}
+
+#dom-recorder div[role="toolbar"] {
+  position: absolute; z-index: 1; height: 32px;
+  top: 0px; left: 0px; right: 0px; 
+  display: flex; flex-direction: row;
+  background: #f5f5f5; background-clip: padding-box; padding: 3px 10px;
+}
+
+#dom-recorder div[role="toolbar"] > div.tb-row {
+  display: flex; flex-direction: row;
+}
+
+#dom-recorder div[role="toolbar"] > div.tb-row > button {
+  -webkit-appearance: none; -moz-appearance: none; appearance: none;
+  font-family: Segoe 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 10px; padding: 4px 15px;
+  background: transparent; color: currentColor;
+  border: none; border-right: 1px solid silver; border-radius: 0px; 
+  vertical-align: middle; margin: 0px;
+}
+
+#dom-recorder > div[role="toolbar"] > div.tb-row > button:first-of-type {
+  font-weight: bold;
+}
+
+#dom-recorder > div[role="toolbar"] > div.tb-row > button:hover {
+  background: purple; color: white; border-right-color: transparent;
+}
+
+#dom-recorder > nav {
+  position: absolute; z-index: 1; 
+  top: calc(32px + 10px); left: 10px; right: 10px; height: 80px;
+  display: flex; flex-direction: row;
+  background: white; outline: 10px solid white;
+}
+#primary-button-wrapper {
+  width: 90px; text-align: left;
+}
+#timeline-wrapper {
+  flex: 1 1 0px; width: 0px; min-width: 0px;
+  position: relative;
+}
+#summary-wrapper {
+  width: 130px;
+  padding-left: 10px;
+}
+#actions-wrapper {
+  width: 250px;
+  text-align: right;
+}
+#dom-recorder > main {
+  margin-top: calc(32px + 80px + 10px + 10px);
+}
+
+.plugin-domtimeline #options {
+  margin-bottom: 20px;
+}
+
+.plugin-domtimeline #option-autorecord, #option-colorblind {
+  display: inline;
+}
+
+.plugin-domtimeline #option-autorecord {
+  float:left;
+}
+
+.plugin-domtimeline #option-colorblind {
+  float:right;
+}
+
+.plugin-domtimeline #dom-recorder[is-recording-started="false"] #pre-recording-mode {
+  display: flex !important;
+}
+.plugin-domtimeline  #dom-recorder[is-recording-started="true"] #recording-mode {
+  display: flex !important;
+}
+
+/*#is-recording-now-buttons, #is-recording-ended-buttons {
+  position: absolute;
+  top: 8px; right: 8px;
+  z-index: 10000;
+}*/
+
+.plugin-domtimeline #dom-recorder[is-recording-started="true"][is-recording-ended="true"] #is-recording-ended-buttons {
+  display: flex !important;
+}
+.plugin-domtimeline  #dom-recorder[is-recording-started="true"][is-recording-ended="false"] #is-recording-now-buttons {
+  display: flex !important;
+}
+
+.plugin-domtimeline #wrapper-timeline {
+  overflow-x: /*auto*/hidden;
+  overflow-y: hidden;
+  width: 100%;
+  position: relative;
+  padding-bottom: 10px;
+  margin-bottom: 0px;
+}
+
+.plugin-domtimeline #timeline {
+  cursor: crosshair;
+  height: 100px;
+  background-color: #FBFAF7;
+  background-image: url('/vorlon/plugins/domtimeline/images/rule.png');
+  background-repeat: repeat-x;
+  background-size: calc(6 * 61em / 16);
+  position: relative;
+  touch-action: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -moz-user-drag: none;
+  user-drag: none;
+}
+
+.plugin-domtimeline #dom-recorder[is-recording-playing="true"] #timeline,
+.plugin-domtimeline #dom-recorder[is-recording-playing="true"] #timeline * {
+  cursor: no-drop !important;
+  cursor: not-allowed !important;
+}
+
+.plugin-domtimeline .clear {
+  clear: both;
+  color: #75655E;
+}
+
+.plugin-domtimeline #node-changes {
+  position: relative;
+}
+
+.plugin-domtimeline #node-changes input {
+  position: absolute;
+  right: 0px;
+  top: 25px;
+  padding: 5px 8px;
+  border-radius: 5px;
+  border: 1px solid #EEE9E0;
+  outline: none;
+}
+
+.plugin-domtimeline #node-changes h1 {
+  font-family: 'Oswald';
+  text-transform: uppercase;
+  font-size: 22px;
+  font-weight: 500;
+  margin-top: 0px;
+  margin-bottom: 5px;
+  color: #000000;
+}
+
+.plugin-domtimeline ul.inline-changes {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  margin-bottom: 20px;
+  margin-left: 1px;
+  margin-top: 5px;
+}
+
+.plugin-domtimeline ul.inline-changes li {
+  /*display: inline;*/
+  margin-right: 5px;
+  font-size: 13px;
+}
+
+.plugin-domtimeline ul.inline-changes li:before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  position:relative;
+  margin-right: 5px;
+  display: inline-block;
+}
+
+.plugin-domtimeline .colorblind-off ul.inline-changes li.inline-changes-added:before {
+  background-color: #007C29;   
+}
+
+.plugin-domtimeline .colorblind-off ul.inline-changes li.inline-changes-removed:before {
+  background-color: #F2002D;   
+}
+
+.plugin-domtimeline .colorblind-off ul.inline-changes li.inline-changes-modified:before {
+  background-color: #223879;   
+}
+
+.plugin-domtimeline .colorblind-on ul.inline-changes li.inline-changes-added:before {
+  background-color: #555555;
+}
+
+.plugin-domtimeline .colorblind-on ul.inline-changes li.inline-changes-removed:before {
+  background-color: none;
+  border: 1px solid #555555;
+}
+
+.plugin-domtimeline .colorblind-on ul.inline-changes li.inline-changes-modified:before {
+  background-color: none;
+  border: 1px solid #555555;
+  background-image: url('/vorlon/plugins/domtimeline/images/blind.png');
+}
+
+.plugin-domtimeline 
+ul.accordion-changes {
+  /* height: 260px; */
+  padding: 0;
+  margin: 0;
+  /* border: 1px solid #E0E0E0; */
+  list-style-type: none;
+  /* overflow-y: scroll; */
+  overflow-x: hidden;
+}
+
+.plugin-domtimeline ul.accordion-changes li {
+  position: relative;
+  cursor: pointer;
+  padding: 6px 10px; 
+  font-weight: normal;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 9pt;
+  white-space: nowrap;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.plugin-domtimeline ul.accordion-changes li[data-id][is-cancelled="true"] {
+  text-decoration: line-through;
+  opacity: 0.40;
+}
+.plugin-domtimeline ul.accordion-changes li[data-id][is-cancelled="true"] + li.acc {
+  opacity: 0.40;
+}
+
+.plugin-domtimeline ul.accordion-changes li[data-id][is-outside-selection="true"] {
+  display: none !important;
+}
+.plugin-domtimeline ul.accordion-changes li[data-id][is-outside-selection="true"] + li.acc {
+  display: none !important;
+}
+
+.plugin-domtimeline ul.accordion-changes .td-name {
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 9pt;
+  white-space: nowrap;
+}
+
+.plugin-domtimeline ul.accordion-changes li.hide-change {
+  background: rgba(107, 45, 129, 0.58);
+  opacity: 0.7;
+}
+
+.plugin-domtimeline ul.accordion-changes li.hide-change::before {
+  visibility: hidden;
+}
+.plugin-domtimeline ul.accordion-changes li.hide-change > * {
+  visibility: hidden;
+}
+
+.plugin-domtimeline ul.accordion-changes li .fa-undo {
+  display: none;
+  cursor: pointer;
+  margin-right: 10px;
+  position: absolute; right: 30px; top: 9px;
+  background: white; outline: 5px solid white;
+}
+
+.plugin-domtimeline ul.accordion-changes li:hover .fa-undo{
+  display: inline;
+}
+
+.plugin-domtimeline ul.accordion-changes li[data-id]::before {
+  display: inline-block;
+  content: "";
+  width: 8px;
+  height: 15px;
+  margin-right: 13px;
+  transition: all linear 0.2s;
+  vertical-align: bottom;
+} 
+
+.plugin-domtimeline ul.accordion-changes li[data-id][data-are-details-visible="true"]::before {
+  -ms-transform: rotate(90deg); /* IE 9 */
+  -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+  transform: rotate(90deg);
+}
+
+.plugin-domtimeline .colorblind-off ul.accordion-changes li.accordion-changes-added[data-id]::before {
+  background-image: url('/vorlon/plugins/domtimeline/images/arrow-green.png');
+}
+
+.plugin-domtimeline .colorblind-off ul.accordion-changes li.accordion-changes-removed[data-id]::before {
+  background-image: url('/vorlon/plugins/domtimeline/images/arrow-red.png');
+}
+
+.plugin-domtimeline .colorblind-off ul.accordion-changes li.accordion-changes-modified[data-id]::before {
+  background-image: url('/vorlon/plugins/domtimeline/images/arrow-blue.png');
+}
+
+.plugin-domtimeline .colorblind-on ul.accordion-changes li.accordion-changes-added[data-id]::before {
+  background-image: url('/vorlon/plugins/domtimeline/images/arrow-green-b.png');
+}
+
+.plugin-domtimeline .colorblind-on ul.accordion-changes li.accordion-changes-removed[data-id]::before {
+  background-image: url('/vorlon/plugins/domtimeline/images/arrow-red-b.png');
+}
+
+.plugin-domtimeline .colorblind-on ul.accordion-changes li.accordion-changes-modified[data-id]::before {
+  background-image: url('/vorlon/plugins/domtimeline/images/arrow-blue-b.png');
+}
+
+.plugin-domtimeline ul.accordion-changes li[data-id][data-are-details-visible="true"] + li {
+  display: block !important;
+}
+
+.plugin-domtimeline 
+ul.accordion-changes li > span {
+  position: absolute; right: 5px; top: 7px;
+  background: white; outline: 5px solid white;
+}
+
+.plugin-domtimeline .seconds-list {
+  position: relative;
+  height: calc(22em / 16);
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.plugin-domtimeline .seconds-list span {
+  position: absolute;
+  display: inline-block;
+  width: calc(61em / 16);
+}
+
+.plugin-domtimeline #timeline div {
+  position: absolute;
+  bottom: 0px;
+  width: calc(10em / 16);
+  display: inline-block;
+}
+
+.plugin-domtimeline #timeline div span {
+  cursor: pointer;
+  float: left;
+  width: 100%;
+  display: inline-block;
+}
+
+.plugin-domtimeline .colorblind-off #timeline div span.added_h {
+  background-color: #007C29;
+}
+
+.plugin-domtimeline .colorblind-off #timeline div span.removed_h {
+  background-color: #F2002D;
+}
+
+.plugin-domtimeline .colorblind-off #timeline div span.modified_h {
+  background-color: #223879;
+}
+
+.plugin-domtimeline .colorblind-on #timeline div span.added_h {
+  background-color: #555555;
+}
+
+.plugin-domtimeline .colorblind-on #timeline div span.removed_h {
+  background-color: none;
+  border: 1px solid #555555;
+}
+
+.plugin-domtimeline .colorblind-on #timeline div span.modified_h {
+  background-color: none;
+  border: 1px solid #555555;
+  background-image: url('/vorlon/plugins/domtimeline/images/blind.png');
+}
+
+.plugin-domtimeline .acc {
+  display: none;
+  padding: 0px !important;
+  display: block;
+  overflow: hidden;
+  transition: all linear 0.3s;
+  border-bottom: none !important;
+}
+
+.plugin-domtimeline .acc table {
+  padding: 5px 0 5px 40px;
+  display: block;
+}
+
+.plugin-domtimeline .acc table .td-name {
+  margin-right: 15px;
+  padding-right: 20px;
+}
+
+.plugin-domtimeline .acc table code {
+  font-family: "Consolas", monospace;
+  font-size: 11px;
+  white-space: pre-line;
+}
+
+.plugin-domtimeline .lev {
+  background: transparent;
+  height: 100%;
+  position: relative;
+  left: 61px;
+  display: inline-block;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+  cursor: grab;
+  border: 1px solid #6B2D81;
+  z-index: 10;
+}
+
+.plugin-domtimeline .lev .drag-lev {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.plugin-domtimeline .lev .handle {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: col-resize;
+-webkit-touch-callout: none; /* iOS Safari */
+-webkit-user-select: none;   /* Chrome/Safari/Opera */
+-khtml-user-select: none;    /* Konqueror */
+-moz-user-select: none;      /* Firefox */
+-ms-user-select: none;       /* Internet Explorer/Edge */
+user-select: none;           /* Non-prefixed version, currently
+                              not supported by any browser */
+display: inline-block;
+background: url('/vorlon/plugins/domtimeline/images/lev.png');
+width: 14px;
+height: 19px;
+}
+
+.plugin-domtimeline .lev .lev1 {
+  left: -7px;
+}
+
+.plugin-domtimeline .lev .lev2 {
+  right: -7px;
+}
+
+.plugin-domtimeline #history-control {
+  margin-top: 20px;
+}
+
+.plugin-domtimeline button {
+  background: #D7CDBF;
+  padding: 5px 15px;
+  border-radius: 5px;
+  border: 1px solid #D7CDBF;
+  cursor: pointer;
+}
+
+.plugin-domtimeline button:hover {
+  background: purple;
+  color: white;
+}
+
+.plugin-domtimeline button:active:hover {
+  background: darkmagenta;
+  color: violet;
+}
+
+
+.plugin-domtimeline .ui-selectable-helper {
+  background: #482045;
+  opacity: 0.5;
+}
+
+.plugin-domtimeline #offsetW {
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute !important;
+  top: 0px !important;
+  left: 0px !important;
+  z-index: 555;
+  display: none;
+}
+
+.plugin-domtimeline #filter-changes {
+  margin-bottom: 20px;
+  display:none;
+}
+
+.plugin-domtimeline #filter-changes input {
+  width: 40px;
+  margin-right: 3px;
+}
+
+.plugin-domtimeline #filter-changes a {
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+/* SETTINGS */
+.plugin-domtimeline #dom-recorder[is-settings-pane-open="true"] > #settings {
+  display: block !important;
+}
+
+.plugin-domtimeline #dom-recorder[is-settings-pane-open="true"] > * {
+  display: none;
+}
+
+.plugin-domtimeline #settings #are-breakpoints-enabled:not(:checked) ~ #breakpoints-code {
+  display: none !important
+}
+
+.plugin-domtimeline #settings p { margin-bottom: 5px }
+.plugin-domtimeline #settings pre { margin: 3px 0px; border: 1px dashed silver; background: #eee; padding: 2px; }
+
+

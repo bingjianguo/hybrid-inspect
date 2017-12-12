@@ -1,0 +1,36 @@
+.plugin-unittest input[type="file"] {
+  padding: 2px;
+}
+.plugin-unittest #dropPanel {
+  padding: 20px;
+}
+.plugin-unittest #dropPanel .droppable {
+  background-color: #f7f7f7;
+}
+.plugin-unittest #dropPanel .droppable textarea {
+  background-color: #f7f7f7;
+}
+.plugin-unittest #dropPanel textarea {
+  width: 100%;
+  height: 120px;
+}
+.plugin-unittest .test-results-panel {
+  padding: 20px;
+}
+.plugin-unittest .test-results-panel .test-results-list {
+  width: 100%;
+  margin: 20px 0 30px;
+}
+.plugin-unittest .test-results-panel .test-results-list th,
+.plugin-unittest .test-results-panel .test-results-list td {
+  padding: 5px 10px;
+  text-align: left;
+}
+.plugin-unittest .test-results-panel .test-results-list th {
+  background: #f7f7f7;
+  border-bottom: 1px solid #ddd;
+  font-weight: 400;
+}
+.plugin-unittest .test-results-panel .test-results-list td {
+  border-bottom: 1px solid #eee;
+}

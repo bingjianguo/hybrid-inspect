@@ -2,3 +2,4 @@ lerna-debug.log
 .idea
 npm-debug.log
 *.log
+.DS_Store

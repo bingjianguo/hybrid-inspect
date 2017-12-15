@@ -8,7 +8,7 @@ hybrid-inspect是建立在anyproxy基础上的，web调试工具，采用lerna�
     + 基于[VorlonJS](https://github.com/MicrosoftDX/Vorlonjs)项目并进行深度定制，并且在界面及交互方便进行重构
 
 ### demo
-![Demo-gif](https://gw.alipayobjects.com/zos/rmsportal/qnAfZZFnWoRwZiYQNZyN.png)
+![Demo](https://gw.alipayobjects.com/zos/rmsportal/zkWPQcyMBtqdlmttqtIr.png)
 
 [Demo-gif](https://gw.alipayobjects.com/zos/rmsportal/GhEAXLDnVnCebubyCEHl.gif)
 

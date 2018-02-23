@@ -2,8 +2,8 @@
 /**
  * Created by bingjian on 2017/3/23.
  */
-const { certMgr } = require('anyproxy').utils;
-const certManager = certMgr;
+const EasyCert = require('node-easy-cert');
+const path = require('path');
 const util = require('util');
 const homedir = require('homedir');
 const servercontext = require("../Server/config/vorlon.servercontext");
@@ -12,7 +12,18 @@ const vorlonDashboard = require("../Server/Scripts/vorlon.dashboard");
 const vorlonWebserver = require("../Server/Scripts/vorlon.webServer");
 const vorlonHttpProxy = require("../Server/Scripts/vorlon.httpproxy.server");
 const winstonLogger = require("../Server/Scripts/vorlon.winstonlogger");
+const options = {
+  rootDirPath: path.join(getUserHome(), '/.anyproxy/certificates'),
+  defaultCertAttrs: [
+    { name: 'countryName', value: 'CN' },
+    { name: 'organizationName', value: 'AnyProxy' },
+    { shortName: 'ST', value: 'SH' },
+    { shortName: 'OU', value: 'AnyProxy SSL Proxy' }
+  ]
+};
 
+const certManager = new EasyCert(options);
+const HOST = getIPAddress();
 const PORT = 5680;
 const home = homedir();
 
@@ -36,6 +47,11 @@ function getIPAddress(){
   return '127.0.0.1';
 }
 
+// 获取用户根目录
+function getUserHome() {
+  return process.env.HOME || process.env.USERPROFILE;
+}
+
 /**
  * 启动入口
  * @param home
@@ -43,13 +59,12 @@ function getIPAddress(){
  */
 const startup = (home) => {
 
-  const host = getIPAddress();
   let outerResolve = null;
-  certManager.getCertificate(host,  (error, keyContent, crtContent)  => {
+  certManager.getCertificate(HOST,  (error, keyContent, crtContent)  => {
     process.env.HOME = home;
     process.env.PORT= PORT;
-    process.env.HOST= host;
-    process.env.PROXY_HOST= host;
+    process.env.HOST = HOST;
+    process.env.PROXY_HOST= HOST;
     process.env.SSLkey= keyContent;
     process.env.SSLcert= crtContent;
 
@@ -76,12 +91,12 @@ const startup = (home) => {
       var serverProxy = new vorlonHttpProxy.VORLON.HttpProxy(context, true);
       serverProxy.start();
     }
-
   });
-
 };
-
 
 startup(home);
 
-
+module.exports.serverInfo = {
+  host: HOST,
+  port: PORT
+}

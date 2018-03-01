@@ -3,9 +3,8 @@
 /**
  * Created by bingjian on 2017/3/23.
  */
-var certMgr = require('anyproxy').utils.certMgr;
-
-var certManager = certMgr;
+var EasyCert = require('node-easy-cert');
+var path = require('path');
 var util = require('util');
 var homedir = require('homedir');
 var servercontext = require("../Server/config/vorlon.servercontext");
@@ -14,7 +13,13 @@ var vorlonDashboard = require("../Server/Scripts/vorlon.dashboard");
 var vorlonWebserver = require("../Server/Scripts/vorlon.webServer");
 var vorlonHttpProxy = require("../Server/Scripts/vorlon.httpproxy.server");
 var winstonLogger = require("../Server/Scripts/vorlon.winstonlogger");
+var options = {
+  rootDirPath: path.join(getUserHome(), '/.anyproxy/certificates'),
+  defaultCertAttrs: [{ name: 'countryName', value: 'CN' }, { name: 'organizationName', value: 'AnyProxy' }, { shortName: 'ST', value: 'SH' }, { shortName: 'OU', value: 'AnyProxy SSL Proxy' }]
+};
 
+var certManager = new EasyCert(options);
+var HOST = getIPAddress();
 var PORT = 5680;
 var home = homedir();
 
@@ -38,6 +43,11 @@ function getIPAddress() {
   return '127.0.0.1';
 }
 
+// 获取用户根目录
+function getUserHome() {
+  return process.env.HOME || process.env.USERPROFILE;
+}
+
 /**
  * 启动入口
  * @param home
@@ -45,13 +55,12 @@ function getIPAddress() {
  */
 var startup = function startup(home) {
 
-  var host = getIPAddress();
   var outerResolve = null;
-  certManager.getCertificate(host, function (error, keyContent, crtContent) {
+  certManager.getCertificate(HOST, function (error, keyContent, crtContent) {
     process.env.HOME = home;
     process.env.PORT = PORT;
-    process.env.HOST = host;
-    process.env.PROXY_HOST = host;
+    process.env.HOST = HOST;
+    process.env.PROXY_HOST = HOST;
     process.env.SSLkey = keyContent;
     process.env.SSLcert = crtContent;
 
@@ -80,3 +89,8 @@ var startup = function startup(home) {
 };
 
 startup(home);
+
+module.exports.serverInfo = {
+  host: HOST,
+  port: PORT
+};

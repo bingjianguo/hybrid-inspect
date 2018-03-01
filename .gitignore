@@ -3,3 +3,5 @@ lerna-debug.log
 npm-debug.log
 *.log
 .DS_Store
+package-lock.json
+.vscode/

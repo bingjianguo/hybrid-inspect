@@ -1,6 +1,6 @@
 {
   "name": "hybrid-inspect",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "vorlon implement by bingjian",
   "main": "Server/server.js",
   "dependencies": {
@@ -73,8 +73,8 @@
     "typescript": "^1.8.10"
   },
   "scripts": {
-    "atool-plugin": "atool-build --no-compress --config ./Plugins/webpack.config.js -o ./Plugins/release",
-    "dev": "concurrently --names \"gulp,npm\" --kill-others \"gulp watch\" \"atool-build -w --no-compress --config ./Plugins/webpack.config.js -o ./Plugins/release\" ",
+    "atool-plugin": "atool-build --no-compress --config ./Plugins/webpack.config.js -o ./dist/plugins",
+    "dev": "concurrently --names \"gulp,npm\" --kill-others \"gulp watch\" \"atool-build -w --no-compress --config ./Plugins/webpack.config.js -o ./dist/plugins\" ",
     "global-deploy-gulp": "npm install -g gulp",
     "global-deploy-gulp-cli": "npm install -g gulp-cli",
     "build-all": "gulp --gulpfile=./gulpfile.js",

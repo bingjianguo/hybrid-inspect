@@ -74,31 +74,31 @@ gulp.task('atool-plugin', shell.task([
 
 gulp.task('scripts-noplugin-plugins-pre', ['typescript-to-js-plugins'], function() {
   return gulp.src([
-    'Plugins/release/entry/*'
-  ]).pipe(gulp.dest('Plugins/release/'));
+    'dist/plugins/entry/*'
+  ]).pipe(gulp.dest('dist/plugins/'));
 })
 
 gulp.task('scripts-noplugin-plugins', ['scripts-noplugin-plugins-pre'], function() {
 
   return gulp.src([
-    'Plugins/release/entry/*.js'
+    'dist/plugins/entry/*.js'
   ])
     .pipe(rename(function (path) {
         path.extname = ".min.js";
       })
     )
     .pipe(uglify())
-    .pipe(gulp.dest('Plugins/release/'));
+    .pipe(gulp.dest('dist/plugins/'));
 });
 
 
 gulp.task('concat-webstandards-rules-plugins', ['typescript-to-js-plugins'], function () {
   return gulp.src([
-      './Plugins/release/**/webstandards/rules/*.js',
-      './Plugins/release/**/webstandards/vorlon.webstandards.client.js'
+      './dist/plugins/**/webstandards/rules/*.js',
+      './dist/plugins/**/webstandards/vorlon.webstandards.client.js'
     ])
     .pipe(concat('vorlon.webstandards.client.js'))
-    .pipe(gulp.dest('Plugins/release/plugins/webstandards/'));
+    .pipe(gulp.dest('dist/plugins/plugins/webstandards/'));
 });
 
 /**
@@ -140,7 +140,7 @@ function () {
 gulp.task('copy-plugins', function () {
 
   return gulp.src([
-    'Plugins/release/*',
+    'dist/plugins/*',
   ])
     .pipe(gulp.dest('./Server/public/vorlon'));
 
@@ -154,7 +154,7 @@ gulp.task('copyPlugins-plugins', function () {
     'Plugins/Vorlon/plugins/**/*.html',
     'Plugins/Vorlon/plugins/**/*.png',
     'Plugins/Vorlon/plugins/**/*.PNG',
-    'Plugins/release/plugins/**/*.js'
+    'dist/plugins/plugins/**/*.js'
   ])
     .pipe(gulp.dest('./Server/public/vorlon/plugins'));
 
@@ -162,7 +162,7 @@ gulp.task('copyPlugins-plugins', function () {
 
 gulp.task('copyDTS-plugins', function () {
 
-  return  gulp.src(['Plugins/release/*.d.ts'])
+  return  gulp.src(['dist/plugins/*.d.ts'])
     .pipe(gulp.dest('./Server/Scripts/typings/Vorlon'));
 
 });
@@ -272,7 +272,7 @@ gulp.task('watch-server', function() {
 
 gulp.task('watch-entry', function() {
   return  gulp.src([
-    'Plugins/release/entry/*'
+    'dist/plugins/entry/*'
   ])
     .pipe(gulp.dest('./Server/public/vorlon'));
 });
@@ -293,7 +293,7 @@ gulp.task('watch-copy', function() {
     'Plugins/Vorlon/plugins/**/*.png',
     'Plugins/Vorlon/plugins/**/*.PNG',
     '!Plugins/Vorlon/plugins/**/components/*',
-    'Plugins/release/plugins/**/*'
+    'dist/plugins/plugins/**/*'
   ]).pipe(gulpif((file) => {
     const reg = new RegExp(plugins.join('|'));
     return reg.test(file.path);
@@ -312,8 +312,8 @@ gulp.task('watch', ['watch-server', 'watch-allplugins'], function() {
     'Plugins/Vorlon/plugins/**/*.html',
     'Plugins/Vorlon/plugins/**/*.png',
     'Plugins/Vorlon/plugins/**/*.PNG',
-    'Plugins/release/plugins/**/*',
-    'Plugins/release/entry/*'
+    'dist/plugins/plugins/**/*',
+    'dist/plugins/entry/*'
     ], ['watch-allplugins']
   );
 });

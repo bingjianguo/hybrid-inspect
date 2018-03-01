@@ -1,5 +1,5 @@
 # 补充说明
-移除未使用的plugin列表内容
+移除未使用的plugin列表内容，以下插件生效的目录是 /inspecter/Plugins/Vorlon
 
 ···
     {

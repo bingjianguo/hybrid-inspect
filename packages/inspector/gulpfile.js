@@ -14,6 +14,7 @@ var gulp = require('gulp'),
   plumber = require('gulp-plumber'),
   shell = require('gulp-shell');
 var gulpif = require('gulp-if');
+var runSequence = require('run-sequence');
 var serverConfig = require('./Server/config.json');
 
 const pluginObjects = serverConfig.plugins.filter((item) => {
@@ -301,8 +302,8 @@ gulp.task('watch-copy', function() {
 
 });
 
-gulp.task('watch-allplugins',  function () {
-  return gulp.start('watch-less','watch-entry','watch-copy');
+gulp.task('watch-allplugins',  function (callback) {
+  runSequence('watch-less','watch-entry','watch-copy', callback);
 });
 
 gulp.task('watch', ['watch-server', 'watch-allplugins'], function() {

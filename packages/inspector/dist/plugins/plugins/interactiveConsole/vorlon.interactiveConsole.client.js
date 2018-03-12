@@ -78,13 +78,17 @@
 	            return null;
 	        }
 	        var objProperties = (0, _getOwnPropertyNames2.default)(obj);
+	        if ((typeof obj === "undefined" ? "undefined" : (0, _typeof3.default)(obj)) == 'object' || objProperties.length <= 0) {
+	            return null;
+	        }
 	        var proto = (0, _getPrototypeOf2.default)(obj);
 	        var res = {
 	            functions: [],
 	            properties: [] };
 
-	        if (proto && proto != this._objPrototype)
-	        res.proto = this.inspect(proto, context, deepness + 1);
+	        if (proto && proto != this._objPrototype) {
+	            res.proto = this.inspect(proto, context, deepness + 1);
+	        }
 	        for (var i = 0, l = objProperties.length; i < l; i++) {
 	            var p = objProperties[i];
 	            var propertyType = "";

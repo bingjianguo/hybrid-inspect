@@ -1,0 +1,40 @@
+{
+  "name": "injector",
+  "version": "0.0.1",
+  "description": "anyproxy rules for cli",
+  "main": "index.js",
+  "keywords": [
+    "anyproxy",
+    "rules"
+  ],
+  "author": "bingjian.guo@gmail.com",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "anyproxy": "http://p.tb.cn/rmsportal_6195_anyproxy-4.0.0-beta15.tgz",
+    "cheerio": "^1.0.0-rc.2",
+    "fs-extra": "^5.0.0",
+    "homedir": "^0.6.0",
+    "jschardet": "^1.6.0",
+    "mongoose": "^4.13.11",
+    "request": "^2.83.0"
+  },
+  "scripts": {
+    "start:all": "anyproxy --rule src/asset-rule.js,src/agent-rule.js,src/service-rule.js -i",
+    "start": "anyproxy --rule src/asset-rule.js,src/agent-rule.js -i",
+    "dev": "anyproxy -i"
+  },
+
+  "anyproxy": {
+    "assets": {
+      "sourceRegString": "/industryprod/(mbillexprod|eindustrycenter)/\\d+(\\.\\d+){2}",
+      "destUrlPath": "http://127.0.0.1:8000/",
+      "enable": true
+    },
+    "mock": {
+      "serverAddress": "http://anymock.dockerlab.alipay.net",
+      "scene": "",
+      "enable": true
+    }
+  }
+}

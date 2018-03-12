@@ -45,7 +45,8 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 	"use strict";var _classCallCheck2 = __webpack_require__(6);var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);var _possibleConstructorReturn2 = __webpack_require__(13);var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);var _inherits2 = __webpack_require__(12);var _inherits3 = _interopRequireDefault(_inherits2);var _ClientCommands = __webpack_require__(255);var _ClientCommands2 = _interopRequireDefault(_ClientCommands);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _VORLON =
-	VORLON,Core = _VORLON.Core,ClientPlugin = _VORLON.ClientPlugin,PackagedNode = _VORLON.PackagedNode;var
+	VORLON,Core = _VORLON.Core,ClientPlugin = _VORLON.ClientPlugin,PackagedNode = _VORLON.PackagedNode;
+	debugger;var
 	DOMExplorerClient = function (_ClientPlugin) {(0, _inherits3.default)(DOMExplorerClient, _ClientPlugin);
 	    function DOMExplorerClient() {(0, _classCallCheck3.default)(this, DOMExplorerClient);var _this = (0, _possibleConstructorReturn3.default)(this,
 	        _ClientPlugin.call(this, "domExplorer"));

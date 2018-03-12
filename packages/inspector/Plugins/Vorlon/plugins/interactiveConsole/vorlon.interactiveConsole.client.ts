@@ -38,14 +38,19 @@ class InteractiveConsoleClient extends ClientPlugin {
     }
 
     var objProperties = Object.getOwnPropertyNames(obj);
+    if (typeof obj == 'object' || objProperties.length<=0) {
+      return null;
+    }
     var proto = Object.getPrototypeOf(obj);
     var res = <ObjectDescriptor>{
       functions: [],
       properties: []
     };
 
-    if (proto && proto != this._objPrototype)
+    if (proto && proto != this._objPrototype) {
       res.proto = this.inspect(proto, context, deepness + 1);
+    }
+      
 
     for (var i = 0, l = objProperties.length; i < l; i++) {
       var p = objProperties[i];
@@ -63,6 +68,7 @@ class InteractiveConsoleClient extends ClientPlugin {
         } else if (propertyType === 'null') {
           res.properties.push({ name: p, val: null });
         } else if (propertyType === 'object') {
+        
           if (deepness > 5) {
             res.properties.push({ name: p, val: "Vorlon cannot inspect deeper, try inspecting the proper object directly" });
           } else {

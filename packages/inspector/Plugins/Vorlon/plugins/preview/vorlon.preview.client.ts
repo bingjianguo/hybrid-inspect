@@ -84,13 +84,12 @@ export class PreviewClient extends ClientPlugin {
     
         const node = document.body; // document.getElementById('header'); 
 
-        html2canvas(node,{
-            useCORS: true,
-            // allowTaint:true,
-            onrendered: () => {
-
-            },
-          }).then((canvas) => {
+        // {
+        //  useCORS: true,
+        //   allowTaint:true,
+        // }
+        // dd
+        html2canvas(node).then((canvas) => {
             canvas.id="mycanvas";
             // document.body.appendChild(canvas);
             //生成base64图片数据

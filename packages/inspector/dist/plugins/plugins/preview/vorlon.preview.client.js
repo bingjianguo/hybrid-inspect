@@ -114,12 +114,12 @@
 	            //     }
 	            // }
 	            var node = document.body; // document.getElementById('header'); 
-	            html2canvas(node, {
-	                useCORS: true,
-	                // allowTaint:true,
-	                onrendered: function onrendered() {
-	                } }).
-	            then(function (canvas) {
+	            // {
+	            //  useCORS: true,
+	            //   allowTaint:true,
+	            // }
+	            // dd
+	            html2canvas(node).then(function (canvas) {
 	                canvas.id = "mycanvas";
 	                // document.body.appendChild(canvas);
 	                //生成base64图片数据

@@ -163,7 +163,7 @@ exports.init = init;
 var _windowsManager = __webpack_require__(12);
 
 function init() {
-  (0, _windowsManager.newProxyVorlonWindow)();
+  (0, _windowsManager.newWelcomeWindow)();
 }
 
 /***/ }),
@@ -479,6 +479,10 @@ var _proxyVorlon = __webpack_require__(6);
 
 var proxyVorlon = _interopRequireWildcard(_proxyVorlon);
 
+var _windowsManager = __webpack_require__(12);
+
+var windowsManager = _interopRequireWildcard(_windowsManager);
+
 var _localip = __webpack_require__(5);
 
 var localip = _interopRequireWildcard(_localip);
@@ -515,10 +519,14 @@ _electron.app.on('ready', function () {
   // extension.registerExtensions();
 
   // 加载 devtools extension
-  if (_electronIsDev2.default) {
-    _electron.BrowserWindow.addDevToolsExtension((0, _path.join)(__dirname, '../../extensions/redux-devtools/2.11.1_0'));
-    _electron.BrowserWindow.addDevToolsExtension((0, _path.join)(__dirname, '../../extensions/react-developer-tools/0.15.4_0'));
-  }
+  // if (isDev) {
+  //   BrowserWindow.addDevToolsExtension(
+  //     join($dirname, '../../extensions/redux-devtools/2.11.1_0'),
+  //   );
+  //   BrowserWindow.addDevToolsExtension(
+  //     join($dirname, '../../extensions/react-developer-tools/0.15.4_0'),
+  //   );
+  // }
 });
 
 // 放一个空绑定，保证无窗口时程序不会退出
@@ -539,7 +547,8 @@ _electron.app.commandLine.appendSwitch('--ignore-certificate-errors');
 global.services = {
   proxyVorlon: proxyVorlon,
   application: application,
-  localip: localip
+  localip: localip,
+  windowsManager: windowsManager
 };
 
 global.configs = {};
@@ -616,7 +625,7 @@ exports.newWelcomeWindow = function newWelcomeWindow() {
       webSecurity: false
     }
   }, function () {
-    checkLatest(false);
+    // checkLatest(false);
   });
 };
 
@@ -724,17 +733,8 @@ var Window = (_temp = _class = function Window(options, callback) {
   this.disposeFn = [];
   this.selfClosed = true;
 
-  if (this.type === _constants.PROJECT_HASH) {
-    if (singleton && manager.singleton) {
-      manager.current.close(function () {
-        manager.current = _this;
-        if (singleton && _this.type === _constants.PROJECT_HASH) manager.singleton = _this;
-      });
-    }
-    manager.windows[this.id] = this;
-  }
   if (this.type === _constants.WELCOME_HASH) manager.welcome = this;
-  if (this.type === _constants.PROJECT_CREATE_HASH) manager.projectCreate = this;
+  if (this.type === _constants.PROXYVORLON_HASH) manager.proxyVorlon = this;
 
   this.browserWindow.loadURL(url);
 }, _initialiseProps = function _initialiseProps() {
@@ -797,6 +797,7 @@ var Window = (_temp = _class = function Window(options, callback) {
 
   this.handleEvent = function () {
     _this2.browserWindow.on('close', function (event) {
+      _electronLog2.default.info('close window');
       try {
         _this2.dispose();
       } catch (error) {
@@ -807,9 +808,9 @@ var Window = (_temp = _class = function Window(options, callback) {
 
     _this2.on('closed', function () {
       if (global.appIsReadyToQuit) return;
-      if (_this2.type === _constants.PROJECT_CREATE_HASH) manager.projectCreate = null;
+      if (_this2.type === _constants.PROXYVORLON_HASH) manager.proxyVorlon = null;
       if (_this2.type === _constants.WELCOME_HASH) manager.welcome = null;
-      if (_this2.type === _constants.PROJECT_HASH) delete manager.windows[_this2.id];
+
       if (singleton) {
         manager.current = null;
       } else {

@@ -4,7 +4,6 @@
 import React from 'react';
 import { Router, Route } from 'dva/router';
 import Welcome from '../routes/Welcome';
-import BugMe from '../routes/BugMe';
 import ProxyVorlon from '../routes/ProxyVorlon';
 
 
@@ -13,7 +12,6 @@ function RouterConfig({ history }) {
     <Router history={history}>
       <Route path="/welcome" component={Welcome} />
       <Route path="/proxyvorlon" component={ProxyVorlon} />
-      <Route path="/bugme" component={BugMe} />
     </Router>
   );
 }

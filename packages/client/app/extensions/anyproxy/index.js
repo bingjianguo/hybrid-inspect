@@ -7,8 +7,8 @@ const { getIPAddress } = require('../common');
 
 const cwd = join(__dirname, '..', '..');
 
-const anyproxyCommand = join(cwd, 'node_modules', 'anyproxy', 'bin', 'anyproxy');
-const anyproxycaCommand = join(cwd, 'node_modules', 'anyproxy', 'bin', 'anyproxy-ca');
+const anyproxyCommand = require.resolve('anyproxy-rules/node_modules/anyproxy/bin/anyproxy');
+const anyproxycaCommand = require.resolve('anyproxy-rules/node_modules/anyproxy/bin/anyproxy-ca');
 
 module.exports = {
   forkStartup: ({ home, bDisableLog }) => {
@@ -17,9 +17,13 @@ module.exports = {
     log.info('anyproxy extension forkstartup');
     const forkAnyproxyProcess = () => {
       log.info(`anyproxy command=${anyproxyCommand}`);
+      const injectRulePath = require.resolve('anyproxy-rules/src/inject-rule.js');
+      const assetRulePath = require.resolve('anyproxy-rules/src/asset-rule.js');
+      const agentRulePath = require.resolve('anyproxy-rules/src/agent-rule.js');
+
       const anyproxyProcess = fork(anyproxyCommand, [
         '--rule',
-        'extensions/anyproxy/inject-rule.js',
+        `${injectRulePath},${assetRulePath},${agentRulePath}`
         //'-i'
       ],{
         silent: true,

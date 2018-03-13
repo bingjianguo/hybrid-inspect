@@ -3,13 +3,16 @@
  */
 import React from 'react';
 import { connect } from 'dva';
-import Welcome from '../components/Welcome/Welcome';
-import Login from '../components/Login/Login';
+import Welcome from '../components/Welcome';
+import IndexLayout from '../components/Layout/IndexLayout';
 
-function WelcomeRouter({ userInfo = {} }) {
-  return userInfo.userId ?
-    <Welcome /> :
-    <Login />;
+function WelcomeRouter() {
+  return (
+    <IndexLayout>
+      <Welcome />
+    </IndexLayout>
+    
+  )
 }
 
 function mapStateToProps(state) {

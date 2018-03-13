@@ -1,15 +1,14 @@
 import React from 'react';
 import { connect } from 'dva';
 import ProxyVorlon from '../components/ProxyVorlon/Index';
-import TitleBar from '../components/TitleBar';
+import IndexLayout from '../components/Layout/IndexLayout';
 
 
 function ProxyVorlonRouter() {
   return (
-    <div>
-      <TitleBar>{'ProxyVorlon-桌面代理调试工具'}</TitleBar>
+    <IndexLayout>
       <ProxyVorlon />
-    </div>
+    </IndexLayout>
   );
 }
 

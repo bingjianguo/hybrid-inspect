@@ -4,6 +4,7 @@ import { join } from 'path';
 import log from 'electron-log';
 import * as application from './services/application';
 import * as proxyVorlon from './services/proxyVorlon';
+import * as windowsManager from './services/windowsManager';
 import * as localip from './services/localip';
 import { clearAll } from './services/dispose';
 import { autoCheckUpdate } from './updater';
@@ -27,7 +28,7 @@ if ( !isDev ) {
 
 // 初始化
 app.on('ready', () => {
-  log.info('(index) app ready');
+  log.info('(index) app ready  dddd');
   // menu.init();
   application.init();
 
@@ -35,14 +36,20 @@ app.on('ready', () => {
   // extension.registerExtensions();
 
   // 加载 devtools extension
-  if (isDev) {
-    BrowserWindow.addDevToolsExtension(
-      join($dirname, '../../extensions/redux-devtools/2.11.1_0'),
-    );
-    BrowserWindow.addDevToolsExtension(
-      join($dirname, '../../extensions/react-developer-tools/0.15.4_0'),
-    );
-  }
+  BrowserWindow.addDevToolsExtension(
+    join($dirname, '../../extensions/canvasdefender'),
+  );
+
+  const extensions = BrowserWindow.getExtensions();
+  log.info('shit');
+  // if (isDev) {
+  //   BrowserWindow.addDevToolsExtension(
+  //     join($dirname, '../../extensions/redux-devtools/2.11.1_0'),
+  //   );
+  //   BrowserWindow.addDevToolsExtension(
+  //     join($dirname, '../../extensions/react-developer-tools/0.15.4_0'),
+  //   );
+  // }
 });
 
 // 放一个空绑定，保证无窗口时程序不会退出
@@ -64,6 +71,7 @@ global.services = {
   proxyVorlon,
   application,
   localip,
+  windowsManager
 };
 
 global.configs = {

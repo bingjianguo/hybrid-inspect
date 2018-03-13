@@ -9,7 +9,7 @@
     "proxy": "anyproxy --rule lib/asset-rule.js,lib/agent-rule.js,lib/service-rule.js -i"
   },
   "dependencies": {
-    "anyproxy": "beta",
+    "anyproxy-rules": "0.0.1",
     "async-task-mgr": "^1.1.0",
     "babel-runtime": "^6.11.6",
     "cheerio": "^1.0.0-rc.2",

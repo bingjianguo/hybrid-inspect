@@ -1,5 +1,5 @@
-import { newProxyVorlonWindow } from './windowsManager';
+import { newProxyVorlonWindow, newWelcomeWindow } from './windowsManager';
 
 export function init() {
-  newProxyVorlonWindow();
+  newWelcomeWindow();
 }

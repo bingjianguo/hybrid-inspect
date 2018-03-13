@@ -25,7 +25,6 @@
     "start": "anyproxy --rule src/asset-rule.js,src/agent-rule.js -i",
     "dev": "anyproxy -i"
   },
-
   "anyproxy": {
     "assets": {
       "sourceRegString": "/industryprod/(mbillexprod|eindustrycenter)/\\d+(\\.\\d+){2}",

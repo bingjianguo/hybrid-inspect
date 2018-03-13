@@ -47,7 +47,7 @@ exports.newWelcomeWindow = function newWelcomeWindow() {
       webSecurity: false,
     }
   }, () => {
-    checkLatest(false);
+    // checkLatest(false);
   });
 };
 
@@ -153,17 +153,8 @@ class Window {
     this.disposeFn = [];
     this.selfClosed = true;
 
-    if (this.type === PROJECT_HASH) {
-      if (singleton && manager.singleton) {
-        manager.current.close(() => {
-          manager.current = this;
-          if (singleton && this.type === PROJECT_HASH) manager.singleton = this;
-        });
-      }
-      manager.windows[this.id] = this;
-    }
     if (this.type === WELCOME_HASH) manager.welcome = this;
-    if (this.type === PROJECT_CREATE_HASH) manager.projectCreate = this;
+    if (this.type === PROXYVORLON_HASH) manager.proxyVorlon = this;
 
     this.browserWindow.loadURL(url);
   }
@@ -207,6 +198,7 @@ class Window {
 
   handleEvent = () => {
     this.browserWindow.on('close', (event) => {
+      log.info('close window');
       try {
         this.dispose();
       } catch (error) {
@@ -217,9 +209,9 @@ class Window {
 
     this.on('closed', () => {
       if (global.appIsReadyToQuit) return;
-      if (this.type === PROJECT_CREATE_HASH) manager.projectCreate = null;
+      if (this.type === PROXYVORLON_HASH) manager.proxyVorlon = null;
       if (this.type === WELCOME_HASH) manager.welcome = null;
-      if (this.type === PROJECT_HASH) delete manager.windows[this.id];
+      
       if (singleton) {
         manager.current = null;
       } else {

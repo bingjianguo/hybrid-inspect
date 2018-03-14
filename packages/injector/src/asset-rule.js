@@ -50,9 +50,6 @@ module.exports = {
           targetReg 
         }, urlObj);
   
-        if (targetReg.test(url)) {
-          console.log(ret);
-        }
         return ret;
       }
     } catch (err) {

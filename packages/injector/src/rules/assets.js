@@ -16,7 +16,7 @@ exports.getAssetRequest = function getAssetRequest( { requestDetail, targetReg }
   newRequestOptions.port = port;
 
   const pathArray = path.split(targetReg);
-  console.log(pathArray);
+
   if (pathArray && pathArray.length>2) {
     let lastPath = pathArray[pathArray.length-1];
     newRequestOptions.path = lastPath;

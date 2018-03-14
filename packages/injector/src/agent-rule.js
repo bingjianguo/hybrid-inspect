@@ -55,6 +55,7 @@ module.exports = {
       const bEnableDb = false;
       const bEnableRemoteService = true;
       const bEnableFile = false;
+   
       if ( bEnableRemoteService ) {
         const { requestData } = requestDetail;
         const { query } = URL.parse(url, true);
@@ -63,6 +64,7 @@ module.exports = {
         parameters = Object.assign({}, parameters, query);
         return new Promise((resolve) => {
           loadResponseFromRemoteService({ url, parameters }, responseDetail.response).then((response) => {
+
             if (!response) {
               // 如果后台系统中没有该请求的访问记录，那么将线上数据保存到服务端
               // 有bug，暂时注释掉

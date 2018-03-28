@@ -29,7 +29,6 @@ const {
 } = require('./rules/data');
 const rootPath = path.join(homedir(), '.anyproxy', '.proxy');
 ensureDir(rootPath);
-
 module.exports = {
   summary: 'agent rule',
   /**
@@ -62,19 +61,21 @@ module.exports = {
         let parameters = {};
         parameters = parse(requestData.toString());
         parameters = Object.assign({}, parameters, query);
-        return new Promise((resolve) => {
-          loadResponseFromRemoteService({ url, parameters }, responseDetail.response).then((response) => {
 
+        // 如果后台系统中没有该请求的访问记录，那么将线上数据保存到服务端
+        // 将所有的请求进行数据上报
+        saveResponseToRemoteService(responseDetail, requestDetail);
+        return new Promise((resolve) => {
+          loadResponseFromRemoteService(
+            { url, parameters }, 
+            responseDetail.response
+          ).then((response) => {
             if (!response) {
-              // 如果后台系统中没有该请求的访问记录，那么将线上数据保存到服务端
-              // 有bug，暂时注释掉
-              // saveResponseToRemoteService(responseDetail, requestDetail);
               resolve(responseDetail);
             } else {
               const result = Object.assign({}, responseDetail, { response });
               resolve(result);
             }
-            
           });
         });
       } else if ( bEnableDb ) {

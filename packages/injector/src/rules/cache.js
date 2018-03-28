@@ -184,7 +184,7 @@ exports.loadResponseFromRemoteService = function loadResponseFromRemoteService({
   const pureUrl = getPureUrl(url);
   const promise =  new Promise((resolve, reject) => {
     const { mock: { serverAddress, scene = '' } } = anyproxyConfig;
-    const serviceUrl = `${serverAddress}/openapi/query`;
+    const serviceUrl = `${serverAddress}/mock/external/query`;
     request({
       url: serviceUrl,
       method: 'POST',

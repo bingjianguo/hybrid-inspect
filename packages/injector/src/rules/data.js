@@ -5,11 +5,12 @@ const { decode } = require('iconv-lite');
 const path = require('path');
 const homedir = require('homedir');
 const request = require('request');
-const { decodeBuffer, getParameterHash, getPureUrl, getResponseType, getRequestObject } = require('./common');
+const { decodeBuffer, getParameterHash, getPureUrl, getPathname, getResponseType, getRequestObject } = require('./common');
 
 const { outputFileSync, existsSync, readFileSync } = fse;
 const { requestdb: db, getRequestSchema } = require('../util/db');
 
+const { anyproxyConfig } = require('../util/constant');
 
 exports.saveResponseToDbAsync = function saveResponseToDbAsync(responseDetail, requestDetail) {
   let { response } = responseDetail;
@@ -86,8 +87,12 @@ exports.saveJsonResponse = function saveJsonResponse(file, responseDetail, reque
   return { response };
 }
 
-
-exports.saveResponseToRemoteService = function saveResponseToDbAsync(responseDetail, requestDetail) {
+/**
+ * 
+ * @param {*} responseDetail 
+ * @param {*} requestDetail 
+ */
+exports.saveResponseToRemoteService = function saveResponseToRemoteService(responseDetail, requestDetail) {
 
   let { response } = responseDetail;
   const { statusCode } = response;
@@ -100,23 +105,45 @@ exports.saveResponseToRemoteService = function saveResponseToDbAsync(responseDet
     const body = decodeBuffer(response.body);
     const referer = req.headers['Referer'];
     const pureUrl = getPureUrl(url);
+    const pathname = getPathname(url);
     const timestamp = +(new Date());    
     const responseType = getResponseType(response);
     const parameters = getRequestObject(requestDetail);
+    const { mock: { serverAddress, scene = '', projects = [] } } = anyproxyConfig;
+    let pid = '';
+
+    if (projects.length > 0) {
+      pid = projects[0].id;
+      const filterProjects = projects.filter((item) => {
+        const { urls } = item;
+        const filterUrls = urls.filter((urlItem) => {
+          return pureUrl.indexOf(urlItem) >= 0;
+        });
+        return filterUrls.length > 0;
+      });
+
+      if (filterProjects.length > 0) {
+        pid = filterProjects[0].id;
+      } 
+    }
+    const serviceUrl = `${serverAddress}/mock/external/record`;
     request({
-      url: 'http://127.0.0.1:7001/openapi/record',
+      url: serviceUrl,
       method: 'POST',
       encoding: null,
       rejectUnauthorized: false,
       json: true,
       body: {
-        url: pureUrl,
-        body,
-        timestamp,
-        responseType,
-        referer,
-        parameters,
-        from: 'import'
+        ajaxData: {
+          pid,
+          name: pathname,
+          body,
+          timestamp,
+          responseType,
+          referer,
+          parameters,
+          from: 'import'
+        }
       },
       headers: {
         'content-type': 'application/json; charset=utf-8',

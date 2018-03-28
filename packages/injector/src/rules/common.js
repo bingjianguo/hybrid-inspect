@@ -144,3 +144,8 @@ exports.getRequestObject = (requestDetail) => {
   requestObject = Object.assign({},requestObject, query);
   return requestObject;
 }
+
+exports.getPathname = (url) => {
+  const { pathname } = URL.parse(url, true);
+  return pathname;
+}

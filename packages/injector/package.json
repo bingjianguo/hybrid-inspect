@@ -1,6 +1,6 @@
 {
   "name": "anyproxy-rules",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "anyproxy rules for cli",
   "main": "index.js",
   "keywords": [
@@ -34,6 +34,10 @@
     "mock": {
       "serverAddress": "http://anymock.dockerlab.alipay.net",
       "scene": "",
+      "projects": [{
+        "id": "5ab0a99020f525155f78b072",
+        "urls": []
+      }],
       "enable": true
     }
   }
